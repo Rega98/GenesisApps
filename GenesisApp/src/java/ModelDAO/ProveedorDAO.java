@@ -15,7 +15,8 @@ import java.util.List;
 
 /**
  *
- * @author IsmaSL
+ * @author Jeanny and Teresita
+ * @version 1.0
  */
 public class ProveedorDAO implements CRUD_Proveedor {
     // Instancia con la BD y derivados
@@ -24,13 +25,13 @@ public class ProveedorDAO implements CRUD_Proveedor {
     PreparedStatement ps;
     ResultSet rs;
     // Instancia del objeto-modelo
-    Proveedor pv = new Proveedor();
-    
+    Proveedor prov = new Proveedor();
+
     // Método que Muestra Todos los Proveedores
     @Override
     public List show() {
         ArrayList<Proveedor> list = new ArrayList<>();
-        String squery = "SELECT * FROM supplier ORDER BY sno;";
+        String squery = "SELECT * FROM proveedor ORDER BY rfc;";
         
         try{
             con = cox.getConnection();
@@ -38,43 +39,52 @@ public class ProveedorDAO implements CRUD_Proveedor {
             rs = ps.executeQuery();
             
             while(rs.next()){
-                Proveedor prov = new Proveedor();
+                Proveedor prove = new Proveedor();
                 
-                prov.setId(rs.getString("sno"));
-                prov.setNom(rs.getString("sname"));
+                prove.setRfc(rs.getString("rfc"));
+                prove.setNombre(rs.getString("nombre"));
+                prove.setDireccion(rs.getString("direccion"));
+                prove.setTelefono(rs.getString("telefono"));
+                prove.setCorreo(rs.getString("correo"));
                 
-                list.add(prov);
+                list.add(prove);
             }
         }catch(SQLException e){
-            System.out.println("Error:\n"+e+"\n-> Desde: ProvedorDAO.show");
+            System.out.println("Error:\n"+e+"\n-> Desde: ProveedorDAO.show");
         }
         
         return list;
     }
 
+    // Método que Muestra un Proveedor
     @Override
-    public Proveedor details(String id) {
-        String squery = "SELECT * FROM supplier WHERE sno="+id+";";
+    public Proveedor details(String rfc) {
+        String squery = "SELECT * FROM proveedor WHERE rfc="+rfc+";";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             rs = ps.executeQuery();
             
             while(rs.next()){                
-                pv.setId(rs.getString("sno"));
-                pv.setNom(rs.getString("sname"));
+                prov.setRfc(rs.getString("rfc"));
+                prov.setNombre(rs.getString("nombre"));
+                prov.setDireccion(rs.getString("direccion"));
+                prov.setTelefono(rs.getString("telefono"));
+                prov.setCorreo(rs.getString("correo"));
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: ProvedorDAO.details");
         }
         
-        return pv;
+        return prov;
     }
 
+    // Método que inserta un Proveedor
     @Override
     public boolean add(Proveedor prov) {
-        String squery = "INSERT INTO supplier (sname) VALUES ('"+prov.getNom()+"');";
-        
+        String squery = "INSERT INTO proveedor (rfc,nombre,direccion,telefono,correo)" 
+                + "VALUES ('"+prov.getRfc()+"', '"+prov.getNombre()+"', '"+prov.getDireccion()+"','"+prov.getTelefono()+"', '"+prov.getCorreo()+"');";
+              
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -86,10 +96,12 @@ public class ProveedorDAO implements CRUD_Proveedor {
         return false;
     }
 
+    // Método que edita un Proveedor
     @Override
     public boolean edit(Proveedor prov) {
-        String squery = "UPDATE supplier SET sname='"+prov.getNom()+"' WHERE sno = "+prov.getId()+";";
-        
+        String squery = "UPDATE proveedor SET rfc='"+prov.getRfc()+"', nombre='"+prov.getNombre()+"', "
+                + "direccion='"+prov.getDireccion()+"', telefono='"+prov.getTelefono()+"', correo='"+prov.getCorreo()+"'WHERE rfc='"+prov.getRfc()+"';";
+	
         System.out.println(squery);
         
         try{
@@ -103,9 +115,10 @@ public class ProveedorDAO implements CRUD_Proveedor {
         return false;
     }
 
+    // Método que elimina un Proveedor
     @Override
-    public boolean delete(String id) {
-        String squery = "DELETE FROM supplier WHERE sno = "+id+";";
+    public boolean delete(String rfc) {
+      String squery = "DELETE FROM proveedor WHERE rfc = "+rfc+";";
         
         System.out.println(squery);
         
@@ -119,4 +132,5 @@ public class ProveedorDAO implements CRUD_Proveedor {
         
         return false;
     }
+    
 }

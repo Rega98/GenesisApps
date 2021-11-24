@@ -1,42 +1,74 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MODELO: Proveedor
+ * Crear el objeto de proveedor para crear instancias
  */
 
 package Model;
 
 /**
- *
- * @author IsmaSL
+ * @author Jeanny and Teresita
+ * @version 1.0
  */
 public class Proveedor {
-    String id;
-    String nom;
+    
+    protected String rfc;
+    protected String nombre;
+    protected String direccion;
+    protected String telefono;
+    protected String correo; 
     
     public Proveedor(){}
+
+    public Proveedor(String rfc, String nombre, String direccion, String telefono, String correo) {
+        this.rfc = rfc;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
     
-    public Proveedor(String id, String nom){
-        this.id = id;
-        this.nom = nom;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    
+    
     
     
 }
