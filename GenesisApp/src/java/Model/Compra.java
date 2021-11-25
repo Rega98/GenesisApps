@@ -15,7 +15,7 @@ public class Compra {
    protected Date fechaCompra; 
    protected int cantidad;
    protected boolean iva;
-   protected int montoTotal;
+   protected float montoTotal;
    protected String estado;
    protected String rfcProveedor;
    protected int productoid;
@@ -65,11 +65,11 @@ public class Compra {
         this.iva = iva;
     }
 
-    public int getMontoTotal() {
+    public float getMontoTotal() {
         return montoTotal;
     }
 
-    public void setMontoTotal(int montoTotal) {
+    public void setMontoTotal(float montoTotal) {
         this.montoTotal = montoTotal;
     }
 
