@@ -11,3 +11,11 @@
 /GenesisApp/test/
 /GenesisApp/web/WEB-INF/
 
+*.class
+*.class
+GenesisApp/build/web/WEB-INF/classes/Model/Cliente.class
+*.class
+GenesisApp/nbproject/project.xml
+GenesisApp/nbproject/project.properties
+GenesisApp/nbproject/private/private.xml
+GenesisApp/nbproject/private/private.properties
