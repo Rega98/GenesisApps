@@ -1,0 +1,13 @@
+# Ignora todos los archivos .class
+*.class
+# Ignora carpetas en específico
+/GenesisApp/src/java/Config/
+/GenesisApp/build/web/WEB-INF/lib/
+/GenesisApp/src/conf/
+/GenesisApp/web.xml
+/GenesisApp/nbproject/
+/GenesisApp/dist/
+/GenesisApp/build/
+/GenesisApp/test/
+/GenesisApp/web/WEB-INF/
+

@@ -19,7 +19,7 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("org.postgresql.Driver");
-            con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/appgenesis","postgres","aurega 2412");            
+            con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/appgenesis","postgres","holamundo1");            
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println("Error:"+e);
         }
