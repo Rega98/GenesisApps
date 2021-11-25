@@ -24,7 +24,7 @@ public class ProveedorController extends HttpServlet {
     Proveedor prov = new Proveedor();
     ProveedorDAO pdao = new ProveedorDAO();
     
-    String show = "Proovedores/show.jsp";
+    String show = "views/show.jsp";
     String add = "Proovedores/add.jsp";
     String edit = "Proovedores/edit.jsp";
     /**
