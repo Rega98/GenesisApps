@@ -1,4 +1,5 @@
 GenesisApp\src\java\Config\
+GenesisApp\build\web\WEB-INF\lib\
 GenesisApp\src\conf\
 GenesisApp\web.xml
 GenesisApp\nbproject\
