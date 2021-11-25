@@ -1,0 +1,7 @@
+GenesisApp\src\java\Config\
+GenesisApp\src\conf\
+GenesisApp\web.xml
+GenesisApp\nbproject\
+GenesisApp\dist\
+GenesisApp\build\
+*.class
