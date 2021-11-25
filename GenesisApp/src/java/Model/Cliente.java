@@ -9,15 +9,13 @@ package Model;
  * @author Jeanny and Teresita
  */
 public class Cliente {
-  
-   protected String  rfc;
-   protected String  nombre;
-   protected String  apPaterno;
-   protected String  apMaterno;
-   protected String  direccion;
-   protected int telefono;
-   protected String  correo;
-   
+    protected String  rfc;
+    protected String  nombre;
+    protected String  apPaterno;
+    protected String  apMaterno;
+    protected String  direccion;
+    protected int telefono;
+    protected String  correo;
    
     public Cliente(){}
 
@@ -86,9 +84,5 @@ public class Cliente {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    
-    
-    
 }// llave que cierra
 

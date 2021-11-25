@@ -21,31 +21,24 @@ import java.util.List;
  * @author Windows 10 Pro
  */
 public class EmpleadoDAO implements CRUD_Empleado {
-         // Instancia con la BD y derivados
+    // Instancia con la BD y derivados
     Conexion cox = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     // Instancia del objeto-modelo
     Empleado emp = new Empleado();
-    
     // Método que Muestra Todos los Proveedores
-    
-
     @Override
     public List show() {
-              ArrayList<Empleado> list = new ArrayList<>();
-        String squery = "SELECT * FROM empleado ORDER BY sno = rfc;";
-        
+        ArrayList<Empleado> list = new ArrayList<>();
+        String squery = "SELECT * FROM empleado ORDER BY rfc;";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             rs = ps.executeQuery();
-            
             while(rs.next()){
                 Empleado emp = new Empleado();
-  
-                
                 emp.setRfc(rs.getString("rfc"));
                 emp.setNombre(rs.getString("nombre"));
                 emp.setApPaterno(rs.getString("apPaterno"));
@@ -53,25 +46,21 @@ public class EmpleadoDAO implements CRUD_Empleado {
                 emp.setUser(rs.getString("user"));
                 emp.setPass(rs.getString("pass"));
                 emp.setTipo(rs.getString("tipo"));
-             
-                
                 list.add(emp);
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: EmpleadoDAO.show");
         }
-        
         return list;
     }
 
     @Override
     public Empleado details(String rfc) {
-            String squery = "SELECT * FROM empleado WHERE sno="+rfc+";";
+        String squery = "SELECT * FROM empleado WHERE rfc='"+rfc+"';";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             rs = ps.executeQuery();
-            
             while(rs.next()){                
                 emp.setRfc(rs.getString("rfc"));
                 emp.setNombre(rs.getString("nombre"));
@@ -84,56 +73,57 @@ public class EmpleadoDAO implements CRUD_Empleado {
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: EmpleadoDAO.details");
         }
-        
         return emp;
     }
 
     @Override
     public boolean add(Empleado emp) {
-           String squery = "INSERT INTO empleado (sname) VALUES ('"+emp.getRfc()+"');";
-        
+        boolean result = false;
+        String squery = "INSERT INTO empleado (rfc, nombre, appaterno, apmaterno, \"user\", pass, tipo) VALUES ('"
+                   +emp.getRfc()+"', '"+emp.getNombre()+"', '"+emp.getApPaterno()+"', '"+emp.getApMaterno()+"', '"+emp.getUser()
+                   +"', '"+emp.getPass()+"', '"+emp.getTipo()+"');";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             ps.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             System.out.println("Error:\n"+e+"\n-> Desde: EmpleadoDAO.add");
         }
-        
-        return false;
+        return result;
     }
 
     @Override
     public boolean edit(Empleado emp) {
-       String squery = "UPDATE empleado SET sname='"+emp.getRfc()+"' WHERE sno = "+emp.getRfc()+";";
-        
+        boolean result = false;
+        String squery = "UPDATE empleado SET rfc='"+emp.getRfc()+"', nombre='"+emp.getNombre()+"', appaterno='"+emp.getApPaterno()
+               +"', apmaterno='"+emp.getApMaterno()+"', \"user\"='"+emp.getUser()+"', pass='"+emp.getPass()+"', tipo='"+emp.getTipo()
+               +"' WHERE rfc = '"+emp.getRfc()+"';";
         System.out.println(squery);
-        
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             ps.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             System.out.println("Error:\n"+e+"\n-> Desde: EmpleadoDAO.edit");
         }
-        
-        return false;
+        return result;
     }
 
     @Override
     public boolean delete(String rfc) {
-         String squery = "DELETE FROM empleado WHERE sno = "+rfc+";";
-        
+        boolean result = false;
+        String squery = "DELETE FROM empleado WHERE rfc = '"+rfc+"';";
         System.out.println(squery);
-        
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             ps.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             System.out.println("Error:\n"+e+"\n-> Desde: EmpleadoDAO.delete");
         }
-        
-        return false;
+        return result;
     }
 }

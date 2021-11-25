@@ -9,15 +9,15 @@ package Model;
  * @author Jeanny and Teresita
  */
 public class Empleado {
-  protected String rfc;
-   protected String nombre;
-   protected String apPaterno; 
-   protected String apMaterno;
-   protected String user;
-   protected String pass;
-   protected String tipo;
+    protected String rfc;
+    protected String nombre;
+    protected String apPaterno; 
+    protected String apMaterno;
+    protected String user;
+    protected String pass;
+    protected String tipo;
      
-   public Empleado(){}
+    public Empleado(){}
 
     public Empleado(String rfc, String nombre, String apPaterno, String apMaterno, String user, String pass, String tipo) {
         this.rfc = rfc;
@@ -85,6 +85,4 @@ public class Empleado {
         this.tipo = tipo;
     }
    
-   
-    
 }// llave que cierra
