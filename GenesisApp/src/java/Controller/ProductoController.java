@@ -22,10 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProductoController", urlPatterns = {"/ProductoController"})
 public class ProductoController extends HttpServlet {
     
-    Producto prov = new Producto();
+    Producto prod = new Producto();
     ProductoDAO pdao = new ProductoDAO();
     
     String show = "Productos/show.jsp";
+    String add = "Productos/add.jsp";
+    String edit = "Productos/edit.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -67,6 +69,68 @@ public class ProductoController extends HttpServlet {
         String access = "";
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("show")){
+            access = show;
+        }else if(action.equalsIgnoreCase("add")){
+            access = add;
+        }else if(action.equalsIgnoreCase("Guardar")){
+            // Aquí se pueden invocar metodos para realizar operaciones
+            int id = Integer.parseInt(request.getParameter("txtIdProd"));
+            String nom = request.getParameter("txtNomProd");
+            String des = request.getParameter("txtDesProd");
+            float pVe = Float.parseFloat(request.getParameter("txtPreVenProd"));
+            float pCo = Float.parseFloat(request.getParameter("txtPreComProd"));
+            String iva = request.getParameter("");///--------------------------- Pendiente
+            int stk = Integer.parseInt(request.getParameter("txtStoProd"));
+            String cat = request.getParameter("txtCatProd");
+            
+            prod.setId(id);
+            prod.setNombre(nom);
+            prod.setDescripcion(des);
+            prod.setPrecioVenta(pVe);
+            prod.setPrecioCompra(pCo);
+            prod.setIva(true);////---------------------------------------------- Pendiente
+            prod.setStock(stk);
+            prod.setCategoria(cat);
+            // Se le pasa el objeto para realizar la operación
+            pdao.add(prod);
+            // Se redirige a la vista
+            access = show;
+        }else if(action.equalsIgnoreCase("edit")){
+            // Se obtiene la info del request
+            request.setAttribute("idProd", request.getParameter("id"));
+            // Se redirige a la vista
+            access = edit;
+        }else if(action.equalsIgnoreCase("Editar")){
+            // Aquí se pueden invocar metodos para realizar operaciones
+            int id = Integer.parseInt(request.getParameter("txtIdProd"));
+            String nom = request.getParameter("txtNomProd");
+            String des = request.getParameter("txtDesProd");
+            float pVe = Float.parseFloat(request.getParameter("txtPreVenProd"));
+            float pCo = Float.parseFloat(request.getParameter("txtPreComProd"));
+            String iva = request.getParameter("");///--------------------------- Pendiente
+            int stk = Integer.parseInt(request.getParameter("txtStoProd"));
+            String cat = request.getParameter("txtCatProd");
+            
+            prod.setId(id);
+            prod.setNombre(nom);
+            prod.setDescripcion(des);
+            prod.setPrecioVenta(pVe);
+            prod.setPrecioCompra(pCo);
+            prod.setIva(true);////---------------------------------------------- Pendiente
+            prod.setStock(stk);
+            prod.setCategoria(cat);
+            // Se le pasa el objeto para realizar la operación
+            pdao.edit(prod);
+            // Se redirige a la vista
+            access = show;
+        }else if(action.equalsIgnoreCase("delete")){
+            // Aquí se pueden invocar metodos para realizar operaciones
+            int id = Integer.parseInt(request.getParameter("id"));
+            // Se instancia los valores (despues de x proceso realizado)
+            prod.setId(id);
+            // Se le pasa el objeto para realizar la operación
+            pdao.delete(id);
+            // Se redirige a la vista
             access = show;
         }
         

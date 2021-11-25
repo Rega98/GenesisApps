@@ -52,7 +52,6 @@ public class ProductoDAO implements CRUD_Producto {
                 produ.setIva(rs.getBoolean("iva"));
                 produ.setStock(rs.getInt("stock"));
                 produ.setCategoria(rs.getString("categoria"));
-                produ.setFolioCompra(rs.getInt("folioCompra"));
                 
                 list.add(produ);
             }
@@ -82,7 +81,6 @@ public class ProductoDAO implements CRUD_Producto {
                 prod.setIva(rs.getBoolean("iva"));
                 prod.setStock(rs.getInt("stock"));
                 prod.setCategoria(rs.getString("categoria"));
-                prod.setFolioCompra(rs.getInt("folioCompra"));
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: ProductoDAO.details");

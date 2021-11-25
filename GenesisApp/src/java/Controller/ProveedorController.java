@@ -24,9 +24,9 @@ public class ProveedorController extends HttpServlet {
     Proveedor prov = new Proveedor();
     ProveedorDAO pdao = new ProveedorDAO();
     
-    String show = "views/show.jsp";
-    String add = "views/add.jsp";
-    String edit = "views/edit.jsp";
+    String show = "Proovedores/show.jsp";
+    String add = "Proovedores/add.jsp";
+    String edit = "Proovedores/edit.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -75,36 +75,48 @@ public class ProveedorController extends HttpServlet {
             // Aquí se pueden invocar metodos para realizar operaciones
             String rfc = request.getParameter("txtRfcProv");
             String nom = request.getParameter("txtNomProv");
+            String dir = request.getParameter("txtDirProv");
+            String tel = request.getParameter("txtTelProv");
+            String ema = request.getParameter("txtEmaProv");
             
-            // Se instancia los valores (despues de x proceso realizado)
-            prov.setNom(nom);
+            prov.setRfc(rfc);
+            prov.setNombre(nom);
+            prov.setDireccion(dir);
+            prov.setTelefono(tel);
+            prov.setCorreo(ema);
             // Se le pasa el objeto para realizar la operación
             pdao.add(prov);
             // Se redirige a la vista
             access = show;
         }else if(action.equalsIgnoreCase("edit")){
             // Se obtiene la info del request
-            request.setAttribute("idProv", request.getParameter("id"));
+            request.setAttribute("rfcProv", request.getParameter("rfc"));
             // Se redirige a la vista
             access = edit;
         }else if(action.equalsIgnoreCase("Editar")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            String id = request.getParameter("txtIdProv");
+            String rfc = request.getParameter("txtRfcProv");
             String nom = request.getParameter("txtNomProv");
-            // Se instancia los valores (despues de x proceso realizado)
-            prov.setId(id);
-            prov.setNom(nom);
+            String dir = request.getParameter("txtDirProv");
+            String tel = request.getParameter("txtTelProv");
+            String ema = request.getParameter("txtEmaProv");
+            
+            prov.setRfc(rfc);
+            prov.setNombre(nom);
+            prov.setDireccion(dir);
+            prov.setTelefono(tel);
+            prov.setCorreo(ema);
             // Se le pasa el objeto para realizar la operación
             pdao.edit(prov);
             // Se redirige a la vista
             access = show;
         }else if(action.equalsIgnoreCase("delete")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            String id = request.getParameter("id");
+            String rfc = request.getParameter("rfc");
             // Se instancia los valores (despues de x proceso realizado)
-            prov.setId(id);
+            prov.setRfc(rfc);
             // Se le pasa el objeto para realizar la operación
-            pdao.delete(id);
+            pdao.delete(rfc);
             // Se redirige a la vista
             access = show;
         }
