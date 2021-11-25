@@ -7,3 +7,4 @@
 /GenesisApp/build/
 *.class
 /GenesisApp/test/
+/GenesisApp/web/WEB-INF/
