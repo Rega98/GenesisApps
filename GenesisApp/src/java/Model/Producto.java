@@ -19,11 +19,10 @@ public class Producto {
     protected boolean iva;
     protected int stock;
     protected String categoria;
-    protected int folioCompra;
     
     public Producto(){}
 
-    public Producto(int id, String nombre, String descripcion, float precioVenta, float precioCompra, boolean iva, int stock, String categoria, int folioCompra) {
+    public Producto(int id, String nombre, String descripcion, float precioVenta, float precioCompra, boolean iva, int stock, String categoria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -32,7 +31,6 @@ public class Producto {
         this.iva = iva;
         this.stock = stock;
         this.categoria = categoria;
-        this.folioCompra = folioCompra;
     }
 
     public int getId() {
@@ -98,15 +96,4 @@ public class Producto {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
-    public int getFolioCompra() {
-        return folioCompra;
-    }
-
-    public void setFolioCompra(int folioCompra) {
-        this.folioCompra = folioCompra;
-    }
-    
-    
-    
 }

@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ucmex/Desktop/Propedeútico/POO/GenesisApp/web/views/edit.jsp</file>
-            <file>file:/C:/Users/ucmex/Desktop/Propedeútico/POO/GenesisApp/web/views/add.jsp</file>
-            <file>file:/C:/Users/ucmex/Desktop/Propedeútico/POO/GenesisApp/web/index.html</file>
-            <file>file:/C:/Users/ucmex/Desktop/Propedeútico/POO/GenesisApp/src/java/Model/Proveedor.java</file>
-            <file>file:/C:/Users/ucmex/Desktop/Propedeútico/POO/GenesisApp/src/java/Controller/ProveedorController.java</file>
-            <file>file:/C:/Users/ucmex/Desktop/Propedeútico/POO/GenesisApp/src/java/Interfaces/CRUD_Proveedor.java</file>
-            <file>file:/C:/Users/ucmex/Desktop/Propedeútico/POO/GenesisApp/web/views/show.jsp</file>
+            <file>file:/C:/Users/ucmex/Desktop/GitHub/GenesisApps/GenesisApp/src/java/Controller/PagoController.java</file>
+            <file>file:/C:/Users/ucmex/Desktop/GitHub/GenesisApps/GenesisApp/src/java/Controller/ProductoController.java</file>
         </group>
     </open-files>
 </project-private>
