@@ -15,12 +15,12 @@ public interface CRUD_TipoGasto {
      // Mostrar todos
     public List show();
     // Buscar uno
-    public TipoGasto details(String id);
+    public TipoGasto details(int id);
     // Agregar
     public boolean add(TipoGasto tipogast);
     // Editar
     public boolean edit(TipoGasto tipogast);
     // Eliminar
-    public boolean delete(String id);    
+    public boolean delete(int id);    
     
 }

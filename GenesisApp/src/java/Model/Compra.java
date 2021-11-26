@@ -57,7 +57,7 @@ public class Compra {
         this.cantidad = cantidad;
     }
 
-    public boolean isIva() {
+    public boolean getIva() {
         return iva;
     }
 

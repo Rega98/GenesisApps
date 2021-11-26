@@ -63,7 +63,7 @@ public class PagoDAO implements CRUD_Pago {
     @Override
     public Pago details(int folio) {
     
-        String squery = "SELECT * FROM ago WHERE folio="+folio+";";
+        String squery = "SELECT * FROM pago WHERE folio="+folio+";";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);

@@ -33,7 +33,7 @@ public class CompraDAO implements CRUD_Compra {
     @Override
     public List show() {
     ArrayList<Compra> list = new ArrayList<>();
-        String squery = "SELECT * FROM compra ORDER BY sno folio;";
+        String squery = "SELECT * FROM compra ORDER BY  folio;";
         
         
         try{
@@ -64,7 +64,7 @@ public class CompraDAO implements CRUD_Compra {
 
     @Override
     public Compra details(int folio) {
-          String squery = "SELECT * FROM compra WHERE sno="+folio+";";
+          String squery = "SELECT * FROM compra WHERE folio="+folio+";";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -91,10 +91,9 @@ public class CompraDAO implements CRUD_Compra {
 
     @Override
     public boolean add(Compra com) {
-       String squery = "INSERT INTO compra (sname) VALUES ('"+com.getFolio()+"');";
-       
-       
-        
+
+        String squery = "INSERT INTO pago (folio, fechaCompra, cantidad, iva, montoTotal, estado, rfcProveedor, productoid)" 
+                + "VALUES ("+com.getFolio()+", '"+com.getFechaCompra()+"', "+com.getCantidad()+","+com.getIva()+", "+com.getMontoTotal()+",'"+com.getEstado()+"','"+com.getRfcProveedor()+"',"+com.getProductoid()+");";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -109,7 +108,8 @@ public class CompraDAO implements CRUD_Compra {
 
     @Override
     public boolean edit(Compra com) {
-          String squery = "UPDATE compra SET sfolio='"+com.getFolio()+"' WHERE sno = "+com.getFolio()+";";
+         String squery = "UPDATE compra SET folio="+com.getFolio()+", fechaCompra='"+com.getFechaCompra()+"', "
+              + "cantidad="+com.getCantidad()+", iva='"+com.getIva()+"', montoTotal="+com.getMontoTotal()+", estado='"+com.getEstado()+"',rfcProveedor = '"+com.getRfcProveedor()+"',productoid="+com.getProductoid()+" WHERE folio="+com.getFolio()+";";
         
         System.out.println(squery);
         
@@ -126,7 +126,7 @@ public class CompraDAO implements CRUD_Compra {
 
     @Override
     public boolean delete(int folio) {
-        String squery = "DELETE FROM compra WHERE sno = "+com.getFolio()+";";
+        String squery = "DELETE FROM  compra WHERE folio = "+folio+";";
         
         System.out.println(squery);
         

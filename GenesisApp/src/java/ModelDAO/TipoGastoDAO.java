@@ -59,7 +59,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
 
     // Método que muestra un TipoGasto
     @Override
-    public TipoGasto details(String id) {
+    public TipoGasto details(int id) {
     
         String squery = "SELECT * FROM tipoGasto WHERE id="+id+";";
         try{
@@ -119,7 +119,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
 
     // Método que elimina un TipoGasto
     @Override
-    public boolean delete(String id) {
+    public boolean delete(int id) {
     String squery = "DELETE FROM tipoGasto WHERE id = "+id+";";
         
         System.out.println(squery);
