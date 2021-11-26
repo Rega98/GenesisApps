@@ -67,23 +67,27 @@
                     </div>
                     <div class="col-md-4">
                       <label for="numCantidadCom" class="form-label">Cantidad</label>
-                      <input type="number" class="form-control" id="NumCantidadCom" name="numCantidadCom">
+                      <input type="number" class="form-control" id="NumCantidadCom" name="txtCantCom">
                     </div>
                     <div class="col-md-4">
-                      <label for="numberIvaCom" class="form-label">IVA</label>
-                      <input type="number" class="form-control" id="numberIva" name="numberIvaCom">
+                       <label for="numberIvaCom" class="form-label">IVA</label>
+                       <select class="form-select" aria-label="Default select example" name="txtIvaCom">
+                        <option selected>Selecione una opción</option>
+                        <option value="1">SI</option>
+                        <option value="0">NO</option>
+                      </select>
                     </div>
                     <div class="col-6">
                       <label for="numberMontooCom" class="form-label">Monto Total</label>
-                      <input type="number" class="form-control" id="numberMonto" name="numberMontoCom">
+                      <input type="number" class="form-control" id="numberMonto" name="txtMontotCom">
                     </div>
                     <div class="col-6">
                       <label for="txtEstCom" class="form-label">Estado</label>
-                      <input type="text" class="form-control" id="txtEstCom" name="txtEstCom">
+                      <input type="text" class="form-control" id="txtEstCom" name="txtEstadoCom">
                     </div>
                     <div class="col-6">
                       <label for="txtProvCom" class="form-label">RFC del profesor</label>
-                      <input type="text" class="form-control" id="txtProvCom" name="txtProvCom">
+                      <input type="text" class="form-control" id="txtProvCom" name="txtRfcCom">
                     </div>
                     
                     <div class="col-6">

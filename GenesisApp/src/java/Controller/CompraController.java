@@ -75,7 +75,7 @@ public class CompraController extends HttpServlet {
             access = add;
         } else if(action.equalsIgnoreCase("Guardar")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            String fechaC = request.getParameter("txtFechaCom");
+            String fechaC = request.getParameter("txtFecCom");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = null;
             try {
