@@ -1,9 +1,11 @@
+<%-- 
+    Document   : show
+    Created on : 25 nov 2021, 9:46:37
+    Author     : uriel
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Geminis</title>
@@ -17,7 +19,7 @@ and open the template in the editor.
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Geminis App</a>
+                <a class="navbar-brand" href="#">Geminis App | Compras</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -45,47 +47,54 @@ and open the template in the editor.
         <br>
         <br>
         <br>
-        <div class="row">
-            
-        </div>
-        
         <div class="container">
-             <div class="row">
-                <div class="col-sm-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Vendedor</h5>
-                      <a href="Vendedor/VendedorController?action=show" class="btn btn-primary">Menú Vendedor</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Cobrador</h5>
-                      <a href="#" class="btn btn-primary">Menú Cobrador</a>
-                    </div>
-                  </div>
-                </div>
-                 <div class="col-sm-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Gerente</h5>
-                      <a href="#" class="btn btn-primary">Menú Gerente</a>
-                    </div>
-                  </div>
+            <div class="row">
+                <div>
+                    <h3>Listado de Compras</h3>
+                    <br>
+                    <a href="CompraController?action=add" class="btn btn-success" id="btnAdd" role="button">Agregar Compra</a>
                 </div>
             </div>
- 
         </div>
-        
-       
-        
-       <!-- <h1>
-            Menú de opciones:
-        </h1>
-        <div>
-            <a href="ProveedorController?action=show">Ver lista de items</a>
-        </div>-->
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Folio</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Iva</th>
+                        <th scope="col">Monto Total</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">RFC de Proovedor</th>
+                        <th scope="col">ID producto</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">FO-00-Compra</th>
+                        <td>25/11/2021</td>
+                        <td>12 Piezas</td>
+                        <td>12</td>
+                        <td>1200</td>
+                        <td>1200</td>
+                        <td>XAXA00000XX0</td>
+                        <td>12590</td>
+                        <td>
+                            <a href="CompraController?action=edit" class="btn btn-primary" id="btnEdit" role="button">Editar</a>
+                        </td>
+                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                      </tr>
+                    </tbody>
+                </table>
+             
+            </div>
+        </div>
     </body>
 </html>
+
