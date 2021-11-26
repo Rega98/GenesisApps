@@ -106,7 +106,7 @@ public class CatNominaDAO implements CRUD_CatNomina{
     @Override
     public boolean edit(CatNomina cnomi) {
     
-        String squery = "UPDATE catnomina SET folio="+catNomi.getFolio()+", fecha='"+catNomi.getFecha()+"', "
+        String squery = "UPDATE catnomina SET fecha='"+catNomi.getFecha()+"', "
                 + "mesanio='"+catNomi.getMesAnio()+"', periodo='"+catNomi.getPeriodo()+"',monto="+catNomi.getMonto()+", rfcempleado='"+catNomi.getRfcEmpleado()+"'WHERE folio="+catNomi.getFolio()+";";
 	
         System.out.println(squery);

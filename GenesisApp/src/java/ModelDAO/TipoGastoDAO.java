@@ -101,7 +101,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
     @Override
     public boolean edit(TipoGasto tipogast) {
     
-        String squery = "UPDATE tipoGasto SET id="+tipogast.getId()+", descripcion='"+tipogast.getDescripcion()+"', "
+        String squery = "UPDATE tipoGasto SET descripcion='"+tipogast.getDescripcion()+"', "
                 + "tipo='"+tipogast.getTipo()+"'WHERE id="+tipogast.getId()+";";
 	
         System.out.println(squery);
