@@ -1,6 +1,6 @@
 # Ignora todos los archivos .class
 *.class
-# Ignora carpetas en especÃ­fico
+# Ignora carpetas en específico
 /GenesisApp/src/java/Config/
 /GenesisApp/build/web/WEB-INF/lib/
 /GenesisApp/src/conf/
