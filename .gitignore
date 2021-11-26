@@ -19,3 +19,6 @@ GenesisApp/nbproject/project.xml
 GenesisApp/nbproject/project.properties
 GenesisApp/nbproject/private/private.xml
 GenesisApp/nbproject/private/private.properties
+GenesisApp/dist/GenesisApp.war
+GenesisApp/dist/GenesisApp.war
+*.class
