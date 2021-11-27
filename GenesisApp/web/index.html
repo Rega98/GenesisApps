@@ -14,34 +14,43 @@ and open the template in the editor.
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <!--
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <body style="background-color: #EAEAEA;">
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Geminis App</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                   <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="ProveedorController?action=show">Proveedores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="src/views/">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Productos</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                   
                 </div>
             </div>
         </nav>
-        
+        <center>
+        <div class="card text-center col-md-4 col-sm-8 mt-5 mb-5 mx-3 shadow">
+            <div class="card-header">
+                <h4>Iniciar Sesión</h4>
+            </div>
+            <div class="card-body bg-white">
+                    <div class="container">
+                        <form name="archivo" method="post" action="" class="mt-2">
+                            <div class="form-group mb-4">
+                                <label class="form-label">Usuario</label>
+                                <input type="text" name="user" class="form-control" required/>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" name="pass" class="form-control" required/>
+                            </div>
+                            <!--
+                            <button type="submit" class="btn btn-primary btn-block px-5" onclick="">Entrar</button>
+                            -->
+                            <a href="welcome.jsp" class="btn btn-primary btn-block px-5" onclick="">Entrar</a>
+                        </form>
+                    </div>
+                </div>
+            <div class="card-footer text-muted">@2021</div>
+        </div>
+        </center>
+        <!--    
         <br>
         <br>
         <br>

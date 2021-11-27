@@ -44,7 +44,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
                 prove.setRfc(rs.getString("rfc"));
                 prove.setNombre(rs.getString("nombre"));
                 prove.setDireccion(rs.getString("direccion"));
-                prove.setTelefono(rs.getInt("telefono"));
+                prove.setTelefono(rs.getString("telefono"));
                 prove.setCorreo(rs.getString("correo"));
                 
                 list.add(prove);
@@ -69,7 +69,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
                 prov.setRfc(rs.getString("rfc"));
                 prov.setNombre(rs.getString("nombre"));
                 prov.setDireccion(rs.getString("direccion"));
-                prov.setTelefono(rs.getInt("telefono"));
+                prov.setTelefono(rs.getString("telefono"));
                 prov.setCorreo(rs.getString("correo"));
             }
         }catch(SQLException e){
