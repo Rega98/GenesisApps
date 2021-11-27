@@ -4,6 +4,8 @@
     Author     : uriel
 --%>
 
+<%@page import="Model.Producto"%>
+<%@page import="ModelDAO.ProductoDAO"%>
 <%@page import="Model.Empleado"%>
 <%@page import="ModelDAO.EmpleadoDAO"%>
 <%@page import="Model.Cliente"%>
@@ -70,37 +72,81 @@
                 </div>
                 <div class="row my-3">
                     <div class="col-4">
-                        <label for="numIdPro" class="form-label">ID de producto</label>
-                        <input type="number" class="form-control" id="numIdPro" name="numIdPro">
+                        <label for="numIdPro" class="form-label">Producto</label>
+                        <select class="form-select" name="numIdPro">
+                            <option selected disabled value="0">Selecciona un producto</option>
+                            <%
+                            ProductoDAO pdao = new ProductoDAO();
+                            List<Producto> list3 = pdao.show();
+                            Iterator<Producto> iter3 = list3.iterator();
+                            Producto prod = null;
+                            while(iter3.hasNext()){
+                                prod = iter3.next();
+                            %>
+                            <option value="<%= prod.getId()%>"><%= prod.getNombre()%></option>
+                            <%
+                            }
+                            %>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="numPrePro" class="form-label">Precio</label>
+                        <%
+                        ProductoDAO pdao2 = new ProductoDAO();
+                        Producto prod2 = pdao2.details(5);
+                        
+                        String gender = request.getParameter("numIdPro");
+                        out.print(gender);
+                        %>
+                        <input type="number" class="form-control" name="numPrePro" value="<%= prod2.getPrecioCompra()%>">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numEngaCon" class="form-label">Engache</label>
+                        <input type="number" class="form-control" id="numEngaCon" name="numEngaCon">
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-4">
+                        <label for="txtPlanCon" class="form-label">Plan de pago</label>
+                        <select class="form-select" name="txtPlanCon">
+                            <option selected disabled>Seleccione un plan</option>
+                            <option value="Semanal">Semanal</option>
+                            <option value="Quincenal">Quincenal</option>
+                            <option value="Mensual">Mensual</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="txtDiaCon" class="form-label">Día de pago</label>
+                        <select class="form-select" name="txtDiaCon">
+                            <option selected disabled>Seleccione un día</option>
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miércoles">Miércoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Sábado">Sábado</option>
+                        </select>
                     </div>
                     <div class="col-4">
                         <label for="numSubCon" class="form-label">Sub Total</label>
-                        <input type="number" class="form-control" id="numSubCon" name="numSubCon">
+                        <input type="number" class="form-control" id="numSubCon" name="numSubCon" value="">
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="numEngaCon" class="form-label">Engache</label>
-                    <input type="number" class="form-control" id="numEngaCon" name="numEngaCon">
+                <div class="row my-3">
+                    <div class="col-8"></div>
+                    <div class="col-4">
+                        <label for="numIvaCon" class="form-label">IVA</label>
+                        <input type="number" class="form-control" id="numIvaCon" name="numIvaCon">
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="txtPlanCon" class="form-label">Plan de pago</label>
-                    <select class="form-select" name="txtPlanCon">
-                        <option selected disabled>Seleccione un plan</option>
-                        <option value="Semanal">Semanal</option>
-                        <option value="Quincenal">Quincenal</option>
-                        <option value="Mensual">Mensual</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="txtDiaCon" class="form-label">Día de pago</label>
-                    <select class="form-select" name="txtDiaCon">
-                        <option selected disabled>Seleccione un día</option>
-                        <option value="Lunes">Lunes</option>
-                        <option value="Martes">Martes</option>
-                        <option value="Miércoles">Miércoles</option>
-                        <option value="Jueves">Jueves</option>
-                        <option value="Sábado">Sábado</option>
-                    </select>
+                <div class="row my-3">
+                    <div class="col-8"></div>
+                    <div class="col-4">
+                        <label for="numTotalCon" class="form-label">Total</label>
+                        <input type="number" class="form-control" id="numTotalCon" name="numTotalCon">
+                        <hr>
+                        <a type="submit" class="btn btn-primary px-5">Agregar</a>
+                        <a type="submit" class="btn btn-danger px-5">Cancelar</a>
+                    </div>
                 </div>
                 <!-- No se usa 
                 <div class="col-4">
@@ -108,25 +154,14 @@
                     <input type="text" class="form-control" id="txtEstCon" name="txtEstCon">
                 </div>
                 -->
-                
-
-                <div class="col-4">
-                    <label for="numIvaCon" class="form-label">IVA</label>
-                    <input type="number" class="form-control" id="numIvaCon" name="numIvaCon">
-                </div>
-                <div class="col-4">
-                    <label for="numTotalCon" class="form-label">Total</label>
-                    <input type="number" class="form-control" id="numTotalCon" name="numTotalCon">
-                </div>
-
+                <!-- No se usa 
                 <div class="col-4">
                     <label for="numIdRuta" class="form-label">ID de la Ruta</label>
                     <input type="number" class="form-control" id="numIdRuta" name="numIdRuta">
                 </div>
+                -->
                 <div class="col-6">
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-
-                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                    
                 </div>
             </form>
         </div>

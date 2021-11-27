@@ -38,6 +38,9 @@
                             <a class="nav-link active" aria-current="page" href="GastoController?action=show">Gastos</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="CompraController?action=show">Compras</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="CatNominaController?action=show">Nóminas</a>
                         </li>
                         <li class="nav-item">
