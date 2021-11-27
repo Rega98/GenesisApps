@@ -1,13 +1,15 @@
+<%-- 
+    Document   : welcome
+    Created on : 26 nov. 2021, 19:01:15
+    Author     : IsmaSL
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Géminis | Login</title>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Géminis | Inicio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -15,7 +17,6 @@ and open the template in the editor.
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </head>
     <body>
-        <!--
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Geminis App</a>
@@ -37,56 +38,12 @@ and open the template in the editor.
                     <form class="d-flex">
                       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                       <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    </form>-->
                 </div>
             </div>
         </nav>
-        
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="row">
+        <div class="content">
             
         </div>
-        
-        <div class="container">
-             <div class="row">
-                <div class="col-sm-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Vendedor</h5>
-                      <a href="Vendedor/VendedorController?action=show" class="btn btn-primary">Menú Vendedor</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Cobrador</h5>
-                      <a href="#" class="btn btn-primary">Menú Cobrador</a>
-                    </div>
-                  </div>
-                </div>
-                 <div class="col-sm-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Gerente</h5>
-                      <a href="#" class="btn btn-primary">Menú Gerente</a>
-                    </div>
-                  </div>
-                </div>
-            </div>
- 
-        </div>
-        
-       
-        -->
-       <!-- <h1>
-            Menú de opciones:
-        </h1>
-        <div>
-            <a href="ProveedorController?action=show">Ver lista de items</a>
-        </div>-->
     </body>
 </html>
