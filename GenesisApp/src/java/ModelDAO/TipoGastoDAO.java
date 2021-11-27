@@ -120,7 +120,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
     // Método que elimina un TipoGasto
     @Override
     public boolean delete(int id) {
-    String squery = "DELETE FROM tipoGasto WHERE id = "+id+";";
+    String squery = "DELETE * FROM tipoGasto WHERE id = "+id+";";
         
         System.out.println(squery);
         

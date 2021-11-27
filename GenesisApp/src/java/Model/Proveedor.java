@@ -14,12 +14,12 @@ public class Proveedor {
     protected String rfc;
     protected String nombre;
     protected String direccion;
-    protected String telefono;
+    protected int telefono;
     protected String correo; 
     
     public Proveedor(){}
 
-    public Proveedor(String rfc, String nombre, String direccion, String telefono, String correo) {
+    public Proveedor(String rfc, String nombre, String direccion, int telefono, String correo) {
         this.rfc = rfc;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -51,11 +51,11 @@ public class Proveedor {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 

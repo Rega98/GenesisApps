@@ -126,7 +126,7 @@ public class CatNominaDAO implements CRUD_CatNomina{
     @Override
     public boolean delete(int folio) {
     
-        String squery = "DELETE FROM catnomina WHERE folio = "+folio+";";
+        String squery = "DELETE * FROM catnomina WHERE folio = "+folio+";";
         
         System.out.println(squery);
         

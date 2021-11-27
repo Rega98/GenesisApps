@@ -125,7 +125,7 @@ public class PagoDAO implements CRUD_Pago {
     @Override
     public boolean delete(int folio) {
     
-        String squery = "DELETE FROM pago WHERE folio = "+folio+";";
+        String squery = "DELETE * FROM pago WHERE folio = "+folio+";";
         
         System.out.println(squery);
         

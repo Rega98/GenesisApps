@@ -127,7 +127,7 @@ public class GastoDAO implements CRUD_Gasto {
     // Método que elimina un Gasto
     @Override
     public boolean delete(int folio) {
-    String squery = "DELETE FROM gasto WHERE folio = "+folio+";";
+    String squery = "DELETE * FROM gasto WHERE folio = "+folio+";";
         
         System.out.println(squery);
         

@@ -124,7 +124,7 @@ public class ValeDAO implements CRUD_Vale{
     @Override
     public boolean delete(int folio) {
     
-        String squery = "DELETE FROM vale WHERE folio = "+folio+";";
+        String squery = "DELETE * FROM vale WHERE folio = "+folio+";";
         
         System.out.println(squery);
         

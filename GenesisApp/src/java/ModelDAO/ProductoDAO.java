@@ -128,7 +128,7 @@ public class ProductoDAO implements CRUD_Producto {
     @Override
     public boolean delete(int id) {
         
-        String squery = "DELETE FROM producto WHERE id = "+id+";";
+        String squery = "DELETE * FROM producto WHERE id = "+id+";";
         
         System.out.println(squery);
         
