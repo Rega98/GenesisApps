@@ -6,7 +6,6 @@
 package Controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +66,7 @@ public class ClienteController extends HttpServlet {
                 cliente.setApPaterno(appP);
                 cliente.setApMaterno(appM);
                 cliente.setDireccion(direccion);
-                cliente.setTelefono(Integer.parseInt(telefono));
+                cliente.setTelefono(telefono);
                 cliente.setCorreo(correo);
                 // Se le pasa el objeto para realizar la operación
                 if(action.equalsIgnoreCase("Guardar")){

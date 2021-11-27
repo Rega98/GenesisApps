@@ -29,16 +29,16 @@
                             <a class="nav-link active" aria-current="page" href="ContratoController?action=show">Contratos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Clientes</a>
+                            <a class="nav-link active" aria-current="page" href="ClienteController?action=show">Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Productos</a>
+                            <a class="nav-link active" aria-current="page" href="ProductoController?action=show">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Gastos</a>
+                            <a class="nav-link active" aria-current="page" href="GastoController?action=show">Gastos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Nóminas</a>
+                            <a class="nav-link active" aria-current="page" href="CatNominaController?action=show">Nóminas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Empleados</a>

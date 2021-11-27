@@ -14,12 +14,12 @@ public class Cliente {
     protected String  apPaterno;
     protected String  apMaterno;
     protected String  direccion;
-    protected int telefono;
+    protected String  telefono;
     protected String  correo;
    
     public Cliente(){}
 
-    public Cliente(String rfc, String nombre, String apPaterno, String apMaterno, String direccion, int telefono, String correo) {
+    public Cliente(String rfc, String nombre, String apPaterno, String apMaterno, String direccion, String telefono, String correo) {
         this.rfc = rfc;
         this.nombre = nombre;
         this.apPaterno = apPaterno;
@@ -69,11 +69,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
