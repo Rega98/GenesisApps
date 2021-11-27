@@ -104,7 +104,7 @@ public class ValeDAO implements CRUD_Vale{
     @Override
     public boolean edit(Vale val) {
     
-        String squery = "UPDATE vale SET folio="+va.getFolio()+", monto="+va.getMonto()+", "
+        String squery = "UPDATE vale SET monto="+va.getMonto()+", "
                 + "fechavale='"+va.getFechaVale()+"', concepto='"+va.getConcepto()+"', rfcvendedor='"+va.getRfcVendedor()+"'WHERE folio="+va.getFolio()+";";
 	
         System.out.println(squery);
@@ -124,7 +124,7 @@ public class ValeDAO implements CRUD_Vale{
     @Override
     public boolean delete(int folio) {
     
-        String squery = "DELETE FROM vale WHERE folio = "+folio+";";
+        String squery = "DELETE * FROM vale WHERE folio = "+folio+";";
         
         System.out.println(squery);
         

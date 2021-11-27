@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
 
-import Model.Compra;
-import ModelDAO.CompraDAO;
+import Model.Observacion;
+import ModelDAO.ObservacionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -11,23 +16,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author LisRR
+ * @author blanc
  */
-
-public class CompraController extends HttpServlet {
+@WebServlet(name = "ObservacionController", urlPatterns = {"/ObservacionController"})
+public class ObservacionController extends HttpServlet {
     
-    Compra com = new Compra();
-    CompraDAO comdao = new CompraDAO();
+    Observacion observ = new Observacion();
+    ObservacionDAO obsdao = new ObservacionDAO();
     
-    String show = "Compra/show.jsp";
-    String add = "Compra/add.jsp";
-    String edit = "Compra/edit.jsp";
+    String show = "Observacion/show.jsp";
+    String add = "Observacion/add.jsp";
+    String edit = "Observacion/edit.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,15 +47,15 @@ public class CompraController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CompraController</title>");            
+            out.println("<title>Servlet ObservacionController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CompraController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ObservacionController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,16 +72,19 @@ public class CompraController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String access = "";
+        throws ServletException, IOException {
+            processRequest(request, response);
+            
+            String access = "";
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("show")){
             access = show;
         } else if(action.equalsIgnoreCase("add")){
             access = add;
         } else if(action.equalsIgnoreCase("Guardar")){
+            
             // Aquí se pueden invocar metodos para realizar operaciones
-            String fechaC = request.getParameter("txtFecCom");
+            String fechaC = request.getParameter("txtFechaobserv");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = null;
             try {
@@ -83,23 +92,16 @@ public class CompraController extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int cant = Integer.parseInt(request.getParameter("txtCantCom"));
-            boolean iva = Boolean.parseBoolean(request.getParameter("txtIvaCom"));
-            //pendiente monto, es float
-            float montoT = Float.parseFloat(request.getParameter("txtMontotCom"));
-            String estado = request.getParameter("txtEstadoCom");
-            String rfcProv = request.getParameter("txtRfcCom");
-            int producto = Integer.parseInt(request.getParameter("txtIdProductoCom"));
+            String obser = request.getParameter("txtobserobserv");
+            int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
+            
             // Se instancia los valores (despues de x proceso realizado)
-            com.setFechaCompra(fecha);
-            com.setCantidad(cant);
-            com.setIva(iva);
-            com.setMontoTotal(montoT);
-            com.setEstado(estado);
-            com.setRfcProveedor(rfcProv);
-            com.setProductoid(producto);
+            observ.setFecha(fecha);
+            observ.setObservacion(obser);
+            observ.setContratofolio(contraF);
+            
             // Se le pasa el objeto para realizar la operación
-            comdao.add(com);
+            obsdao.add(observ);
             // Se redirige a la vista
             access = show;
         } else if(action.equalsIgnoreCase("edit")){ //checar vista 
@@ -117,32 +119,24 @@ public class CompraController extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int cant = Integer.parseInt(request.getParameter("txtCantCom"));
-            boolean iva = Boolean.parseBoolean(request.getParameter("txtIvaCom"));
-            //pendiente monto, es float
-            int montoT = Integer.parseInt(request.getParameter("txtMontotCom"));
-            String estado = request.getParameter("txtEstadoCom");
-            String rfcProv = request.getParameter("txtRfcCom");
-            int producto = Integer.parseInt(request.getParameter("txtIdProductoCom"));
+            String obser = request.getParameter("txtobserobserv");
+            int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
             // Se instancia los valores (despues de x proceso realizado)
-            com.setFechaCompra(fecha);
-            com.setCantidad(cant);
-            com.setIva(iva);
-            com.setMontoTotal(montoT);
-            com.setEstado(estado);
-            com.setRfcProveedor(rfcProv);
-            com.setProductoid(producto);
+            observ.setFecha(fecha);
+            observ.setObservacion(obser);
+            observ.setContratofolio(contraF);
             // Se le pasa el objeto para realizar la operación
-            comdao.edit(com);
+            obsdao.edit(observ);
+
             // Se redirige a la vista
             access = show;
         } else if(action.equalsIgnoreCase("delete")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            int folio = Integer.parseInt(request.getParameter("folioC"));
+            int id = Integer.parseInt(request.getParameter("id"));
             // Se instancia los valores (despues de x proceso realizado)
-            com.setFolio(folio);
+            observ.setId(id);
             // Se le pasa el objeto para realizar la operación
-            comdao.delete(folio);
+            obsdao.delete(id);
             // Se redirige a la vista
             access = show;
         }
@@ -151,6 +145,8 @@ public class CompraController extends HttpServlet {
         view.forward(request, response);
         
     }
+    
+        
 
     /**
      * Handles the HTTP <code>POST</code> method.

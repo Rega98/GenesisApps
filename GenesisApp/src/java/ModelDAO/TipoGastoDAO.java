@@ -59,7 +59,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
 
     // Método que muestra un TipoGasto
     @Override
-    public TipoGasto details(String id) {
+    public TipoGasto details(int id) {
     
         String squery = "SELECT * FROM tipoGasto WHERE id="+id+";";
         try{
@@ -101,7 +101,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
     @Override
     public boolean edit(TipoGasto tipogast) {
     
-        String squery = "UPDATE tipoGasto SET id="+tipogast.getId()+", descripcion='"+tipogast.getDescripcion()+"', "
+        String squery = "UPDATE tipoGasto SET descripcion='"+tipogast.getDescripcion()+"', "
                 + "tipo='"+tipogast.getTipo()+"'WHERE id="+tipogast.getId()+";";
 	
         System.out.println(squery);
@@ -119,8 +119,8 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
 
     // Método que elimina un TipoGasto
     @Override
-    public boolean delete(String id) {
-    String squery = "DELETE FROM tipoGasto WHERE id = "+id+";";
+    public boolean delete(int id) {
+    String squery = "DELETE * FROM tipoGasto WHERE id = "+id+";";
         
         System.out.println(squery);
         

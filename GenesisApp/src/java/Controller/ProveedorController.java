@@ -8,7 +8,6 @@ package Controller;
 import Model.Proveedor;
 import ModelDAO.ProveedorDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +23,7 @@ public class ProveedorController extends HttpServlet {
     Proveedor prov = new Proveedor();
     ProveedorDAO pdao = new ProveedorDAO();
     
-    String show = "views/show.jsp";
+    String show = "Proovedores/show.jsp";
     String add = "Proovedores/add.jsp";
     String edit = "Proovedores/edit.jsp";
     /**
@@ -38,33 +37,7 @@ public class ProveedorController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProveedorController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProveedorController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        
         String access = "";
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("show")){
@@ -123,6 +96,21 @@ public class ProveedorController extends HttpServlet {
         
         RequestDispatcher view = request.getRequestDispatcher(access);
         view.forward(request, response);
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
     }
 
     /**

@@ -109,7 +109,7 @@ public class ProductoDAO implements CRUD_Producto {
     // Método que edita un Producto
     @Override
     public boolean edit(Producto prod) {
-     String squery = "UPDATE producto SET id="+prod.getId()+", nombre='"+prod.getNombre()+"', descripcion='"+prod.getDescripcion()+"', precioventa="+prod.getPrecioVenta()+", preciocompra='"+prod.getPrecioCompra()+"', iva="+prod.isIva()+", stock="+prod.getStock()+", categoria='"+prod.getCategoria()+"' WHERE id='"+prod.getId()+"';";
+     String squery = "UPDATE producto SET nombre='"+prod.getNombre()+"', descripcion='"+prod.getDescripcion()+"', precioventa="+prod.getPrecioVenta()+", preciocompra='"+prod.getPrecioCompra()+"', iva="+prod.isIva()+", stock="+prod.getStock()+", categoria='"+prod.getCategoria()+"' WHERE id='"+prod.getId()+"';";
 	
         System.out.println(squery);
         
@@ -128,7 +128,7 @@ public class ProductoDAO implements CRUD_Producto {
     @Override
     public boolean delete(int id) {
         
-        String squery = "DELETE FROM producto WHERE id = "+id+";";
+        String squery = "DELETE * FROM producto WHERE id = "+id+";";
         
         System.out.println(squery);
         

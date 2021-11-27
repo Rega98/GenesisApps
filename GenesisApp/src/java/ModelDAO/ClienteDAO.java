@@ -43,7 +43,7 @@ public class ClienteDAO implements CRUD_Cliente {
                 clie.setApPaterno(rs.getString("apPaterno"));
                 clie.setApMaterno(rs.getString("apMaterno"));
                 clie.setDireccion(rs.getString("direccion"));
-                clie.setTelefono(rs.getInt("telefono"));
+                clie.setTelefono(rs.getString("telefono"));
                 clie.setCorreo(rs.getString("correo"));
                 list.add(clie);
             }
@@ -66,7 +66,7 @@ public class ClienteDAO implements CRUD_Cliente {
                 clie.setApPaterno(rs.getString("apPaterno"));
                 clie.setApMaterno(rs.getString("apMaterno"));
                 clie.setDireccion(rs.getString("direccion"));
-                clie.setTelefono(rs.getInt("telefono"));
+                clie.setTelefono(rs.getString("telefono"));
                 clie.setCorreo(rs.getString("correo"));
             }
         }catch(SQLException e){
