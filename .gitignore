@@ -22,3 +22,5 @@ GenesisApp/nbproject/private/private.properties
 GenesisApp/dist/GenesisApp.war
 GenesisApp/dist/GenesisApp.war
 *.class
+GenesisApp/nbproject/private/private.xml
+*.xml

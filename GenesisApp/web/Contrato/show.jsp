@@ -75,7 +75,7 @@
                         <th scope="col">RFC de Vendedor</th>
                         <th scope="col">RFC de Cliente</th>
                         <th scope="col">ID producto</th>
-                        <th scope="col">Usuario rua</th>
+                        <th scope="col">Usuario</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>

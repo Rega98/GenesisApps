@@ -70,9 +70,14 @@
                       <input type="number" class="form-control" id="NumCantidadCom" name="numCantidadCom">
                     </div>
                     <div class="col-md-4">
-                      <label for="numberIvaCom" class="form-label">IVA</label>
-                      <input type="number" class="form-control" id="numberIva" name="numberIvaCom">
+                       <label for="numberIvaCom" class="form-label">IVA</label>
+                       <select class="form-select" aria-label="Default select example">
+                        <option selected>Selecione una opción</option>
+                        <option value="1">SI</option>
+                        <option value="0">NO</option>
+                      </select>
                     </div>
+                   
                     <div class="col-6">
                       <label for="numberMontooCom" class="form-label">Monto Total</label>
                       <input type="number" class="form-control" id="numberMonto" name="numberMontoCom">
