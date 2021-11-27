@@ -4,9 +4,17 @@
         <servlet-name>ContratoController</servlet-name>
         <servlet-class>Controller.ContratoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CompraController</servlet-name>
+        <servlet-class>Controller.CompraController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ContratoController</servlet-name>
         <url-pattern>/ContratoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompraController</servlet-name>
+        <url-pattern>/CompraController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

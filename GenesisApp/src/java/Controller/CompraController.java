@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package Controller;
 
 import Model.Compra;
@@ -17,9 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author LisRR
+ * @author Lis
  */
-
 public class CompraController extends HttpServlet {
     
     Compra com = new Compra();
@@ -149,7 +152,6 @@ public class CompraController extends HttpServlet {
         
         RequestDispatcher view = request.getRequestDispatcher(access);
         view.forward(request, response);
-        
     }
 
     /**

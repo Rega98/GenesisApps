@@ -4,6 +4,17 @@
     Author     : uriel
 --%>
 <%@ include file = "../header.jsp" %>
+
+    <div class="container p-5 m-5 bg-white shadow rounded-3">
+        <div class="">
+            <div class="row">
+                <div>
+                    <h3>Listado de Compras</h3>
+                    <br>
+                    <a href="CompraController?action=add" class="btn btn-success">Agregar Compra</a>
+                </div>
+            </div>
+        </div>
         <div class="content">
             <div class="row">
                 <table class="table table-striped">
