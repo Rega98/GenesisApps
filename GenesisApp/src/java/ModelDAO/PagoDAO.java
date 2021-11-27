@@ -64,6 +64,7 @@ public class PagoDAO implements CRUD_Pago {
     public Pago details(int folio) {
     
         String squery = "SELECT * FROM pago WHERE folio="+folio+";";
+        
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -88,8 +89,8 @@ public class PagoDAO implements CRUD_Pago {
     @Override
     public boolean add(Pago pag) {
     
-        String squery = "INSERT INTO pago (folio, fecha, monto, contratofolio, rfccobrador)" 
-                + "VALUES ("+pag.getFolio()+", '"+pag.getFecha()+"', "+pag.getMonto()+","+pag.getContratofolio()+", '"+pag.getRfcCobrador()+"');";
+        String squery = "INSERT INTO pago (fecha, monto, contratofolio, rfccobrador)" 
+                + "VALUES ('"+pag.getFecha()+"', "+pag.getMonto()+","+pag.getContratofolio()+", '"+pag.getRfcCobrador()+"');";
               
         try{
             con = cox.getConnection();
@@ -105,7 +106,7 @@ public class PagoDAO implements CRUD_Pago {
     //Método que edita un Pago
     @Override
     public boolean edit(Pago pag) {
-    String squery = "UPDATE pago SET fecha='"+pag.getFecha()+"', "
+    String squery = "UPDATE pago SET folio="+pag.getFolio()+", fecha='"+pag.getFecha()+"', "
                 + "monto="+pag.getMonto()+", contratofolio="+pag.getContratofolio()+", rfccobrador='"+pag.getRfcCobrador()+"'WHERE folio="+pag.getFolio()+";";
 	
         System.out.println(squery);
@@ -125,7 +126,8 @@ public class PagoDAO implements CRUD_Pago {
     @Override
     public boolean delete(int folio) {
     
-        String squery = "DELETE * FROM pago WHERE folio = "+folio+";";
+        String squery = "DELETE FROM pago WHERE folio = "+folio+";";
+          
         
         System.out.println(squery);
         

@@ -118,7 +118,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
     // Método que elimina un Proveedor
     @Override
     public boolean delete(String rfc) {
-      String squery = "DELETE * FROM proveedor WHERE rfc = "+rfc+";";
+      String squery = "DELETE FROM proveedor WHERE rfc = "+rfc+";";
         
         System.out.println(squery);
         

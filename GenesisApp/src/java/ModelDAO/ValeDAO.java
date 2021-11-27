@@ -86,8 +86,8 @@ public class ValeDAO implements CRUD_Vale{
     //Método que inserta un Vale
     @Override
     public boolean add(Vale val) {
-    String squery = "INSERT INTO vale (folio, monto, fechavale, concepto, rfcvendedor)" 
-                + "VALUES ("+va.getFolio()+", "+va.getMonto()+", '"+va.getFechaVale()+"',"+va.getConcepto()+", '"+va.getRfcVendedor()+"');";
+    String squery = "INSERT INTO vale (monto, fechavale, concepto, rfcvendedor)" 
+                + "VALUES ("+va.getMonto()+", '"+va.getFechaVale()+"',"+va.getConcepto()+", '"+va.getRfcVendedor()+"');";
               
         try{
             con = cox.getConnection();
@@ -104,7 +104,7 @@ public class ValeDAO implements CRUD_Vale{
     @Override
     public boolean edit(Vale val) {
     
-        String squery = "UPDATE vale SET monto="+va.getMonto()+", "
+        String squery = "UPDATE vale SET folio="+va.getFolio()+", monto="+va.getMonto()+", "
                 + "fechavale='"+va.getFechaVale()+"', concepto='"+va.getConcepto()+"', rfcvendedor='"+va.getRfcVendedor()+"'WHERE folio="+va.getFolio()+";";
 	
         System.out.println(squery);
@@ -124,7 +124,7 @@ public class ValeDAO implements CRUD_Vale{
     @Override
     public boolean delete(int folio) {
     
-        String squery = "DELETE * FROM vale WHERE folio = "+folio+";";
+        String squery = "DELETE FROM vale WHERE folio = "+folio+";";
         
         System.out.println(squery);
         

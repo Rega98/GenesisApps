@@ -33,7 +33,8 @@ public class ObservacionDAO implements CRUD_Observacion {
     @Override
     public List show() {
           ArrayList<Observacion> list = new ArrayList<>();
-        String squery = "SELECT * FROM observacion ORDER BY sno =id;";
+        String squery = "SELECT * FROM observacion ORDER BY id =id;";
+        
         
         try{
             con = cox.getConnection();
@@ -59,7 +60,8 @@ public class ObservacionDAO implements CRUD_Observacion {
     }
     @Override
     public Observacion details(int id) {
-               String squery = "SELECT * FROM observacion WHERE sno="+id+";";
+               String squery = "SELECT * FROM observacion WHERE id="+id+";";
+               
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -80,7 +82,9 @@ public class ObservacionDAO implements CRUD_Observacion {
 
     @Override
     public boolean add(Observacion obs) {
-           String squery = "INSERT INTO observacion (sname) VALUES ('"+obs.getId()+"');";
+          String squery = "INSERT INTO observacion (fecha, observacion, contratofolio)" 
+                + "VALUES ('"+obs.getFecha()+"',¿"+obs.getObservacion()+"', "+obs.getContratofolio()+");";
+        
         
         try{
             con = cox.getConnection();
@@ -95,7 +99,9 @@ public class ObservacionDAO implements CRUD_Observacion {
 
     @Override
     public boolean edit(Observacion obs) {
-           String squery = "UPDATE observacion SET sname='"+obs.getId()+"' WHERE sno = "+obs.getId()+";";
+           
+          String squery = "UPDATE observacion SET id="+obs.getId()+", fecha='"+obs.getFecha()+"', "
+              + "observacion='"+obs.getObservacion()+"', contratofolio='"+obs.getContratofolio()+"'WHERE folio="+obs.getId()+";";
         
         System.out.println(squery);
         
@@ -112,7 +118,8 @@ public class ObservacionDAO implements CRUD_Observacion {
 
     @Override
     public boolean delete(int id) {
-        String squery = "DELETE FROM observacion WHERE sno = "+id+";";
+        String squery = "DELETE FROM observacion WHERE id = "+id+";";
+        
         
         System.out.println(squery);
         
@@ -127,4 +134,3 @@ public class ObservacionDAO implements CRUD_Observacion {
         return false;
     }
 }
-

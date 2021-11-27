@@ -34,7 +34,8 @@ public class ContratoDAO implements CRUD_Contrato {
     @Override
     public List show() {
        ArrayList<Contrato> list = new ArrayList<>();
-        String squery = "SELECT * FROM supplier ORDER BY sno = folio;";
+        String squery = "SELECT * FROM Contrato ORDER BY folio;";
+     
         
         try{
             con = cox.getConnection();
@@ -70,7 +71,8 @@ public class ContratoDAO implements CRUD_Contrato {
     }
     @Override
     public Contrato details(int folio) {
-          String squery = "SELECT * FROM contrato WHERE sno="+folio+";";
+          String squery = "SELECT * FROM contrato WHERE folio="+folio+";";
+          
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -97,10 +99,12 @@ public class ContratoDAO implements CRUD_Contrato {
         
         return cont;
     }
-
+ 
     @Override
     public boolean add(Contrato cont) {
-        String squery = "INSERT INTO contrato (sname) VALUES ('"+cont.getFolio()+"');";
+     String squery = "INSERT INTO contrato (enganche, planPago, diaCobro, estado, fechaContrato,subtotal, iva, total, rfcVendedor,rfcCliente,idProducto,idRuta)" 
+                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+","+cont.getIdRuta()+");";
+        
         
         try{
             con = cox.getConnection();
@@ -115,7 +119,10 @@ public class ContratoDAO implements CRUD_Contrato {
 
     @Override
     public boolean edit(Contrato cont) {
-           String squery = "UPDATE contrato SET sname='"+cont.getFolio()+"' WHERE sno = "+cont.getFolio()+";";
+        String squery = "UPDATE contrato SET folio="+cont.getFolio()+", enganche='"+cont.getEnganche()+"', "
+              + "planPago="+cont.getPlanPago()+",  diaCobro='"+cont.getDiaCobro()+"', estado="+cont.getEstado()+", fechaContrato='"+cont.getFechaContrato()+"',subtotal = '"+cont.getSubtotal()+"',Iva="+cont.getIva()+",total="+cont.getTotal()+",RfcVendedor="+cont.getRfcVendedor()+",RfcCliente="+cont.getRfcCliente()+",IdProducto="+cont.getIdProducto()+" ,IdRuta="+cont.getIdRuta()+ " WHERE folio="+cont.getFolio()+";";
+        
+           
         
         System.out.println(squery);
         
@@ -132,7 +139,8 @@ public class ContratoDAO implements CRUD_Contrato {
 
     @Override
     public boolean delete(int folio) {
-        String squery = "DELETE FROM contrato WHERE sno = "+folio+";";
+        String squery = "DELETE FROM contrato WHERE folio = "+folio+";";
+        
         
         System.out.println(squery);
         
