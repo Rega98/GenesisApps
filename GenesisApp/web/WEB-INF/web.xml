@@ -8,6 +8,10 @@
         <servlet-name>CompraController</servlet-name>
         <servlet-class>Controller.CompraController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProveedorController</servlet-name>
+        <servlet-class>Controller.ProveedorController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ContratoController</servlet-name>
         <url-pattern>/ContratoController</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>CompraController</servlet-name>
         <url-pattern>/CompraController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProveedorController</servlet-name>
+        <url-pattern>/ProveedorController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
