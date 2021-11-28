@@ -74,9 +74,9 @@ public class CompraController extends HttpServlet {
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("show")){
             access = show;
-        } else if(action.equalsIgnoreCase("add")){
+        }else if(action.equalsIgnoreCase("add")){
             access = add;
-        } else if(action.equalsIgnoreCase("Guardar")){
+        }else if(action.equalsIgnoreCase("Guardar")){
             // Aquí se pueden invocar metodos para realizar operaciones
             String fechaC = request.getParameter("txtFecCom");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,7 +88,6 @@ public class CompraController extends HttpServlet {
             }
             int cant = Integer.parseInt(request.getParameter("txtCantCom"));
             boolean iva = Boolean.parseBoolean(request.getParameter("txtIvaCom"));
-            //pendiente monto, es float
             float montoT = Float.parseFloat(request.getParameter("txtMontotCom"));
             String estado = request.getParameter("txtEstadoCom");
             String rfcProv = request.getParameter("txtRfcCom");
@@ -101,18 +100,20 @@ public class CompraController extends HttpServlet {
             com.setEstado(estado);
             com.setRfcProveedor(rfcProv);
             com.setProductoid(producto);
+            
             // Se le pasa el objeto para realizar la operación
             comdao.add(com);
             // Se redirige a la vista
             access = show;
         } else if(action.equalsIgnoreCase("edit")){ //checar vista 
             // Se obtiene la info del request
-            request.setAttribute("folioC", request.getParameter("folioC"));
+            request.setAttribute("folio", request.getParameter("folio"));
             // Se redirige a la vista
             access = edit;
         } else if(action.equalsIgnoreCase("Editar")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            String fechaC = request.getParameter("txtFechaCom");
+            int folio = Integer.parseInt(request.getParameter("txtFolio"));
+            String fechaC = request.getParameter("txtFecCom");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = null;
             try {
@@ -120,14 +121,25 @@ public class CompraController extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int cant = Integer.parseInt(request.getParameter("txtCantCom"));
-            boolean iva = Boolean.parseBoolean(request.getParameter("txtIvaCom"));
-            //pendiente monto, es float
-            int montoT = Integer.parseInt(request.getParameter("txtMontotCom"));
+            System.out.println("fecha aqui: " + fecha);
+            int cant = Integer.parseInt(request.getParameter("txtCantCom"));   
+            //boolean iva = Boolean.parseBoolean(request.getParameter("txtIvaCom"));
+            boolean iva;
+            if(request.getParameter("txtIvaCom")!=null){
+                iva = true;
+            } else {
+                iva = false;
+            } 
+            float montoT = Float.parseFloat(request.getParameter("txtMontotCom"));
             String estado = request.getParameter("txtEstadoCom");
             String rfcProv = request.getParameter("txtRfcCom");
             int producto = Integer.parseInt(request.getParameter("txtIdProductoCom"));
             // Se instancia los valores (despues de x proceso realizado)
+            System.out.println("estado aqui: " + estado);
+            System.out.println("provedor aqui: " + rfcProv);
+             System.out.println("producto aqui: " + producto);
+             System.out.println("IVA aqui: " + iva);
+            com.setFolio(folio);
             com.setFechaCompra(fecha);
             com.setCantidad(cant);
             com.setIva(iva);
@@ -141,7 +153,7 @@ public class CompraController extends HttpServlet {
             access = show;
         } else if(action.equalsIgnoreCase("delete")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            int folio = Integer.parseInt(request.getParameter("folioC"));
+            int folio = Integer.parseInt(request.getParameter("folio"));
             // Se instancia los valores (despues de x proceso realizado)
             com.setFolio(folio);
             // Se le pasa el objeto para realizar la operación

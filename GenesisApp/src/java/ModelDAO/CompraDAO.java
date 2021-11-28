@@ -91,7 +91,6 @@ public class CompraDAO implements CRUD_Compra {
 
     @Override
     public boolean add(Compra com) {
-
         String squery = "INSERT INTO compra (fechaCompra, cantidad, iva, montoTotal, estado, rfcProveedor, productoid)" 
                 + "VALUES ('"+com.getFechaCompra()+"', "+com.getCantidad()+","+com.getIva()+", "+com.getMontoTotal()+",'"+com.getEstado()+"','"+com.getRfcProveedor()+"',"+com.getProductoid()+");";
         try{
@@ -108,8 +107,7 @@ public class CompraDAO implements CRUD_Compra {
 
     @Override
     public boolean edit(Compra com) {
-         String squery = "UPDATE compra SET folio="+com.getFolio()+", fechaCompra='"+com.getFechaCompra()+"', "
-              + "cantidad="+com.getCantidad()+", iva='"+com.getIva()+"', montoTotal="+com.getMontoTotal()+", estado='"+com.getEstado()+"',rfcProveedor = '"+com.getRfcProveedor()+",productoid="+com.getProductoid()+" WHERE folio="+com.getFolio()+";";
+         String squery = "UPDATE compra SET fechaCompra='"+com.getFechaCompra()+"', "+ "cantidad="+com.getCantidad()+", iva='"+com.getIva()+"', montoTotal="+com.getMontoTotal()+", estado='"+com.getEstado()+"',rfcProveedor = '"+com.getRfcProveedor()+"',productoid="+com.getProductoid()+" WHERE folio="+com.getFolio()+";";
         
         System.out.println(squery);
         
