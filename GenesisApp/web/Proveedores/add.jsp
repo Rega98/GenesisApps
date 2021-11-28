@@ -13,27 +13,27 @@
     <div class="row">
         <form action="ProveedorController">
             <div class="row my-3">
-                <div class="col-4">
+                <div class="col-3">
                     <label for="txtRfcProv" class="form-label">RFC Empresa</label>
-                    <input type="text" class="form-control" name="txtRfcProv">
+                    <input type="text" class="form-control" name="txtRfcProv" required>
                 </div>
-                <div class="col-5">
+                <div class="col-6">
                     <label for="txtNomProv" class="form-label">Nombre Empresa</label>
-                    <input type="text" class="form-control" name="txtNomProv">
+                    <input type="text" class="form-control" name="txtNomProv" required>
                 </div>
                 <div class="col-3">
                     <label for="txtTelProv" class="form-label">Telefono Empresa</label>
-                    <input type="text" class="form-control" name="txtTelProv">
+                    <input type="text" class="form-control" name="txtTelProv" required>
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col-6">
                     <label for="txtDirProv" class="form-label">Dirección Empresa</label>
-                    <input type="text" class="form-control" name="txtDirProv">
+                    <input type="text" class="form-control" name="txtDirProv" required>
                 </div>
                 <div class="col-6">
                     <label for="txtEmaProv" class="form-label">Correo Empresa</label>
-                    <input type="email" class="form-control" name="txtEmaProv">
+                    <input type="email" class="form-control" name="txtEmaProv" required>
                 </div>
             </div>
             <div class="row mt-5">

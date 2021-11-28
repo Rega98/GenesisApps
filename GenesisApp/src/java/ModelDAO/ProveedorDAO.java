@@ -99,7 +99,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
     // Método que edita un Proveedor
     @Override
     public boolean edit(Proveedor prov) {
-        String squery = "UPDATE proveedor SET rfc='"+prov.getRfc()+"', nombre='"+prov.getNombre()+"', "
+        String squery = "UPDATE proveedor SET nombre='"+prov.getNombre()+"', "
                 + "direccion='"+prov.getDireccion()+"', telefono='"+prov.getTelefono()+"', correo='"+prov.getCorreo()+"' WHERE rfc='"+prov.getRfc()+"';";
 	
         System.out.println(squery);
