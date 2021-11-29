@@ -35,6 +35,9 @@
                             <a class="nav-link active" aria-current="page" href="ProductoController?action=show">Productos</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="PagoController?action=show">Pago</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="ProveedorController?action=show">Proveedores</a>
                         </li>
                         <li class="nav-item">

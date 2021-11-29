@@ -47,7 +47,7 @@ public class PagoDAO implements CRUD_Pago {
                 pa.setFecha(rs.getDate("fecha"));
                 pa.setMonto(rs.getFloat("monto"));
                 pa.setContratofolio(rs.getInt("contratofolio"));
-                pa.setRfcCobrador(rs.getNString("rfcCobrador"));
+                pa.setRfcCobrador(rs.getString("rfcCobrador"));
                
                 
                 list.add(pa);
