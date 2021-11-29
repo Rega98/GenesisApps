@@ -19,6 +19,10 @@
         <servlet-name>PagoController</servlet-name>
         <servlet-class>Controller.PagoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClienteController</servlet-name>
+        <servlet-class>Controller.ClienteController</servlet-class>
+    </servlet>
     <!--
     Mapeo de las rutas
     -->
@@ -37,6 +41,10 @@
     <servlet-mapping>
         <servlet-name>PagoController</servlet-name>
         <url-pattern>/PagoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClienteController</servlet-name>
+        <url-pattern>/ClienteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

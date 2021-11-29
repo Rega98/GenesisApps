@@ -40,8 +40,8 @@ public class ClienteDAO implements CRUD_Cliente {
                 Cliente clie = new Cliente();
                 clie.setRfc(rs.getString("rfc"));
                 clie.setNombre(rs.getString("nombre"));
-                clie.setApPaterno(rs.getString("apPaterno"));
-                clie.setApMaterno(rs.getString("apMaterno"));
+                clie.setApPaterno(rs.getString("appaterno"));
+                clie.setApMaterno(rs.getString("apmaterno"));
                 clie.setDireccion(rs.getString("direccion"));
                 clie.setTelefono(rs.getString("telefono"));
                 clie.setCorreo(rs.getString("correo"));
@@ -63,8 +63,8 @@ public class ClienteDAO implements CRUD_Cliente {
             while(rs.next()){                
                 clie.setRfc(rs.getString("rfc"));
                 clie.setNombre(rs.getString("nombre"));
-                clie.setApPaterno(rs.getString("apPaterno"));
-                clie.setApMaterno(rs.getString("apMaterno"));
+                clie.setApPaterno(rs.getString("appaterno"));
+                clie.setApMaterno(rs.getString("apmaterno"));
                 clie.setDireccion(rs.getString("direccion"));
                 clie.setTelefono(rs.getString("telefono"));
                 clie.setCorreo(rs.getString("correo"));
