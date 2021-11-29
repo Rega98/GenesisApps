@@ -29,7 +29,7 @@ import javax.servlet.RequestDispatcher;
 
 // Duda en línea 124
 
-@WebServlet(name = "GastoController", urlPatterns = {"/GastoController"})
+//@WebServlet(name = "GastoController", urlPatterns = {"/GastoController"})
 public class GastoController extends HttpServlet {
 
     Gasto gasto = new Gasto();

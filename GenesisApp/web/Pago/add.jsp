@@ -49,7 +49,7 @@
                             <option value="<%= cont.getFolio()%>"></option>
                             <%
                             }
-                            %>
+                            %>--%>
                         </select>
                 </div>
                 <div class="col-6">
