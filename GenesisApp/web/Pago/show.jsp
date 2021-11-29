@@ -47,8 +47,8 @@
                     <td><%= pa.getRfcCobrador()%></td>
                     <td class="px-0">
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-primary " href="PagoController?action=edit&rfc=<%=pa.getFolio()%>">Editar</a>
-                            <a class="btn btn-danger" href="PagoController?action=delete&rfc=<%=pa.getFolio()%>">Borrar</a>
+                            <a class="btn btn-primary " href="PagoController?action=edit&folio=<%=pa.getFolio()%>">Editar</a>
+                            <a class="btn btn-danger" href="PagoController?action=delete&folio=<%=pa.getFolio()%>">Borrar</a>
                         </div>
                     </td>
                 </tr>

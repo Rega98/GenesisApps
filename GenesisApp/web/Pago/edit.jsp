@@ -3,16 +3,17 @@
     Created on : 28 nov. 2021, 01:17:00
     Author     : bardo_3u8azdb
 --%>
-
 <%@page import="Model.Pago"%>
 <%@page import="ModelDAO.PagoDAO"%>
 <%@ include file = "../header.jsp" %>
+
+<%-- 
 <%
     PagoDAO pgdao = new PagoDAO();
     int folio = (int) request.getAttribute("folio");
-
     Pago pag = (Pago) pgdao.details(folio);
 %>
+--%>
 <div class="container p-5 m-5 bg-white shadow rounded-3">
     <div class="row">
         <div>
@@ -25,26 +26,26 @@
                 <div class="col-3">
                     <label for="txtFolio" class="form-label">Folio</label>
                     <br>
-                    <h4><%=pag.getFolio()%></h4>
-                    <input type="hidden" class="form-control" name="txtFolio" value="<%=pag.getFolio()%>" required>
+                    <h4><%--<%=pag.getFolio()%>--%></h4>
+                    <input type="number" class="form-control" name="txtFolio" value="<%--<%=pag.getFolio()%>--%>" required>
                 </div>
                 <div class="col-6">
                     <label for="txtFechaPag" class="form-label">Fecha pago</label>
-                    <input type="date" class="form-control" name="txtFechaPag" value="<%=pag.getFecha()%>" required>
+                    <input type="date" class="form-control" name="txtFechaPag" value="<%--<%=pag.getFecha()%>--%>" required>
                 </div>
                 <div class="col-3">
                     <label for="txtMontoPag" class="form-label">Monto</label>
-                    <input type="text" class="form-control" name="txtMontoPag" value="<%=pag.getMonto()%>" required>
+                    <input type="number" class="form-control" name="txtMontoPag" value="<%--<%=pag.getMonto()%>--%>" required>
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col-6">
                     <label for="txtContPag" class="form-label">Folio Contrato</label>
-                    <input type="text" class="form-control" name="txtContPag" value="<%=pag.getContratofolio()%>" required>
+                    <input type="text" class="form-control" name="txtContPag" value="<%--<%=pag.getContratofolio()%>--%>" required>
                 </div>
                 <div class="col-6">
                     <label for="txtRfcPag" class="form-label">RFC Cobrador</label>
-                    <input type="text" class="form-control" name="txtRfcPag" value="<%=pag.getRfcCobrador()%>" required>
+                    <input type="text" class="form-control" name="txtRfcPag" value="<%--<%=pag.getRfcCobrador()%>--%>" required>
                 </div>
             </div>
             <div class="row mt-5">
