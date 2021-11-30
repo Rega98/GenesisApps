@@ -60,8 +60,8 @@ public class EmpleadoController extends HttpServlet {
                 String appP = request.getParameter("txtAppPEmpl");
                 String appM = request.getParameter("txtAppMEmpl");
                 String usuario = request.getParameter("txtUsrEmpl");
-                String password = request.getParameter("txtPassCli");
-                String tipo = request.getParameter("txtTipoCli");
+                String password = request.getParameter("txtPassEmpl");
+                String tipo = request.getParameter("txtTipoEmpl");
                 empleado.setRfc(rfc);
                 empleado.setNombre(nombre);
                 empleado.setApPaterno(appP);

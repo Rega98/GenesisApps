@@ -41,8 +41,8 @@ public class EmpleadoDAO implements CRUD_Empleado {
                 Empleado emp = new Empleado();
                 emp.setRfc(rs.getString("rfc"));
                 emp.setNombre(rs.getString("nombre"));
-                emp.setApPaterno(rs.getString("apPaterno"));
-                emp.setApMaterno(rs.getString("apMaterno"));
+                emp.setApPaterno(rs.getString("appaterno"));
+                emp.setApMaterno(rs.getString("apmaterno"));
                 emp.setUser(rs.getString("user"));
                 emp.setPass(rs.getString("pass"));
                 emp.setTipo(rs.getString("tipo"));
@@ -64,8 +64,8 @@ public class EmpleadoDAO implements CRUD_Empleado {
             while(rs.next()){                
                 emp.setRfc(rs.getString("rfc"));
                 emp.setNombre(rs.getString("nombre"));
-                emp.setApPaterno(rs.getString("apPaterno"));
-                emp.setApMaterno(rs.getString("apMaterno"));
+                emp.setApPaterno(rs.getString("appaterno"));
+                emp.setApMaterno(rs.getString("apmaterno"));
                 emp.setUser(rs.getString("user"));
                 emp.setPass(rs.getString("pass"));
                 emp.setTipo(rs.getString("tipo"));
