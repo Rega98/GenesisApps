@@ -3,7 +3,6 @@
     Created on : 29 nov. 2021, 01:17:00
     Author     : bardo_3u8azdb
 --%>
-<%@page import="javax.enterprise.inject.Model"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.TipoGasto"%>
@@ -56,4 +55,5 @@
             </tbody>
         </table>
     </div>
-    <%@ include file = "../footer.jsp" %>
+</div>
+<%@ include file = "../footer.jsp" %>

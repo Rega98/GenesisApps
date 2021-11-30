@@ -3,7 +3,6 @@
     Created on : 28 nov. 2021, 01:17:00
     Author     : bardo_3u8azdb
 --%>
-<%@page import="javax.enterprise.inject.Model"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.Gasto"%>
@@ -11,11 +10,14 @@
 <%@ include file = "../header.jsp" %>
 <div class="container p-5 m-5 bg-white shadow rounded-3">
     <div class="row mb-3">
-        <div class="col-10">
+        <div class="col-8">
             <h3>Lista Gastos</h3>
         </div>
         <div class="col-2">
             <a href="GastoController?action=add" class="btn btn-success">Gasto Nuevo</a>
+        </div>
+        <div class="col-2">
+            <a href="TipoGastoController?action=show" class="btn btn-success">Tipo Gastos</a>
         </div>
     </div>
     <div class="row">
@@ -30,7 +32,7 @@
                     <th scope="col">Tipo gasto</th>
                     <th scope="col">Rfc Gerente</th>
                     <th scope="col">Acciones</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
@@ -63,4 +65,5 @@
             </tbody>
         </table>
     </div>
-    <%@ include file = "../footer.jsp" %>
+</div>
+<%@ include file = "../footer.jsp" %>
