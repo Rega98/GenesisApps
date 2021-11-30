@@ -75,7 +75,7 @@ public class PagoDAO implements CRUD_Pago {
                 pag.setFecha(rs.getDate("fecha"));
                 pag.setMonto(rs.getFloat("monto"));
                 pag.setContratofolio(rs.getInt("contratofolio"));
-                pag.setRfcCobrador(rs.getNString("rfcCobrador"));
+                pag.setRfcCobrador(rs.getString("rfcCobrador"));
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: PagoDAO.details");
@@ -142,4 +142,43 @@ public class PagoDAO implements CRUD_Pago {
         return false;
     }
     
+    public List showByQuincena(String rfc, int month, int year, String sign) {
+        ArrayList<Pago> list = new ArrayList<>();
+        String squery = "SELECT * FROM pago WHERE rfccobrador = '"+rfc+"' AND EXTRACT(MONTH FROM fecha) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fecha) = "+year+" AND EXTRACT(DAY FROM fecha) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Pago pago = new Pago();
+                pago.setFolio(rs.getInt("folio"));
+                pago.setFecha(rs.getDate("fecha"));
+                pago.setMonto(rs.getFloat("monto"));
+                pago.setContratofolio(rs.getInt("contratofolio"));
+                pago.setRfcCobrador(rs.getString("rfccobrador"));
+                list.add(pago);
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: PagoDAO.showByQuincena");
+        }
+        return list;
+    }
+    
+    public Float getMontoByQuincena(String rfc, String comision, int month, int year, String sign) {
+        Float result = -1.0f;
+        String squery = "SELECT SUM(monto)*."+comision+" AS montototal FROM pago WHERE rfccobrador = '"+rfc+"' AND EXTRACT(MONTH FROM fecha) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fecha) = "+year+" AND EXTRACT(DAY FROM fecha) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getFloat("montototal");
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: PagoDAO.getGananciaByQuincena");
+        }
+        return result;
+    }
 }

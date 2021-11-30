@@ -35,6 +35,10 @@
         <servlet-name>TipoGastoController</servlet-name>
         <servlet-class>Controller.TipoGastoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CalcNomEmplController</servlet-name>
+        <servlet-class>Controller.CalcNomEmplController</servlet-class>
+    </servlet>
     <!--
     Mapeo de las rutas
     -->
@@ -69,6 +73,10 @@
     <servlet-mapping>
         <servlet-name>TipoGastoController</servlet-name>
         <url-pattern>/TipoGastoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalcNomEmplController</servlet-name>
+        <url-pattern>/CalcNomEmplController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

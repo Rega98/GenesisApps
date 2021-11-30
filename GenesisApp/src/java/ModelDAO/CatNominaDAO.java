@@ -45,10 +45,10 @@ public class CatNominaDAO implements CRUD_CatNomina{
                 
                 cn.setFolio(rs.getInt("folio"));
                 cn.setFecha(rs.getDate("fecha"));
-                cn.setMesAnio(rs.getDate("mesAnio"));
-                cn.setPeriodo(rs.getNString("periodo"));
+                cn.setMesAnio(rs.getString("mesAnio"));
+                cn.setPeriodo(rs.getString("periodo"));
                 cn.setMonto(rs.getFloat("monto"));
-                cn.setRfcEmpleado(rs.getNString("rfcEmpleado"));
+                cn.setRfcEmpleado(rs.getString("rfcEmpleado"));
                
                 
                 list.add(cn);
@@ -73,10 +73,10 @@ public class CatNominaDAO implements CRUD_CatNomina{
             while(rs.next()){                
                 catNomi.setFolio(rs.getInt("folio"));
                 catNomi.setFecha(rs.getDate("fecha"));
-                catNomi.setMesAnio(rs.getDate("mesAnio"));
-                catNomi.setPeriodo(rs.getNString("periodo"));
+                catNomi.setMesAnio(rs.getString("mesAnio"));
+                catNomi.setPeriodo(rs.getString("periodo"));
                 catNomi.setMonto(rs.getFloat("monto"));
-                catNomi.setRfcEmpleado(rs.getNString("rfcEmpleado"));
+                catNomi.setRfcEmpleado(rs.getString("rfcEmpleado"));
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: CatNominaDAO.details");
@@ -88,26 +88,28 @@ public class CatNominaDAO implements CRUD_CatNomina{
     //Método que inserta una CatNomina
     @Override
     public boolean add(CatNomina cnomi) {
-    String squery = "INSERT INTO catnomina (fecha, mesanio, periodo, monto, rfcempleado)" 
-                + "VALUES ('"+catNomi.getFecha()+"', '"+catNomi.getMesAnio()+"','"+catNomi.getPeriodo()+"', "+catNomi.getMonto()+",'"+catNomi.getRfcEmpleado()+"');";
-              
+        boolean result = false;
+        String squery = "INSERT INTO catnomina (fecha, mesanio, periodo, monto, rfcempleado)" 
+                    + "VALUES ('"+cnomi.getFecha()+"', '"+cnomi.getMesAnio()+"','"+cnomi.getPeriodo()+"', "
+                    +cnomi.getMonto()+",'"+cnomi.getRfcEmpleado()+"');";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             ps.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             System.out.println("Error:\n"+e+"\n-> Desde: CatNominaDAO.add");
         }
-        
-        return false;   
+        return result;   
     }
 
     //Método que actualiza una CatNomina
     @Override
     public boolean edit(CatNomina cnomi) {
     
-        String squery = "UPDATE catnomina SET folio="+catNomi.getFolio()+", fecha='"+catNomi.getFecha()+"', "
-                + "mesanio='"+catNomi.getMesAnio()+"', periodo='"+catNomi.getPeriodo()+"',monto="+catNomi.getMonto()+", rfcempleado='"+catNomi.getRfcEmpleado()+"'WHERE folio="+catNomi.getFolio()+";";
+        String squery = "UPDATE catnomina SET folio="+cnomi.getFolio()+", fecha='"+cnomi.getFecha()+"', "
+                        + "mesanio='"+cnomi.getMesAnio()+"', periodo='"+cnomi.getPeriodo()+"',monto="+cnomi.getMonto()
+                        +", rfcempleado='"+cnomi.getRfcEmpleado()+"'WHERE folio="+cnomi.getFolio()+";";
 	
         System.out.println(squery);
         

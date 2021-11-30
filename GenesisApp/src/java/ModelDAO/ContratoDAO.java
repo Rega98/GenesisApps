@@ -154,4 +154,52 @@ public class ContratoDAO implements CRUD_Contrato {
         
         return false;
     }
+    
+    public List showByQuincena(String rfc, int month, int year, String sign) {
+        ArrayList<Contrato> list = new ArrayList<>();
+        String squery = "SELECT * FROM contrato WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechacontrato) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Contrato cont = new Contrato();
+                cont.setFolio(rs.getInt("folio"));
+                cont.setEnganche(rs.getFloat("enganche"));
+                cont.setPlanPago(rs.getString("planPago"));
+                cont.setDiaCobro(rs.getString("diaCobro"));
+                cont.setEstado(rs.getString("estado"));
+                cont.setFechaContrato(rs.getDate("fechacontrato"));
+                cont.setSubtotal(rs.getFloat("subtotal"));
+                cont.setIva(rs.getFloat("iva"));
+                cont.setTotal(rs.getFloat("total"));
+                cont.setRfcVendedor(rs.getString("rfcVendedor"));
+                cont.setRfcCliente(rs.getString("rfcCliente"));
+                cont.setIdProducto(rs.getInt("idProducto"));
+                cont.setIdRuta(rs.getInt("idRuta"));
+                list.add(cont);
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.showByQuincena");
+        }
+        return list;
+    }
+    
+    public Float getGananciaByQuincena(String rfc, int month, int year, String sign) {
+        Float result = -1.0f;
+        String squery = "SELECT SUM(total)*.10 AS montototal FROM contrato WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechacontrato) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getFloat("montototal");
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.getGananciaByQuincena");
+        }
+        return result;
+    }
 }

@@ -14,14 +14,14 @@ public class CatNomina {
     
     protected int folio; 
     protected Date fecha; 
-    protected Date mesAnio;
+    protected String mesAnio;
     protected String periodo; 
     protected float monto;
     protected String rfcEmpleado;
     
     public CatNomina(){}
 
-    public CatNomina(int folio, Date fecha, Date mesAnio, String periodo, float monto, String rfcEmpleado) {
+    public CatNomina(int folio, Date fecha, String mesAnio, String periodo, float monto, String rfcEmpleado) {
         this.folio = folio;
         this.fecha = fecha;
         this.mesAnio = mesAnio;
@@ -46,11 +46,11 @@ public class CatNomina {
         this.fecha = fecha;
     }
 
-    public Date getMesAnio() {
+    public String getMesAnio() {
         return mesAnio;
     }
 
-    public void setMesAnio(Date mesAnio) {
+    public void setMesAnio(String mesAnio) {
         this.mesAnio = mesAnio;
     }
 
