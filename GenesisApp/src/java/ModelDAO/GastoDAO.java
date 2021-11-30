@@ -90,7 +90,7 @@ public class GastoDAO implements CRUD_Gasto {
     @Override
     public boolean add(Gasto gast) {
     String squery = "INSERT INTO gasto (fecha, definicion, importeciva, importesinva, idtipogasto, rfgerente)" 
-                + "VALUES ('"+gast.getFecha()+"', '"+gast.getDefinicion()+","+gast.getImporteCiva()+","+gast.getImporteSinva()+","+gast.getIdTipoGasto()+",'"+gast.getRfGerente()+"');";
+                + "VALUES ('"+gast.getFecha()+"', '"+gast.getDefinicion()+"',"+gast.getImporteCiva()+","+gast.getImporteSinva()+","+gast.getIdTipoGasto()+",'"+gast.getRfGerente()+"');";
               
         try{
             con = cox.getConnection();
@@ -106,7 +106,7 @@ public class GastoDAO implements CRUD_Gasto {
     // Método que edita un Gasto
     @Override
     public boolean edit(Gasto gast) {
-    String squery = "UPDATE gasto SET folio="+gast.getFolio()+", fecha='"+gast.getFecha()+"', "
+    String squery = "UPDATE gasto SET fecha='"+gast.getFecha()+"', "
             + "definicion='"+gast.getDefinicion()+"', importeciva="+gast.getImporteCiva()+", "
             + "importesinva="+gast.getImporteSinva()+", idtipogasto="+gast.getIdTipoGasto()+", "
             + "rfgerente='"+gast.getRfGerente()+"' WHERE folio="+gast.getFolio()+";";

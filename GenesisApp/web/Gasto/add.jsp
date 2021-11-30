@@ -3,6 +3,11 @@
     Created on : 28 nov. 2021, 01:17:00
     Author     : bardo_3u8azdb
 --%>
+<%@page import="Model.Empleado"%>
+<%@page import="ModelDAO.EmpleadoDAO"%>
+<%@page import="Model.Proveedor"%>
+<%@page import="Model.TipoGasto"%>
+<%@page import="ModelDAO.TipoGastoDAO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 
@@ -14,37 +19,61 @@
         </div>
     </div>
     <div class="row">
-        <form action="PagoController">
+        <form action="GastoController">
             <div class="row my-3">
                 <div class="col-3">
-                    <label for="txtFolio" class="form-label">Folio</label>
-                    <input type="number" class="form-control" name="txtFolio" required>
-                </div>
-                <div class="col-3">
                     <label for="txtFecha" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" name="txtFecha" required>
+                    <input type="date" class="form-control" name="txtDateGasto" required>
                 </div>
                 <div class="col-6">
                     <label for="txtDef" class="form-label">Definicion</label>
-                    <input type="text" class="form-control" name="txtDef" required>
+                    <input type="text" class="form-control" name="txtDefGasto" required>
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col-3">
                     <label for="txtImpiva" class="form-label">Importe con Iva</label>
-                    <input type="text" class="form-control" name="txtImpiva" required>
+                    <input type="text" class="form-control" name="txtCivaGasto" required>
                 </div>
                 <div class="col-3">
                     <label for="txtImpsiniva" class="form-label">Importe sin Iva</label>
-                    <input type="text" class="form-control" name="txtImpsiniva" required>
+                    <input type="text" class="form-control" name="txtSivaGasto" required>
                 </div>
                 <div class="col-3">
                     <label for="txtTipogas" class="form-label">Tipo gasto</label>
-                    <input type="number" class="form-control" name="txtTipogas" required>
+                    <select class="form-select" aria-label="Default select example" name="txtidTipo">
+                            <option selected disabled>Selecciona un tipo de gasto</option>
+                            <%
+                             TipoGastoDAO tdao = new TipoGastoDAO();
+                            List<TipoGasto> list = tdao.show();
+                            Iterator<TipoGasto> iter = list.iterator();
+                            TipoGasto tipo = null;
+                            while(iter.hasNext()){
+                                tipo = iter.next();
+                            %>
+                            <option value="<%= tipo.getId()%>"><%= tipo.getTipo()%></option>
+                            <%
+                            }
+                            %>
+                        </select>
                 </div>
                 <div class="col-3">
                     <label for="txtRfcGer" class="form-label">Rfc Gerente</label>
-                    <input type="text" class="form-control" name="txtRfcGer" required>
+                    <select class="form-select" aria-label="Default select example" name="txtGerente">
+                            <option selected disabled>Selecciona un gerente </option>
+                            <%
+                            EmpleadoDAO edao = new EmpleadoDAO();
+                            List<Empleado> list2 = edao.show2();
+                            Iterator<Empleado> iter2 = list2.iterator();
+                            Empleado emp = null;
+                            while(iter2.hasNext()){
+                                emp = iter2.next();
+                            %>
+                            <option value="<%= emp.getRfc()%>"><%= emp.getNombre()%></option>
+                            <%
+                            }
+                            %>
+                        </select>
                 </div>
             </div>
             <div class="row mt-5">

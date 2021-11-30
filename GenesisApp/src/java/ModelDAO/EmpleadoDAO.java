@@ -54,6 +54,29 @@ public class EmpleadoDAO implements CRUD_Empleado {
         return list;
     }
 
+    public List show2() {
+        ArrayList<Empleado> list = new ArrayList<>();
+        String squery = "SELECT * FROM empleado where tipo = 'Gerente' ORDER BY rfc;";
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Empleado emp = new Empleado();
+                emp.setRfc(rs.getString("rfc"));
+                emp.setNombre(rs.getString("nombre"));
+                emp.setApPaterno(rs.getString("appaterno"));
+                emp.setApMaterno(rs.getString("apmaterno"));
+                emp.setUser(rs.getString("user"));
+                emp.setPass(rs.getString("pass"));
+                emp.setTipo(rs.getString("tipo"));
+                list.add(emp);
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: EmpleadoDAO.show");
+        }
+        return list;
+    }
     @Override
     public Empleado details(String rfc) {
         String squery = "SELECT * FROM empleado WHERE rfc='"+rfc+"';";

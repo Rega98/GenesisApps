@@ -27,6 +27,10 @@
         <servlet-name>EmpleadoController</servlet-name>
         <servlet-class>Controller.EmpleadoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GastoController</servlet-name>
+        <servlet-class>Controller.GastoController</servlet-class>
+    </servlet>
     <!--
     Mapeo de las rutas
     -->
@@ -53,6 +57,10 @@
     <servlet-mapping>
         <servlet-name>EmpleadoController</servlet-name>
         <url-pattern>/EmpleadoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GastoController</servlet-name>
+        <url-pattern>/GastoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
