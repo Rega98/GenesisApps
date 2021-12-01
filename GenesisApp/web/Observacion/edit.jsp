@@ -4,7 +4,15 @@
     Author     : uriel
 --%>
 
+<%@page import="Model.Observacion"%>
+<%@page import="ModelDAO.ObservacionDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    ObservacionDAO obDAO = new ObservacionDAO();
+    int id = Integer.parseInt((String)request.getAttribute("Id"));
+
+    Observacion obs = (Observacion) obDAO.details(id);
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +27,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Geminis App | Observaciones</a>
+                <!--a class="navbar-brand" href="#">Geminis App | Observaciones</a-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -57,18 +65,21 @@
         <div class="container">
             <div class="row">
                 <form class="row g-3">                    
-
-                    <div class="col-md-4">
+                    <div class="col-md-1">
+                        <label for="txtIdObbs" class="form-label">Id</label>
+                        <input readonly type="text" class="form-control" id="txtEditFechaObs" name="txtIdObs" value="<%=obs.getId() %>">
+                    </div>
+                    <div class="col-md-2">
                         <label for="txtEditFechaObs" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="txtEditFechaObs" name="txtEditFechaObs">
+                        <input type="date" class="form-control" id="txtEditFechaObs" name="txtFechaobserv" value="<%=obs.getFecha() %>">
                     </div>
                     <div class="col-md-4">
                         <label for="txtEditObservacion" class="form-label">Observación</label>
-                        <input type="text" class="form-control" id="txtEditObservacion" name="txtEditObservacion">
+                        <input type="text" class="form-control" id="txtEditObservacion" name="txtobserobserv" value="<%=obs.getObservacion() %>">
                     </div>
                     <div class="col-md-4">
                         <label for="txtEditFolioCont" class="form-label">Folio de contrato</label>
-                        <select class="form-select" aria-label="Default select example" id="txtEditFolioCont" name="txtEditFolioCont">
+                        <select class="form-select" aria-label="Default select example" id="txtEditFolioCont" name="txtContratFobserv">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -76,9 +87,8 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <a type="submit" class="btn btn-warning">Agregar</a>
-
-                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                        <input type="submit" name="action" class="btn btn-primary px-3" value="Editar" />
+                        <a type="button" class="btn btn-danger px-3" href="ObservacionController?action=show">Cancelar</a>
                     </div>
                 </form>
             </div>

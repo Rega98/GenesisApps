@@ -73,7 +73,7 @@ public class ObservacionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-            processRequest(request, response);
+            //processRequest(request, response);
             
             String access = "";
         String action = request.getParameter("action");
@@ -93,12 +93,12 @@ public class ObservacionController extends HttpServlet {
                 Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             }
             String obser = request.getParameter("txtobserobserv");
-            int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
+            //int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
             
             // Se instancia los valores (despues de x proceso realizado)
             observ.setFecha(fecha);
             observ.setObservacion(obser);
-            observ.setContratofolio(contraF);
+            //observ.setContratofolio(contraF);
             
             // Se le pasa el objeto para realizar la operación
             obsdao.add(observ);
@@ -106,12 +106,13 @@ public class ObservacionController extends HttpServlet {
             access = show;
         } else if(action.equalsIgnoreCase("edit")){ //checar vista 
             // Se obtiene la info del request
-            request.setAttribute("folioC", request.getParameter("folioC"));
+            request.setAttribute("Id", request.getParameter("Id"));
             // Se redirige a la vista
             access = edit;
         } else if(action.equalsIgnoreCase("Editar")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            String fechaC = request.getParameter("txtFechaCom");
+            int id = Integer.parseInt(request.getParameter("txtIdObs"));
+            String fechaC = request.getParameter("txtFechaobserv");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = null;
             try {
@@ -120,11 +121,12 @@ public class ObservacionController extends HttpServlet {
                 Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             }
             String obser = request.getParameter("txtobserobserv");
-            int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
+            //int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
             // Se instancia los valores (despues de x proceso realizado)
+            observ.setId(id);
             observ.setFecha(fecha);
             observ.setObservacion(obser);
-            observ.setContratofolio(contraF);
+            //observ.setContratofolio(contraF);
             // Se le pasa el objeto para realizar la operación
             obsdao.edit(observ);
 
@@ -132,7 +134,7 @@ public class ObservacionController extends HttpServlet {
             access = show;
         } else if(action.equalsIgnoreCase("delete")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = Integer.parseInt(request.getParameter("Id"));
             // Se instancia los valores (despues de x proceso realizado)
             observ.setId(id);
             // Se le pasa el objeto para realizar la operación
