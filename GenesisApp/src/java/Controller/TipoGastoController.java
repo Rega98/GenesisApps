@@ -71,7 +71,7 @@ public class TipoGastoController extends HttpServlet {
             access = add;
          }else if(action.equalsIgnoreCase("Guardar")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            
+             
             String des = request.getParameter("txtDesTipoGast");
             String tipo = request.getParameter("txtTipoTGast");    
             
@@ -85,16 +85,16 @@ public class TipoGastoController extends HttpServlet {
            access = show;
            }else if(action.equalsIgnoreCase("edit")){
             // Se obtiene la info del request
-            request.setAttribute("idTipg", request.getParameter("idTipg"));
+            request.setAttribute("Id", request.getParameter("Id"));
             // Se redirige a la vista
             access = edit;
         }else if(action.equalsIgnoreCase("Editar")){
             // Aquí se pueden invocar metodos para realizar operaciones
-           
+            int id = Integer.parseInt(request.getParameter("txtId"));
             String des = request.getParameter("txtDesTipoGast");
             String tipo = request.getParameter("txtTipoTGast");
            
-            
+            tipga.setId(id);
             tipga.setDescripcion(des);
             tipga.setTipo(tipo);
            
@@ -104,11 +104,11 @@ public class TipoGastoController extends HttpServlet {
             access = show;
         }else if(action.equalsIgnoreCase("delete")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            int id = Integer.parseInt(request.getParameter("id"));
+            int idtip = Integer.parseInt(request.getParameter("Id"));
             // Se instancia los valores (despues de x proceso realizado)
-            tipga.setId(id);
+            tipga.setId(idtip);
             // Se le pasa el objeto para realizar la operación
-            tipgdao.delete(id);
+            tipgdao.delete(idtip);
             // Se redirige a la vista
             access = show;
         }
