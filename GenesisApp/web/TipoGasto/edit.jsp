@@ -22,7 +22,7 @@
                     <label for="txtidtp" class="form-label">Id</label>
                     <br>
                     <h4></h4>
-                    <input type="hidden" class="form-control" name="txtidtp" value="" required>
+                    <input type="number" class="form-control" name="txtidtp" value="" required>
                 </div>
                 <div class="col-6">
                     <label for="txtDes" class="form-label">Descripcion</label>
