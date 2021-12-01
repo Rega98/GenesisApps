@@ -13,16 +13,16 @@ public class Ruta {
   protected int idRuta;
   protected String descripcionRuta;
   protected int rutas; 
-  protected int contratofolio;
+  //protected int contratofolio;
   
   
   public Ruta(){}
 
-    public Ruta(int idRuta, String descripcionRuta, int rutas, int contratofolio) {
+    public Ruta(int idRuta, String descripcionRuta, int rutas) {
         this.idRuta = idRuta;
         this.descripcionRuta = descripcionRuta;
         this.rutas = rutas;
-        this.contratofolio = contratofolio;
+        //this.contratofolio = contratofolio;
     }
 
     public int getIdRuta() {
@@ -49,13 +49,13 @@ public class Ruta {
         this.rutas = rutas;
     }
 
-    public int getContratofolio() {
+    /*public int getContratofolio() {
         return contratofolio;
     }
 
     public void setContratofolio(int contratofolio) {
         this.contratofolio = contratofolio;
-    }
+    }*/
   
     
 }//llave que cierra

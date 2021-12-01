@@ -34,7 +34,7 @@ public class RutaDAO implements CRUD_Ruta {
     @Override
     public List show() {
           ArrayList<Ruta> list = new ArrayList<>();
-        String squery = "SELECT * FROM ruta ORDER BY id = id;";
+        String squery = "SELECT * FROM ruta ORDER BY idruta = idruta;";
         
         try{
             con = cox.getConnection();
@@ -47,7 +47,7 @@ public class RutaDAO implements CRUD_Ruta {
                 rut.setIdRuta(rs.getInt("idRuta"));
                 rut.setDescripcionRuta(rs.getString("descripcionRuta"));
                 rut.setRutas(rs.getInt("rutas"));
-                rut.setContratofolio(rs.getInt("contratoFolio"));
+                //rut.setContratofolio(rs.getInt("contratoFolio"));
                 
                 list.add(rut);
             }
@@ -67,10 +67,10 @@ public class RutaDAO implements CRUD_Ruta {
             rs = ps.executeQuery();
             
             while(rs.next()){                
-                rut.setIdRuta(rs.getInt("idRuta"));
-                rut.setDescripcionRuta(rs.getString("descripcionRuta"));
+                rut.setIdRuta(rs.getInt("idruta"));
+                rut.setDescripcionRuta(rs.getString("descripcionruta"));
                 rut.setRutas(rs.getInt("rutas"));
-                rut.setContratofolio(rs.getInt("contratoFolio"));
+                //rut.setContratofolio(rs.getInt("contratoFolio"));
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: RutaDAO.details");
@@ -81,8 +81,8 @@ public class RutaDAO implements CRUD_Ruta {
  
     @Override
     public boolean add(Ruta rut) {
-           String squery = "INSERT INTO ruta ( descripcionRuta, rutas, contratofolio)" 
-                + "VALUES ('"+rut.getDescripcionRuta()+"',"+rut.getRutas()+", "+rut.getContratofolio()+");";
+           String squery = "INSERT INTO ruta (descripcionruta, rutas)" 
+                + "VALUES ('"+rut.getDescripcionRuta()+"',"+rut.getRutas()+");";
               
         try{
             con = cox.getConnection();
@@ -97,8 +97,8 @@ public class RutaDAO implements CRUD_Ruta {
 
     @Override
     public boolean edit(Ruta rut) {
-             String squery = "UPDATE ruta SET idRuta="+rut.getIdRuta()+", descripcionRuta='"+rut.getDescripcionRuta()+"', "
-                + "rutas="+rut.getRutas()+", contratofolio="+rut.getContratofolio()+"'WHERE folio="+rut.getIdRuta()+";";
+             String squery = "UPDATE ruta SET descripcionruta='"+rut.getDescripcionRuta()+"', "
+                + "rutas="+rut.getRutas()+" WHERE idruta="+rut.getIdRuta()+";";
 	
         
         System.out.println(squery);

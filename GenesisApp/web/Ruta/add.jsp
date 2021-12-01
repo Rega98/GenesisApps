@@ -60,13 +60,13 @@
 
                     <div class="col-md-4">
                         <label for="txtDescRuta" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="txtDescRuta" name="txtDescRuta">
+                        <input type="text" class="form-control" id="txtDescRuta" name="txtDesRuta">
                     </div>
                     <div class="col-md-4">
-                        <label for="numRuta" class="form-label">Observación</label>
-                        <input type="number" class="form-control" id="numRuta" name="numRuta">
+                        <label for="numRuta" class="form-label">Rutas</label>
+                        <input type="number" class="form-control" id="numRuta" name="txtRutasRuta">
                     </div>
-                    <div class="col-md-4">
+                    <!--div class="col-md-4">
                         <label for="txtFolioCont" class="form-label">Folio de contrato</label>
                         <select class="form-select" aria-label="Default select example" id="txtFolioCont" name="txtFolioCont">
                             <option selected>Open this select menu</option>
@@ -74,11 +74,11 @@
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </select>
-                    </div>
+                    </div-->
                     <div class="col-6">
-                        <a type="submit" class="btn btn-primary">Agregar</a>
+                        <input type="submit" name="action" class="btn btn-primary px-3" value="Guardar" />
 
-                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                        <a type="button" class="btn btn-danger px-3" href="RutaController?action=show">Cancelar</a>
                     </div>
                 </form>
             </div>

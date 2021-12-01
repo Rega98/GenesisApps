@@ -52,6 +52,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="CatNominaController?action=show">Nóminas</a>
                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="RutaController?action=show">Ruta</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Empleados</a>
                         </li>
