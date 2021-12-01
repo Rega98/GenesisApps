@@ -18,17 +18,13 @@
     <div class="row">
         <form action="TipoGastoController">
             <div class="row my-3">
-                <div class="col-3">
-                    <label for="txtidtp" class="form-label">Id</label>
-                    <input type="number" class="form-control" name="txtidtp" required>
-                </div>
                 <div class="col-6">
                     <label for="txtDes" class="form-label">Descripcion</label>
-                    <input type="text" class="form-control" name="txtDes" required>
+                    <input type="text" class="form-control" name="txtDesTipoGast" required>
                 </div>
                 <div class="col-3">
                     <label for="txtTGasto" class="form-label">Tipo</label>
-                    <input type="text" class="form-control" name="txtTGasto" required>
+                    <input type="text" class="form-control" name="txtTipoTGast" required>
                 </div>
             </div>
                 </div>
