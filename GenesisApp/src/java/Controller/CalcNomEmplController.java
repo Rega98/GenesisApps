@@ -71,14 +71,16 @@ public class CalcNomEmplController extends HttpServlet {
                 nomina.setPeriodo((signo.equals("<"))?"Primera Quincena":"Segunda Quincena");
                 nomina.setRfcEmpleado(rfc);
                 empl = empDAO.details(rfc);
+                Float montoTotal = 0.0f;
                 if(empl.getTipo().equals("Vendedor")){
                     Float sumComiciones = contrDAO.getGananciaByQuincena(rfc, mes, anio, signo);
                     Float sumPrestamos = valDAO.getMontoByQuincena(rfc, mes, anio, signo);
-                    Float montoTotal = sumComiciones - sumPrestamos;
+                    montoTotal = sumComiciones - sumPrestamos;
                     if(montoTotal < 0.0f){
                         nomina.setMonto(0.0f);
                         if(nominaDAO.add(nomina)) {
-                            vale.setMonto(Math.abs(montoTotal));//Registra la perdida obtenida como valor absoluto
+                            //Registra la perdida obtenida como valor absoluto
+                            vale.setMonto(Math.abs(montoTotal));
                             vale.setConcepto("Adeudo Originado de la Nomina");
                             vale.setRfcVendedor(rfc);
                             if(signo.equals("<")){ 
@@ -107,7 +109,7 @@ public class CalcNomEmplController extends HttpServlet {
                 } else if(empl.getTipo().equals("Cobrador")){
                     //El valor puede ser 10, 11, 12 o 13
                     String comision = request.getParameter("txtComisionCobr");
-                    Float montoTotal = pagoDAO.getMontoByQuincena(rfc, comision, mes, anio, signo);
+                    montoTotal = pagoDAO.getMontoByQuincena(rfc, comision, mes, anio, signo);
                     nomina.setMonto(montoTotal);
                     if(nominaDAO.add(nomina)){
                         access = details;
@@ -116,7 +118,9 @@ public class CalcNomEmplController extends HttpServlet {
                 request.setAttribute("RFCEmpl", rfc);
                 request.setAttribute("MesNomina", mes);
                 request.setAttribute("AnioNomina", anio);
+                request.setAttribute("MesAnioTexto", transformaMes(mes)+" "+anio);
                 request.setAttribute("Quincena", signo);
+                request.setAttribute("Total", montoTotal);
             } 
             RequestDispatcher view = request.getRequestDispatcher(access);
             view.forward(request, response);

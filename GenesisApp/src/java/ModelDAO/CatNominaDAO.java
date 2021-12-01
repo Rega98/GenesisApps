@@ -34,29 +34,23 @@ public class CatNominaDAO implements CRUD_CatNomina{
     public List show() {
         ArrayList<CatNomina> list = new ArrayList<>();
         String squery = "SELECT * FROM catNomina ORDER BY folio;";
-        
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             rs = ps.executeQuery();
-            
             while(rs.next()){
                 CatNomina cn = new CatNomina();
-                
                 cn.setFolio(rs.getInt("folio"));
                 cn.setFecha(rs.getDate("fecha"));
                 cn.setMesAnio(rs.getString("mesAnio"));
                 cn.setPeriodo(rs.getString("periodo"));
                 cn.setMonto(rs.getFloat("monto"));
                 cn.setRfcEmpleado(rs.getString("rfcEmpleado"));
-               
-                
                 list.add(cn);
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: CatNominaDAO.show");
         }
-        
         return list;
     }
 
