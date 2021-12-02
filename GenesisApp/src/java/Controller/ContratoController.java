@@ -6,7 +6,9 @@
 package Controller;
 
 import Model.Contrato;
+import Model.Vale;
 import ModelDAO.ContratoDAO;
+import ModelDAO.ValeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -112,7 +114,6 @@ public class ContratoController extends HttpServlet {
             try {
                 fecha = dateFormat.parse(f);
             } catch (ParseException ex) {
-                System.out.println("-- ERROR CON FECHA --");
                 Logger.getLogger("Erroooor: ---"+ContratoController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
@@ -123,44 +124,36 @@ public class ContratoController extends HttpServlet {
             cont.setRfcVendedor(rfcVen);
             cont.setRfcCliente(rfcCli);
             cont.setIdProducto(idProd);
+            cdao.add(cont);            
 
-            //cdao.add(cont);            
+            if(enganc>(total*0.10)){
+                Vale val = new Vale();
+                ValeDAO vdao = new ValeDAO();
+                
+                val.setFechaVale(fecha);
+                val.setMonto((float) (enganc - (total*0.10)));
+                System.out.println("Ultimo folio guardado: "+cdao.BuscarXCampos());
+                val.setConcepto(""+cdao.BuscarXCampos()+"");
+                val.setRfcVendedor(rfcVen);
+                
+                vdao.add(val);
+            }
+            
             // Se redirige a la vista
             access = show;
         }else if(action.equalsIgnoreCase("edit")){
             // Se obtiene la info del request
-            request.setAttribute("foCont", request.getParameter("fo"));
+            request.setAttribute("folio", request.getParameter("folio"));
             // Se redirige a la vista
             access = edit;
         }else if(action.equalsIgnoreCase("Editar")){
             // Aquí se pueden invocar metodos para realizar operaciones
             int fol = Integer.parseInt(request.getParameter("txtFolCont"));
-            float eng = Float.parseFloat(request.getParameter("txtEngCont"));
-            String pPg = request.getParameter("txtPlaCont");
-            String dCo = request.getParameter("txtDiaCont");
-            String edo = request.getParameter("txtEstCont");
-            String fCo = request.getParameter("txtFecCont");
-            float sub = Float.parseFloat(request.getParameter("txtSubCont"));
-            float iva = Float.parseFloat(request.getParameter("txtIvaCont"));
-            float tot = Float.parseFloat(request.getParameter("txtTotCont"));
-            String rVe = request.getParameter("");///--------------------------- Pendiente
-            String rCl = request.getParameter("");///--------------------------- Pendiente
-            int iPr = Integer.parseInt(request.getParameter(""));///------------ Pendiente
-            int iRu = Integer.parseInt(request.getParameter(""));///------------ Pendiente
+            String edo = request.getParameter("cbxEdoCon");
             
             cont.setFolio(fol);
-            cont.setEnganche(eng);
-            cont.setPlanPago(pPg);
-            cont.setDiaCobro(dCo);
             cont.setEstado(edo);
-            // cont.setFechaContrato(); ///------------------------------------ Pendiente
-            cont.setSubtotal(sub);
-            cont.setIva(iva);
-            cont.setTotal(tot);
-            cont.setRfcVendedor(rVe);
-            cont.setRfcCliente(rCl);
-            cont.setIdProducto(iPr);
-            cont.setIdRuta(iRu);
+
             // Se le pasa el objeto para realizar la operación
             cdao.edit(cont);
             // Se redirige a la vista

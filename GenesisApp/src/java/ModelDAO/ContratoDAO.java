@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,8 +103,8 @@ public class ContratoDAO implements CRUD_Contrato {
  
     @Override
     public boolean add(Contrato cont) {
-     String squery = "INSERT INTO contrato (enganche, planPago, diaCobro, estado, fechaContrato,subtotal, iva, total, rfcVendedor,rfcCliente,idProducto,idRuta)" 
-                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+","+cont.getIdRuta()+");";
+        String squery = "INSERT INTO contrato (enganche, planPago, diaCobro, estado, fechaContrato,subtotal, iva, total, rfcVendedor,rfcCliente,idProducto,idRuta)" 
+                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+", null);";
         
         
         try{
@@ -119,11 +120,7 @@ public class ContratoDAO implements CRUD_Contrato {
 
     @Override
     public boolean edit(Contrato cont) {
-        String squery = "UPDATE contrato SET folio="+cont.getFolio()+", enganche='"+cont.getEnganche()+"', "
-              + "planPago="+cont.getPlanPago()+",  diaCobro='"+cont.getDiaCobro()+"', estado="+cont.getEstado()+", fechaContrato='"+cont.getFechaContrato()+"',subtotal = '"+cont.getSubtotal()+"',Iva="+cont.getIva()+",total="+cont.getTotal()+",RfcVendedor="+cont.getRfcVendedor()+",RfcCliente="+cont.getRfcCliente()+",IdProducto="+cont.getIdProducto()+" ,IdRuta="+cont.getIdRuta()+ " WHERE folio="+cont.getFolio()+";";
-        
-           
-        
+        String squery = "UPDATE contrato SET estado='"+cont.getEstado()+"' WHERE folio="+cont.getFolio()+";";
         System.out.println(squery);
         
         try{
@@ -201,5 +198,21 @@ public class ContratoDAO implements CRUD_Contrato {
             System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.getGananciaByQuincena");
         }
         return result;
+    }
+
+    @Override
+    public int BuscarXCampos() {
+        int folio = 0;
+        String squery = "SELECT MAX(folio) AS folio FROM contrato;";
+        try{            
+            Statement orden = con.createStatement();
+            ResultSet res = orden.executeQuery(squery);
+            res.next();
+            folio = res.getInt("folio");
+        } catch (SQLException e) {
+            System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.find");
+        }
+        
+        return folio;
     }
 }

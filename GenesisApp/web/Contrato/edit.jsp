@@ -1,118 +1,148 @@
 <%-- 
     Document   : edit
     Created on : 25 nov 2021, 9:46:06
-    Author     : uriel
+    Author     : IsmaelSL
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Geminis</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Geminis App | Contrato</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                   <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="ProveedorController?action=show">Proveedores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="src/views/">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Productos</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>-->
+<%@page import="Model.Contrato"%>
+<%@page import="ModelDAO.ContratoDAO"%>
+<%@page import="Model.Producto"%>
+<%@page import="ModelDAO.ProductoDAO"%>
+<%@page import="Model.Empleado"%>
+<%@page import="ModelDAO.EmpleadoDAO"%>
+<%@page import="Model.Cliente"%>
+<%@page import="ModelDAO.ClienteDAO"%>
+<%@ include file = "../header.jsp" %>
+<%
+    int folio = Integer.parseInt((String) request.getAttribute("folio"));
+    ContratoDAO cdao = new ContratoDAO();
+    Contrato con = (Contrato) cdao.details(folio);
+    
+    ClienteDAO cldao = new ClienteDAO();
+    Cliente cli = (Cliente) cldao.details(con.getRfcCliente());
+    
+    EmpleadoDAO edao = new EmpleadoDAO();
+    Empleado emp = (Empleado) edao.details(con.getRfcVendedor());
+    
+    ProductoDAO pdao = new ProductoDAO();
+    Producto pro = (Producto) pdao.details(con.getIdProducto());
+%>
+<div class="container p-5 m-5 bg-white shadow rounded-3">
+    <form action="ContratoController">
+        <div class="row">
+            <div class="col-4">
+                <h3>Detalles Contrato #<%=con.getFolio()%></h3>
+            </div>
+            <div class="col-4">
+                <input type="hidden" class="form-control" name="txtFolCont" value="<%=con.getFolio()%>" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label">Ruta</label>
+                <br>
+                <h4>ID-<%=con.getIdRuta()%></h4>
+            </div>
+            <div class="col-2">
+                <label for="cbxEdoCon" class="form-label">Estado</label>
+                <select class="form-select" name="cbxEdoCon">
+                    <option value="<%=con.getEstado()%>" selected><%=con.getEstado()%></option>
+                    <option value="EN_RUTA">EN RUTA</option>
+                    <option value="ABONADO">ABONADO</option>
+                    <option value="SALDADO">SALDADO</option>
+                    <option value="CANCELADO">CANCELADO</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <label for="txtRfcCli" class="form-label">RFC Cliente</label>
+                    <br>
+                    <h4><%=cli.getRfc()%></h4>
+                    <input type="hidden" class="form-control" name="txtRfcCli" value="<%=cli.getRfc()%>" required>
+                </div>
+                <div class="col-4">
+                    <label for="txtRfcCli" class="form-label">Nombre Cliente</label>
+                    <br>
+                    <h4><%=cli.getNombre()+" "+cli.getApPaterno()+" "+cli.getApPaterno()%></h4>
+                </div>
+                <div class="col-5">
+                    <label for="txtRfcCli" class="form-label">Datos Contacto Cliente</label>
+                    <br>
+                    <h4><%=cli.getCorreo()+" - "+cli.getTelefono()%></h4>
                 </div>
             </div>
-        </nav>
-        
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div>
-                    <h3>Editar Contrato</h3>
+            <hr>
+            <div class="row my-3">
+                <div class="col-2">
+                    <label for="txtIdPro" class="form-label">ID Producto</label>
+                    <br>
+                    <h4><%=pro.getId()%></h4>
+                    <input type="hidden" class="form-control" name="txtIdPro" value="<%=pro.getId()%>" required>
+                </div>
+                <div class="col-4">
+                    <label class="form-label">Nombre Producto</label>
+                    <br>
+                    <h4><%=pro.getNombre()%></h4>
+                </div>
+                <div class="col-4">
+                    <label class="form-label">Descripción</label>
+                    <br>
+                    <h5><%=pro.getDescripcion()%></h5>
+                </div>
+                <div class="col-2">
+                    <label class="form-label">Precio</label>
+                    <br>
+                    <h4>$ <%=pro.getPrecioVenta()%></h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row my-3">
+                <div class="col-2">
+                    <label for="txtPlaCon" class="form-label">Plan de pago</label>
+                    <br>
+                    <h4><%=con.getPlanPago() %></h4>
+                </div>
+                <div class="col-2">
+                    <label for="txtDiaCon" class="form-label">Día de pago</label>
+                    <br>
+                    <h4><%=con.getDiaCobro() %></h4>
+                </div>
+                <div class="col-2">
+                    <label for="numEngaCon" class="form-label">Engache</label>
+                    <br>
+                    <h4>$ <%=con.getEnganche() %></h4>
+                </div>
+                <div class="col-2">
+                    <label for="numSubCon" class="form-label">Sub Total</label>
+                    <br>
+                    <h4>$ <%=con.getSubtotal() %></h4>
+                </div>
+                <div class="col-2">
+                    <label for="numIvaCon" class="form-label">IVA (16%)</label>
+                    <br>
+                    <h4>$ <%=con.getIva() %></h4>
+                </div>
+                <div class="col-2">
+                    <label for="numTotalCon" class="form-label">Total</label>
+                    <br>
+                    <h4>$ <%=con.getTotal() %></h4>
+                </div>
+            </div>
+            </div>
+            <hr>
+            <div class="row mt-3">
+                <div class="col-8">
+                    <label for="txtRfcVen" class="form-label">Vendido Por:</label>
+                    <br>
+                    <h6><%=emp.getRfc()+" - "+emp.getNombre()+" "+emp.getApPaterno()+" "+emp.getApPaterno()%></h6>
+                    <input type="hidden" class="form-control" name="txtRfcVen" value="<%=emp.getRfc()%>" required>
+                </div>
+                <div class="col-4 mt-3">
+                    <input type="submit" name="action" class="btn btn-primary px-5" value="Editar" />
+                    <a type="submit" class="btn btn-danger px-5" href="ContratoController?action=show">Regresar</a>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <form class="row g-3">                    
-                    <div class="col-md-4">
-                      <label for="numEdEngaCon" class="form-label">Engache</label>
-                      <input type="number" class="form-control" id="numEdEngaCon" name="numEdEngaCon">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="txtEdPlanCon" class="form-label">Plan de pago</label>
-                      <input type="text" class="form-control" id="txtEdPlanCon" name="txtEdPlanCon">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="txtEDiaCon" class="form-label">DÃ­a de pago</label>
-                      <input type="text" class="form-control" id="txtEDiaCon" name="txtEDiaCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="txtEdEstCon" class="form-label">Estado</label>
-                      <input type="text" class="form-control" id="txtEdEstCon" name="txtEdEstCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="dateFechaCon" class="form-label">Fecha de Contrato</label>
-                      <input type="date" class="form-control" id="dateFechaCon" name="dateFechaCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="numSubCon" class="form-label">Sub Total</label>
-                      <input type="number" class="form-control" id="numSubCon" name="numSubCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="numEIvaCon" class="form-label">IVA</label>
-                      <input type="number" class="form-control" id="numEIvaCon" name="numEIvaCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="numETotalCon" class="form-label">Total</label>
-                      <input type="number" class="form-control" id="numETotalCon" name="numETotalCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="txtERfcVCon" class="form-label">RFC de Vendedor</label>
-                      <input type="text" class="form-control" id="txtERfcVCon" name="txtERfcVCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="txtERfcCliCon" class="form-label">RFC de Cliente</label>
-                      <input type="text" class="form-control" id="txtERfcCliCon" name="txtERfcCliCon">
-                    </div>
-                    <div class="col-4">
-                      <label for="numEIdPro" class="form-label">ID de producto</label>
-                      <input type="number" class="form-control" id="numEIdPro" name="numEIdPro">
-                    </div>
-                    <div class="col-4">
-                      <label for="numEIdRuta" class="form-label">ID de la Ruta</label>
-                      <input type="number" class="form-control" id="numEIdRuta" name="numEIdRuta">
-                    </div>
-                    <div class="col-6">
-                      <button type="submit" class="btn btn-warning">Editar</button>
-
-                      <button type="submit" class="btn btn-danger">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </body>
-</html>
+    </form>
+</div>
+<%@ include file = "../footer.jsp" %>

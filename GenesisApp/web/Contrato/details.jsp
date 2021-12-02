@@ -125,8 +125,8 @@
                     %>
                     <label for="numIvaCon" class="form-label">IVA (0%)</label>
                     <div class="input-group">
-                        <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" name="numIvaCon" value="0.0" disabled>
+                        <span class="input-group-text">$ 00.00</span>
+                        <input type="hidden" class="form-control" name="numIvaCon" value="0.0">
                     </div>
                     <%
                     }

@@ -51,9 +51,6 @@
                             <a class="nav-link active" aria-current="page" href="GastoController?action=show">Gastos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="TipoGastoController?action=show">Tipo Gasto</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="CompraController?action=show">Compras</a>
                         </li>
                         <li class="nav-item">
@@ -61,12 +58,6 @@
                         </li>
                          <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="RutaController?action=show">Ruta</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="ObservacionController?action=show">Observacion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="ValeController?action=show">Vales</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="EmpleadoController?action=show">Empleados</a>
