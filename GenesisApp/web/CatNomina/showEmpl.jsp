@@ -1,7 +1,7 @@
 <%-- 
-    Document   : show
-    Created on : 25 nov 2021, 9:43:00
-    Author     : uriel
+    Document   : showEmpl
+    Created on : 1/12/2021, 06:12:42 PM
+    Author     : Adolfo Meza Romero
 --%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -10,14 +10,8 @@
 <%@ include file = "../header.jsp" %>
 <div class="container p-5 m-5 bg-white shadow rounded-3">
     <div class="row mb-3">
-        <div class="col-8">
+        <div class="col-10">
             <h3>Lista de Empleados</h3>
-        </div>
-        <div class="col-2">
-            <a href="EmpleadoController?action=add" class="btn btn-success">Nuevo Empleado</a>
-        </div>
-        <div class="col-2">
-            <a href="ValeController?action=show"  class="btn btn-info">Vales Empleados</a>
         </div>
     </div>
     <div class="row">
@@ -25,19 +19,17 @@
             <thead>
                 <tr>
                     <th scope="col">RFC</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido Paterno</th>
-                        <th scope="col">Apellido Materno</th>
-                        <th scope="col">Usuario</th>
-                        <!-- creo que no debrias mostrarse el password<th scope="col">Password</th>-->
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Acciones</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido Paterno</th>
+                    <th scope="col">Apellido Materno</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <%
                     EmpleadoDAO edao = new EmpleadoDAO();
-                    List<Empleado> list = edao.show();
+                    List<Empleado> list = edao.show3();
                     Iterator<Empleado> iter = list.iterator();
                     Empleado emp = null;
                     while (iter.hasNext()) {
@@ -52,8 +44,7 @@
                     <td><%= emp.getTipo()%></td>
                     <td class="px-0">
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-primary " href="EmpleadoController?action=edit&rfc=<%=emp.getRfc()%>">Editar</a>
-                            <a class="btn btn-danger" href="EmpleadoController?action=delete&rfc=<%=emp.getRfc()%>">Borrar</a>
+                            <a class="btn btn-primary " href="CalcNomEmplController?action=calcular&rfc=<%=emp.getRfc()%>">Calcular Nomina</a>
                         </div>
                     </td>
                 </tr>

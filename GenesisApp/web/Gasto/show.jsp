@@ -10,14 +10,12 @@
 <%@ include file = "../header.jsp" %>
 <div class="container p-5 m-5 bg-white shadow rounded-3">
     <div class="row mb-3">
-        <div class="col-8">
+        <div class="col-9">
             <h3>Lista Gastos</h3>
         </div>
-        <div class="col-2">
-            <a href="GastoController?action=add" class="btn btn-success">Gasto Nuevo</a>
-        </div>
-        <div class="col-2">
-            <a href="TipoGastoController?action=show" class="btn btn-success">Tipo Gastos</a>
+        <div class="col-3">
+            <a href="GastoController?action=add" class="btn btn-success">Nuevo Gasto</a>
+            <a href="TipoGastoController?action=show" class="btn btn-info">Tipos Gastos</a>
         </div>
     </div>
     <div class="row">

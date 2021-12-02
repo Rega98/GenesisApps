@@ -3,17 +3,20 @@
     Created on : 28 nov. 2021, 01:17:00
     Author     : bardo_3u8azdb
 --%>
+<%@page import="java.util.Iterator"%>
+<%@page import="Model.Empleado"%>
+<%@page import="java.util.List"%>
+<%@page import="ModelDAO.EmpleadoDAO"%>
 <%@page import="Model.Pago"%>
 <%@page import="ModelDAO.PagoDAO"%>
 <%@ include file = "../header.jsp" %>
 
-<%-- 
 <%
     PagoDAO pgdao = new PagoDAO();
-    int folio = (int) request.getAttribute("folio");
+    int folio = Integer.parseInt((String)request.getAttribute("folio"));
+
     Pago pag = (Pago) pgdao.details(folio);
 %>
---%>
 <div class="container p-5 m-5 bg-white shadow rounded-3">
     <div class="row">
         <div>
@@ -23,31 +26,48 @@
     <div class="row">
         <form action="PagoController">
             <div class="row my-3">
-                <div class="col-3">
+                <div class="col-md-4">
                     <label for="txtFolio" class="form-label">Folio</label>
                     <br>
-                    <h4><%--<%=pag.getFolio()%>--%></h4>
-                    <input type="number" class="form-control" name="txtFolio" value="<%--<%=pag.getFolio()%>--%>" required>
+                    <h4><%=pag.getFolio()%></h4>
+                    <input type="hidden" class="form-control" name="txtFolio" value="<%=pag.getFolio()%>" required>
                 </div>
-                <div class="col-6">
+                <div class="col-md-4">
                     <label for="txtFechaPag" class="form-label">Fecha pago</label>
-                    <input type="date" class="form-control" name="txtFechaPag" value="<%--<%=pag.getFecha()%>--%>" required>
+                    <input type="date" class="form-control" name="txtFechaPag" value="<%=pag.getFecha()%>" required>
                 </div>
-                <div class="col-3">
+                <div class="col-md-4">
                     <label for="txtMontoPag" class="form-label">Monto</label>
-                    <input type="number" class="form-control" name="txtMontoPag" value="<%--<%=pag.getMonto()%>--%>" required>
+                    <input type="number" class="form-control" name="txtMontoPag" value="<%=pag.getMonto()%>" required>
                 </div>
             </div>
             <div class="row my-3">
-                <div class="col-6">
+                <div class="col-md-4">
                     <label for="txtContPag" class="form-label">Folio Contrato</label>
-                    <input type="text" class="form-control" name="txtContPag" value="<%--<%=pag.getContratofolio()%>--%>" required>
+                    <input type="text" readonly="readonly" class="form-control" name="txtContPag" value="<%=pag.getContratofolio()%>" required>
                 </div>
-                <div class="col-6">
+                <div class="col-md-4">
                     <label for="txtRfcPag" class="form-label">RFC Cobrador</label>
-                    <input type="text" class="form-control" name="txtRfcPag" value="<%--<%=pag.getRfcCobrador()%>--%>" required>
+                    <select class="form-select" aria-label="Default select example" name="txtRfcPag" value="<%=pag.getRfcCobrador() %>" required="required">
+                            <%
+                            EmpleadoDAO edao = new EmpleadoDAO();
+                            List<Empleado> list = edao.show();
+                            Iterator<Empleado> iter = list.iterator();
+                            Empleado emp = null;
+                            while(iter.hasNext()){
+                                emp = iter.next();
+                                if(emp.getTipo().equalsIgnoreCase("Cobrador") ) {
+                            
+                            %>
+                            <option <% if(emp.getRfc().equalsIgnoreCase(pag.getRfcCobrador())){%> selected <%}%>value="<%= emp.getRfc()%>"><%= emp.getRfc()%> - <%= emp.getNombre()%></option>
+                            <%
+                            }
+                            }
+                            %>
+                        </select>
                 </div>
             </div>
+                        <hr>
             <div class="row mt-5">
                 <div class="col-8"></div>
                 <div class="col-2">

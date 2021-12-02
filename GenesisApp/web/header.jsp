@@ -16,6 +16,13 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </head>
+    <style>
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+    </style>
     <body style="background-color: #EAEAEA;">
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow" >
             <div class="container-fluid">
@@ -44,16 +51,16 @@
                             <a class="nav-link active" aria-current="page" href="GastoController?action=show">Gastos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="TipoGastoController?action=show">Tipo Gasto</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="CompraController?action=show">Compras</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="CatNominaController?action=show">Nóminas</a>
+                            <a class="nav-link active" aria-current="page" href="CalcNomEmplController?action=showEmpl">Nóminas</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="RutaController?action=show">Ruta</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Empleados</a>
+                            <a class="nav-link active" aria-current="page" href="EmpleadoController?action=show">Empleados</a>
                         </li>
                     </ul>
                 </div>

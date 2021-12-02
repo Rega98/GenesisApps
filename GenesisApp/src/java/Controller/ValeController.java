@@ -99,11 +99,12 @@ public class ValeController extends HttpServlet {
             valeDAO.add(vale);
             access = show;
         } else if (action.equalsIgnoreCase("edit")) {
-            request.setAttribute("folval", request.getParameter("folval")); //Duda
+            request.setAttribute("folio", request.getParameter("folio")); //Duda
             // Se redirige a la vista
             access = edit;
         } else if (action.equalsIgnoreCase("Editar")) {
             // Aquí se pueden invocar metodos para realizar operaciones
+            int folio = Integer.parseInt(request.getParameter("txtFolio"));
             float monto = Float.parseFloat(request.getParameter("txtMonto"));
             String fechavale = request.getParameter("txtdatevale");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -116,6 +117,12 @@ public class ValeController extends HttpServlet {
             }
             String concepto = request.getParameter("txtConcepto");
             String rfcvendedor = request.getParameter("txtrfcVendedor");
+            System.out.print(folio);
+            System.out.print(monto);
+            System.out.print(fecha);
+            System.out.print(concepto);
+            System.out.print(rfcvendedor);
+            vale.setFolio(folio);
             vale.setMonto(monto);
             vale.setFechaVale(fecha);
             vale.setConcepto(concepto);
@@ -123,14 +130,14 @@ public class ValeController extends HttpServlet {
             valeDAO.edit(vale);
             access = show;
         } else if (action.equalsIgnoreCase("delete")) {
-            int folio = Integer.parseInt(request.getParameter("folval"));
+            int folio = Integer.parseInt(request.getParameter("folio"));
             vale.setFolio(folio);
             valeDAO.delete(folio);
             access = show;
 
         }
         RequestDispatcher view = request.getRequestDispatcher(access);
-        processRequest(request, response);
+        view.forward(request, response);
     }
 
     /**

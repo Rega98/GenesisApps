@@ -4,7 +4,17 @@
     Author     : uriel
 --%>
 
+<%@page import="Model.Ruta"%>
+<%@page import="ModelDAO.RutaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file = "../header.jsp" %>
+<%
+    RutaDAO rDAO = new RutaDAO();
+    int id = Integer.parseInt((String)request.getAttribute("Id"));
+
+    Ruta ruta = (Ruta) rDAO.details(id);
+%>
+
 <html>
     <head>
         <title>Geminis</title>
@@ -18,7 +28,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Geminis App | Ruta</a>
+                <!--a class="navbar-brand" href="#">Geminis App | Ruta</a-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,28 +66,32 @@
         <div class="container">
             <div class="row">
                 <form class="row g-3">                    
-
+                    <div class="col-md-1">
+                        <label for="txtDescRuta" class="form-label">Id</label>
+                        <input readonly type="text" class="form-control" id="txtDescRuta" name="txtIdRuta" value="<%=ruta.getIdRuta() %>">
+                    </div>
                     <div class="col-md-4">
                         <label for="txtDescRuta" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="txtDescRuta" name="txtDescRuta">
+                        <input type="text" class="form-control" id="txtDescRuta" name="txtDesRuta" value="<%=ruta.getDescripcionRuta() %>">
                     </div>
                     <div class="col-md-4">
-                        <label for="numRuta" class="form-label">Observación</label>
-                        <input type="number" class="form-control" id="numRuta" name="numRuta">
+                        <label for="numRuta" class="form-label">Rutas</label>
+                        <input type="number" class="form-control" id="numRuta" name="txtRutasRuta" value="<%=ruta.getRutas() %>">
                     </div>
-                    <div class="col-md-4">
+                    <!--div class="col-md-4">
                         <label for="txtFolioCont" class="form-label">Folio de contrato</label>
                         <select class="form-select" aria-label="Default select example" id="txtFolioCont" name="txtFolioCont">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
-                        </select>
+                        </select-->
                     </div>
+                    <br>
                     <div class="col-6">
-                        <a type="submit" class="btn btn-warning">Editar</a>
+                        <input type="submit" name="action" class="btn btn-primary px-3" value="Editar" />
 
-                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                        <a type="button" class="btn btn-danger px-3" href="RutaController?action=show">Cancelar</a>
                     </div>
                 </form>
             </div>

@@ -101,7 +101,8 @@ public class PagoController extends HttpServlet {
             // Se redirige a la vista
             access = edit;
         } else if(action.equalsIgnoreCase("Editar")){
-            // Aquí se pueden invocar metodos para realizar operaciones            
+            // Aquí se pueden invocar metodos para realizar operaciones      
+            int folio = Integer.parseInt(request.getParameter("txtFolio"));
             String fechaA = request.getParameter("txtFechaPag");
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = null;
@@ -116,6 +117,7 @@ public class PagoController extends HttpServlet {
             // Se instancia los valores (despues de x proceso realizado)
             //prov.setId(id);
             //prov.setNom(nom);
+            pag.setFolio(folio);
             pag.setFecha(fecha);
             pag.setMonto(monto);
             pag.setContratofolio(cont);

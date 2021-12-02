@@ -8,6 +8,7 @@ package Model;
  *
 * @author Jeanny and Teresita
  */
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Contrato {

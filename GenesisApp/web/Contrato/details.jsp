@@ -1,11 +1,8 @@
 <%-- 
-    Document   : edit
-    Created on : 25 nov 2021, 9:46:06
+    Document   : details
+    Created on : 30 nov. 2021, 20:26:11
     Author     : IsmaelSL
 --%>
-
-<%@page import="Model.Contrato"%>
-<%@page import="ModelDAO.ContratoDAO"%>
 <%@page import="Model.Producto"%>
 <%@page import="ModelDAO.ProductoDAO"%>
 <%@page import="Model.Empleado"%>
@@ -14,45 +11,27 @@
 <%@page import="ModelDAO.ClienteDAO"%>
 <%@ include file = "../header.jsp" %>
 <%
-    int folio = Integer.parseInt((String) request.getAttribute("folio"));
-    ContratoDAO cdao = new ContratoDAO();
-    Contrato con = (Contrato) cdao.details(folio);
-    
-    ClienteDAO cldao = new ClienteDAO();
-    Cliente cli = (Cliente) cldao.details(con.getRfcCliente());
+    String rfc_c = (String) request.getAttribute("idCl");
+    String rfc_e = (String) request.getAttribute("idVe");
+    int idPr = Integer.parseInt((String) request.getAttribute("idPr"));
+        
+    ClienteDAO cdao = new ClienteDAO();
+    Cliente cli = (Cliente) cdao.details(rfc_c);
     
     EmpleadoDAO edao = new EmpleadoDAO();
-    Empleado emp = (Empleado) edao.details(con.getRfcVendedor());
+    Empleado emp = (Empleado) edao.details(rfc_e);
     
     ProductoDAO pdao = new ProductoDAO();
-    Producto pro = (Producto) pdao.details(con.getIdProducto());
+    Producto pro = (Producto) pdao.details(idPr);
 %>
 <div class="container p-5 m-5 bg-white shadow rounded-3">
-    <form action="ContratoController">
-        <div class="row">
-            <div class="col-4">
-                <h3>Detalles Contrato #<%=con.getFolio()%></h3>
-            </div>
-            <div class="col-4">
-                <input type="hidden" class="form-control" name="txtFolCont" value="<%=con.getFolio()%>" required>
-            </div>
-            <div class="col-2">
-                <label class="form-label">Ruta</label>
-                <br>
-                <h4>ID-<%=con.getIdRuta()%></h4>
-            </div>
-            <div class="col-2">
-                <label for="cbxEdoCon" class="form-label">Estado</label>
-                <select class="form-select" name="cbxEdoCon">
-                    <option value="<%=con.getEstado()%>" selected><%=con.getEstado()%></option>
-                    <option value="EN_RUTA">EN RUTA</option>
-                    <option value="ABONADO">ABONADO</option>
-                    <option value="SALDADO">SALDADO</option>
-                    <option value="CANCELADO">CANCELADO</option>
-                </select>
-            </div>
+    <div class="row">
+        <div>
+            <h3>Detalles Contrato</h3>
         </div>
-        <div class="row">
+    </div>
+    <div class="row">
+        <form action="ContratoController">
             <div class="row mb-3">
                 <div class="col-3">
                     <label for="txtRfcCli" class="form-label">RFC Cliente</label>
@@ -99,33 +78,66 @@
             <div class="row my-3">
                 <div class="col-2">
                     <label for="txtPlaCon" class="form-label">Plan de pago</label>
-                    <br>
-                    <h4><%=con.getPlanPago() %></h4>
+                    <select class="form-select" name="txtPlaCon">
+                        <option selected disabled>Seleccionar...</option>
+                        <option value="Semanal">Semanal</option>
+                        <option value="Quincenal">Quincenal</option>
+                        <option value="Mensual">Mensual</option>
+                    </select>
                 </div>
                 <div class="col-2">
                     <label for="txtDiaCon" class="form-label">Día de pago</label>
-                    <br>
-                    <h4><%=con.getDiaCobro() %></h4>
+                    <select class="form-select" name="txtDiaCon">
+                        <option selected disabled>Seleccionar...</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Sábado">Sábado</option>
+                    </select>
                 </div>
                 <div class="col-2">
                     <label for="numEngaCon" class="form-label">Engache</label>
-                    <br>
-                    <h4>$ <%=con.getEnganche() %></h4>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" name="numEngaCon" onchange="Calculo();">
+                    </div>
                 </div>
+                
                 <div class="col-2">
                     <label for="numSubCon" class="form-label">Sub Total</label>
-                    <br>
-                    <h4>$ <%=con.getSubtotal() %></h4>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" name="numSubCon" value="">
+                    </div>
                 </div>
                 <div class="col-2">
+                    <%
+                    if(pro.getIva()){
+                    %>
                     <label for="numIvaCon" class="form-label">IVA (16%)</label>
-                    <br>
-                    <h4>$ <%=con.getIva() %></h4>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" name="numIvaCon" value="">
+                    </div>
+                    <%
+                    } else {
+                    %>
+                    <label for="numIvaCon" class="form-label">IVA (0%)</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$ 00.00</span>
+                        <input type="hidden" class="form-control" name="numIvaCon" value="0.0">
+                    </div>
+                    <%
+                    }
+                    %>
                 </div>
                 <div class="col-2">
                     <label for="numTotalCon" class="form-label">Total</label>
-                    <br>
-                    <h4>$ <%=con.getTotal() %></h4>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" name="numTotCon">
+                    </div>
                 </div>
             </div>
             </div>
@@ -138,11 +150,11 @@
                     <input type="hidden" class="form-control" name="txtRfcVen" value="<%=emp.getRfc()%>" required>
                 </div>
                 <div class="col-4 mt-3">
-                    <input type="submit" name="action" class="btn btn-primary px-5" value="Editar" />
-                    <a type="submit" class="btn btn-danger px-5" href="ContratoController?action=show">Regresar</a>
+                    <input type="submit" name="action" class="btn btn-primary px-5" value="Guardar" />
+                    <a type="submit" class="btn btn-danger px-5" href="ContratoController?action=add">Regresar</a>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 <%@ include file = "../footer.jsp" %>

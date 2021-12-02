@@ -22,7 +22,8 @@ public interface CRUD_Contrato {
     public boolean edit(Contrato cont);
     //ELIMINAR
     public boolean delete(int folio);
-    
+    //BUSCAR UNO POR CAMPOS
+    public int BuscarXCampos();
 }
     
 

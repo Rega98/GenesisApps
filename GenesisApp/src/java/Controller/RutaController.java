@@ -75,16 +75,16 @@ public class RutaController extends HttpServlet {
         } else if (action.equalsIgnoreCase("add")){
             access = add;
             
-        } else if (action.equalsIgnoreCase("guardar")){
+        } else if (action.equalsIgnoreCase("Guardar")){
             //Añadir nuevas rutas
             //Invocar métodos para realizar las operaciones
             String desRuta = request.getParameter("txtDesRuta");
             int rutas = Integer.parseInt(request.getParameter("txtRutasRuta"));
-            int contratofolio = Integer.parseInt(request.getParameter("txtContfolio"));
+            //int contratofolio = Integer.parseInt(request.getParameter("txtContfolio"));
 
             ruta.setDescripcionRuta(desRuta);
             ruta.setRutas(rutas);
-            ruta.setContratofolio(contratofolio);
+            //ruta.setContratofolio(contratofolio);
             
             // Se envia el objeto ruta al método add de rDAO
             rDAO.add(ruta);
@@ -93,19 +93,21 @@ public class RutaController extends HttpServlet {
             
         } else if(action.equalsIgnoreCase("edit")){
             // Se obtiene la info del request
-            request.setAttribute("idruta", request.getParameter("idruta"));
+            request.setAttribute("Id", request.getParameter("Id"));
             // Se redirige a la vista
             access = edit;
             
         }else if(action.equalsIgnoreCase("Editar")){
             // Editar las rutas en la base de datos
+            int id = Integer.parseInt(request.getParameter("txtIdRuta"));
             String desRuta = request.getParameter("txtDesRuta");
             int rutas = Integer.parseInt(request.getParameter("txtRutasRuta"));
-            int contratofolio = Integer.parseInt(request.getParameter("txtContfolio"));
+            //int contratofolio = Integer.parseInt(request.getParameter("txtContfolio"));
             
+            ruta.setIdRuta(id);
             ruta.setDescripcionRuta(desRuta);
             ruta.setRutas(rutas);
-            ruta.setContratofolio(contratofolio);
+            //ruta.setContratofolio(contratofolio);
             
             // Se envía el objeto ruta al método edit en rDAO
             rDAO.edit(ruta);
@@ -114,7 +116,7 @@ public class RutaController extends HttpServlet {
         
         } else if(action.equalsIgnoreCase("delete")){
             // Aquí se pueden invocar metodos para realizar operaciones
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = Integer.parseInt(request.getParameter("Id"));
             // Se instancia los valores (despues de x proceso realizado)
             ruta.setIdRuta(id);
             // Se le pasa el objeto para realizar la operación
@@ -123,7 +125,7 @@ public class RutaController extends HttpServlet {
             access = show; }
 
         RequestDispatcher view = request.getRequestDispatcher(access);
-        processRequest(request, response);
+        view.forward(request, response);
     }
 
     /**

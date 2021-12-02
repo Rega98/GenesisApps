@@ -50,11 +50,15 @@ public class CalcNomEmplController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String access = "";
+        String show = "CatNomina/showEmpl.jsp";
         String add = "CatNomina/calculate.jsp";
         String details = "CatNomina/report.jsp";
+        String error = "CatNomina/error.jsp";
         try {
             String action = request.getParameter("action");
-            if(action.equalsIgnoreCase("calcular")){
+            if(action.equalsIgnoreCase("showEmpl")){
+                access = show;
+            }else if(action.equalsIgnoreCase("calcular")){
                 access = add;
                 request.setAttribute("rfcEmpl", request.getParameter("rfc"));
             }else if(action.equalsIgnoreCase("Generar")){
@@ -70,52 +74,65 @@ public class CalcNomEmplController extends HttpServlet {
                 nomina.setMesAnio(transformaMes(mes)+" "+anio);
                 nomina.setPeriodo((signo.equals("<"))?"Primera Quincena":"Segunda Quincena");
                 nomina.setRfcEmpleado(rfc);
-                empl = empDAO.details(rfc);
-                if(empl.getTipo().equals("Vendedor")){
-                    Float sumComiciones = contrDAO.getGananciaByQuincena(rfc, mes, anio, signo);
-                    Float sumPrestamos = valDAO.getMontoByQuincena(rfc, mes, anio, signo);
-                    Float montoTotal = sumComiciones - sumPrestamos;
-                    if(montoTotal < 0.0f){
-                        nomina.setMonto(0.0f);
-                        if(nominaDAO.add(nomina)) {
-                            vale.setMonto(Math.abs(montoTotal));//Registra la perdida obtenida como valor absoluto
-                            vale.setConcepto("Adeudo Originado de la Nomina");
-                            vale.setRfcVendedor(rfc);
-                            if(signo.equals("<")){ 
-                                //Si el calculo es de la primera quincena, genera el vale para la siguente quincena del mes
-                                vale.setFechaVale(dateFormat.parse(anio + "-" + mes + "-16"));
-                            } else if(signo.equals(">")) { 
-                                //Si el calculo es de la segunda quincena, genera el vale para el siguinete mes
-                                if(mes<12){ 
-                                    //Si el mes no es diciembre
-                                    vale.setFechaVale(dateFormat.parse(anio + "-" + (mes+1) + "-1"));
-                                } else { 
-                                    //Si es diciembre cambialo a enero de año siguiente
-                                    vale.setFechaVale(dateFormat.parse((anio+1) + "-1-1"));
+                if(nominaDAO.noExist(nomina)){
+                    empl = empDAO.details(rfc);
+                    Float montoTotal = 0.0f;
+                    if(empl.getTipo().equals("Vendedor")){
+                        Float sumComiciones = contrDAO.getGananciaByQuincena(rfc, mes, anio, signo);
+                        Float sumPrestamos = valDAO.getMontoByQuincena(rfc, mes, anio, signo);
+                        montoTotal = sumComiciones - sumPrestamos;
+                        if(montoTotal < 0.0f){
+                            nomina.setMonto(0.0f);
+                            if(nominaDAO.add(nomina)) {
+                                //Registra la perdida obtenida como valor absoluto
+                                vale.setMonto(Math.abs(montoTotal));
+                                vale.setConcepto("Adeudo Originado de la Nomina");
+                                vale.setRfcVendedor(rfc);
+                                if(signo.equals("<")){ 
+                                    //Si el calculo es de la primera quincena, genera el vale para la siguente quincena del mes
+                                    vale.setFechaVale(dateFormat.parse(anio + "-" + mes + "-16"));
+                                } else if(signo.equals(">")) { 
+                                    //Si el calculo es de la segunda quincena, genera el vale para el siguinete mes
+                                    if(mes<12){ 
+                                        //Si el mes no es diciembre
+                                        vale.setFechaVale(dateFormat.parse(anio + "-" + (mes+1) + "-1"));
+                                    } else { 
+                                        //Si es diciembre cambialo a enero de año siguiente
+                                        vale.setFechaVale(dateFormat.parse((anio+1) + "-1-1"));
+                                    }
+                                }
+                                if(valDAO.add(vale)) {
+                                    access = details;
                                 }
                             }
-                            if(valDAO.add(vale)) {
+                        } else {
+                            nomina.setMonto(montoTotal);
+                            if(nominaDAO.add(nomina)) {
                                 access = details;
                             }
                         }
-                    } else {
+                    } else if(empl.getTipo().equals("Cobrador")){
+                        //El valor puede ser 10, 11, 12 o 13
+                        String comision = request.getParameter("txtComisionCobr");
+                        montoTotal = pagoDAO.getMontoByQuincena(rfc, comision, mes, anio, signo);
                         nomina.setMonto(montoTotal);
-                        if(nominaDAO.add(nomina)) {
+                        if(nominaDAO.add(nomina)){
                             access = details;
                         }
                     }
-                } else if(empl.getTipo().equals("Cobrador")){
-                    //El valor puede ser 10, 11, 12 o 13
-                    String comision = request.getParameter("txtComisionCobr");
-                    Float montoTotal = pagoDAO.getMontoByQuincena(rfc, comision, mes, anio, signo);
-                    nomina.setMonto(montoTotal);
-                    if(nominaDAO.add(nomina)){
-                        access = details;
-                    }
+                    //request.setAttribute("RFCEmpl", rfc);
+                    //request.setAttribute("MesNomina", ""+mes+"");
+                    //request.setAttribute("AnioNomina", ""+anio+"");
+                    //request.setAttribute("MesAnioTexto", transformaMes(mes)+" "+anio);
+                    //request.setAttribute("Quincena", signo);
+                    request.setAttribute("Total", ""+montoTotal+"");
+                } else {
+                    access = error;
                 }
                 request.setAttribute("RFCEmpl", rfc);
-                request.setAttribute("MesNomina", mes);
-                request.setAttribute("AnioNomina", anio);
+                request.setAttribute("MesNomina", ""+mes+"");
+                request.setAttribute("AnioNomina", ""+anio+"");
+                request.setAttribute("MesAnioTexto", transformaMes(mes)+" "+anio);
                 request.setAttribute("Quincena", signo);
             } 
             RequestDispatcher view = request.getRequestDispatcher(access);

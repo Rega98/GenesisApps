@@ -46,8 +46,8 @@ public class ValeDAO implements CRUD_Vale{
                 val.setFolio(rs.getInt("folio"));
                 val.setMonto(rs.getFloat("monto"));
                 val.setFechaVale(rs.getDate("fechaVale"));
-                val.setConcepto(rs.getNString("concepto"));
-                val.setRfcVendedor(rs.getNString("rfcVendedor"));
+                val.setConcepto(rs.getString("concepto"));
+                val.setRfcVendedor(rs.getString("rfcVendedor"));
                
                 
                 list.add(val);
@@ -73,8 +73,8 @@ public class ValeDAO implements CRUD_Vale{
                 va.setFolio(rs.getInt("folio"));
                 va.setMonto(rs.getFloat("monto"));
                 va.setFechaVale(rs.getDate("fechaVale"));
-                va.setConcepto(rs.getNString("concepto"));
-                va.setRfcVendedor(rs.getNString("rfcVendedor"));
+                va.setConcepto(rs.getString("concepto"));
+                va.setRfcVendedor(rs.getString("rfcVendedor"));
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: ValeDAO.details");
@@ -104,8 +104,8 @@ public class ValeDAO implements CRUD_Vale{
     @Override
     public boolean edit(Vale val) {
     
-        String squery = "UPDATE vale SET folio="+va.getFolio()+", monto="+va.getMonto()+", "
-                + "fechavale='"+va.getFechaVale()+"', concepto='"+va.getConcepto()+"', rfcvendedor='"+va.getRfcVendedor()+"'WHERE folio="+va.getFolio()+";";
+        String squery = "UPDATE vale SET monto="+val.getMonto()+", "
+                + "fechavale='"+val.getFechaVale()+"', concepto='"+val.getConcepto()+"', rfcvendedor='"+val.getRfcVendedor()+"' WHERE folio="+val.getFolio()+";";
 	
         System.out.println(squery);
         
@@ -141,8 +141,10 @@ public class ValeDAO implements CRUD_Vale{
     
     public List showByQuincena(String rfc, int month, int year, String sign) {
         ArrayList<Vale> list = new ArrayList<>();
-        String squery = "SELECT * FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" AND " +
-                        "EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15;"; 
+        String squery = "SELECT * FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" " +
+                "AND EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15 EXCEPT " +
+                "SELECT v.* FROM vale v, contrato c WHERE CAST(c.folio AS VARCHAR) = v.concepto " +
+                "AND c.estado = 'CANCELADO';"; 
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -152,8 +154,8 @@ public class ValeDAO implements CRUD_Vale{
                 val.setFolio(rs.getInt("folio"));
                 val.setMonto(rs.getFloat("monto"));
                 val.setFechaVale(rs.getDate("fechavale"));
-                val.setConcepto(rs.getNString("concepto"));
-                val.setRfcVendedor(rs.getNString("rfcvendedor"));
+                val.setConcepto(rs.getString("concepto"));
+                val.setRfcVendedor(rs.getString("rfcvendedor"));
                 list.add(val);
             }
         }catch(SQLException e){
@@ -164,8 +166,11 @@ public class ValeDAO implements CRUD_Vale{
     
     public Float getMontoByQuincena(String rfc, int month, int year, String sign) {
         Float result = -1.0f;
-        String squery = "SELECT SUM(monto) AS montototal FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" AND " +
-                        "EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15;"; 
+        String squery = "SELECT SUM(a.monto) AS montototal FROM " +
+                "(SELECT * FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" " +
+                "AND EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15 EXCEPT " +
+                "SELECT v.* FROM vale v, contrato c WHERE CAST(c.folio AS VARCHAR) = v.concepto " +
+                "AND c.estado = 'CANCELADO') a;"; 
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);

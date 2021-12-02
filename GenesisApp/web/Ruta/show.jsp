@@ -4,7 +4,12 @@
     Author     : uriel
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="Model.Ruta"%>
+<%@page import="java.util.List"%>
+<%@page import="ModelDAO.RutaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file = "../header.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +24,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Geminis App | Rutas</a>
+                <!--a class="navbar-brand" href="#">Geminis App | Rutas</a-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -73,18 +78,29 @@
                       </tr>
                     </thead>
                     <tbody>
+                        <%
+                            RutaDAO rdao = new RutaDAO();
+                            List<Ruta> list = rdao.show();
+                            Iterator<Ruta> iter = list.iterator();
+                            Ruta ruta = null;
+                                while (iter.hasNext()) {
+                                    ruta = iter.next();
+                        %>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Nueva Ruta</td>
-                        <td>1</td>
-                        <td>65432</td>
+                        <th scope="row"><%=ruta.getIdRuta() %></th>
+                        <td><%=ruta.getDescripcionRuta() %></td>
+                        <td><%=ruta.getRutas() %></td>
+                        <td></td>
                         <td>
                             
-                            <a href="ObservacionController?action=edit" class="btn btn-primary" id="btnEdit" role="button">Editar</a>
-                        
+                            <a href="RutaController?action=edit&Id=<%=ruta.getIdRuta() %>" class="btn btn-primary" id="btnEdit" role="button">Editar</a>
+                            <a class="btn btn-danger" href="RutaController?action=delete&Id=<%=ruta.getIdRuta() %> ">Borrar</a>
                         </td>
-                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                       </tr>
+                      
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
              

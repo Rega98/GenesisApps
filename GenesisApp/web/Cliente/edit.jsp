@@ -22,7 +22,7 @@
         <form action="ClienteController">
             <div class="row my-3">
                 <div class="col-3">
-                    <label for="txtRfcCli" class="form-label">RFC Empresa</label>
+                    <label for="txtRfcCli" class="form-label">RFC Cliente</label>
                     <br>
                     <h4><%=cli.getRfc()%></h4>
                     <input type="hidden" class="form-control" name="txtRfcCli" value="<%=cli.getRfc()%>" required>

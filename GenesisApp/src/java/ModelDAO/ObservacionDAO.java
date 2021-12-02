@@ -82,10 +82,12 @@ public class ObservacionDAO implements CRUD_Observacion {
 
     @Override
     public boolean add(Observacion obs) {
-          String squery = "INSERT INTO observacion (fecha, observacion, contratofolio)" 
-                + "VALUES ('"+obs.getFecha()+"',¿"+obs.getObservacion()+"', "+obs.getContratofolio()+");";
+          /*String squery = "INSERT INTO observacion (fecha, observacion, contratofolio)" 
+                + "VALUES ('"+obs.getFecha()+"',¿"+obs.getObservacion()+"', "+obs.getContratofolio()+");";*/
+
         
-        
+          String squery = "INSERT INTO observacion (fecha, observacion)" 
+                + "VALUES ('"+obs.getFecha()+"','"+obs.getObservacion()+"');";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -100,8 +102,11 @@ public class ObservacionDAO implements CRUD_Observacion {
     @Override
     public boolean edit(Observacion obs) {
            
+          /*String squery = "UPDATE observacion SET id="+obs.getId()+", fecha='"+obs.getFecha()+"', "
+              + "observacion='"+obs.getObservacion()+"', contratofolio='"+obs.getContratofolio()+"'WHERE id="+obs.getId()+";";*/
+          
           String squery = "UPDATE observacion SET id="+obs.getId()+", fecha='"+obs.getFecha()+"', "
-              + "observacion='"+obs.getObservacion()+"', contratofolio='"+obs.getContratofolio()+"'WHERE folio="+obs.getId()+";";
+              + "observacion='"+obs.getObservacion()+"' WHERE id="+obs.getId()+";";
         
         System.out.println(squery);
         
