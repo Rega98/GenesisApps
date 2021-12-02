@@ -47,7 +47,7 @@
                     <td><%= val.getRfcVendedor()%></td>
                     <td class="px-0">
                         <div class="btn-group btn-group-sm" role="group">
-                            <a class="btn btn-primary " href="ValeController?action=edit&folio=<%=val.getFolio()%>">Editar</a>
+                            <!--<a class="btn btn-primary " href="ValeController?action=edit&folio=<%=val.getFolio()%>">Editar</a>-->
                             <a class="btn btn-danger" href="ValeController?action=delete&folio=<%=val.getFolio()%>">Borrar</a>
                         </div>
                     </td>

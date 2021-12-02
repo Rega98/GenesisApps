@@ -12,37 +12,33 @@
 <div class="container p-5 m-5 bg-white shadow rounded-3">
     <div class="row">
         <div>
-            <h3>Pago Nuevo</h3>
+            <h3>Nuevo Vale</h3>
         </div>
     </div>
     <div class="row">
         <form action="ValeController">
             <div class="row my-3">
                 <div class="col-4">
-                    <label for="txtFolio" class="form-label">Folio</label>
-                    <input type="number" class="form-control" name="txtFolio" required>
-                </div>
-                <div class="col-4">
                     <label for="txtMontoval" class="form-label">Monto</label>
-                    <input type="number" class="form-control" name="txtMontoval" required>
+                    <input type="text" class="form-control" name="txtMonto" required>
                 </div>
                 <div class="col-4">
                     <label for="txtFechaval" class="form-label">Fecha Vale</label>
-                    <input type="date" class="form-control" name="txtFechaval" required>
+                    <input type="date" class="form-control" name="txtdatevale" required>
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col-6">
                     <label for="txtConc" class="form-label">Concepto</label>
-                    <input type="text" class="form-control" name="txtConc" required>
+                    <input type="text" class="form-control" name="txtConcepto" required>
                 </div>
                 <div class="col-6">
                     <label for="txtRfcEmp" class="form-label">RFC Vendedor</label>
-                    <select class="form-select" aria-label="Default select example" name="txtRfcEmp">
+                    <select class="form-select" aria-label="Default select example" name="txtrfcVendedor">
                             <option selected disabled>Selecciona un Vendedor</option>
                             <%
                             EmpleadoDAO edao = new EmpleadoDAO();
-                            List<Empleado> list = edao.show();
+                            List<Empleado> list = edao.show4();
                             Iterator<Empleado> iter = list.iterator();
                             Empleado emp = null;
                             while(iter.hasNext()){

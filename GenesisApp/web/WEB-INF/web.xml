@@ -39,6 +39,10 @@
         <servlet-name>CalcNomEmplController</servlet-name>
         <servlet-class>Controller.CalcNomEmplController</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>ValeController</servlet-name>
+        <servlet-class>Controller.ValeController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>RutaController</servlet-name>
         <servlet-class>Controller.RutaController</servlet-class>
@@ -85,6 +89,10 @@
     <servlet-mapping>
         <servlet-name>CalcNomEmplController</servlet-name>
         <url-pattern>/CalcNomEmplController</url-pattern>
+    </servlet-mapping>
+       <servlet-mapping>
+        <servlet-name>ValeController</servlet-name>
+        <url-pattern>/ValeController</url-pattern>
     </servlet-mapping>
      <servlet-mapping>
         <servlet-name>RutaController</servlet-name>

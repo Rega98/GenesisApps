@@ -66,6 +66,9 @@
                             <a class="nav-link active" aria-current="page" href="ObservacionController?action=show">Observacion</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="ValeController?action=show">Vales</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="EmpleadoController?action=show">Empleados</a>
                         </li>
                     </ul>
