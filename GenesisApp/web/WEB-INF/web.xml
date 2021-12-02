@@ -43,7 +43,7 @@
         <servlet-name>RutaController</servlet-name>
         <servlet-class>Controller.RutaController</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ObservacionController</servlet-name>
         <servlet-class>Controller.ObservacionController</servlet-class>
     </servlet>

@@ -119,11 +119,11 @@ public class CalcNomEmplController extends HttpServlet {
                     }
                 }
                 request.setAttribute("RFCEmpl", rfc);
-                request.setAttribute("MesNomina", mes);
-                request.setAttribute("AnioNomina", anio);
+                request.setAttribute("MesNomina", ""+mes+"");
+                request.setAttribute("AnioNomina", ""+anio+"");
                 request.setAttribute("MesAnioTexto", transformaMes(mes)+" "+anio);
                 request.setAttribute("Quincena", signo);
-                request.setAttribute("Total", montoTotal);
+                request.setAttribute("Total", ""+montoTotal+"");
             } 
             RequestDispatcher view = request.getRequestDispatcher(access);
             view.forward(request, response);

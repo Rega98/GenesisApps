@@ -23,10 +23,6 @@
         <form action="ContratoController">
             <div class="row my-3">
                 <div class="col-3">
-                    <label for="txtFeCon" class="form-label">Fecha de Contrato</label>
-                    <input type="date" class="form-control" name="txtFeCon">
-                </div>
-                <div class="col-3">
                     <label for="cbxIdCli" class="form-label">Cliente</label>
                     <select class="form-select" name="cbxIdCli">
                         <option selected disabled>Selecciona un cliente</option>
@@ -65,7 +61,7 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <label for="cbxIdPro" class="form-label">Producto</label>
+                    <label for="numIdPro" class="form-label">Producto</label>
                     <Select class="form-select" name="cbxIdPro">
                         <option selected disabled>Selecciona un producto</option>
                         <%
@@ -83,13 +79,10 @@
                         %>
                     </Select>
                 </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-8"></div>
-                <div class="col-4">
-                    <hr>
-                    <a type="submit" class="btn btn-primary px-5" href="ContratoController?action=details">Continuar</a>
-                    <a type="submit" class="btn btn-danger px-5" href="ContratoController?action=show">Cancelar</a>
+                <div class="col-3 mt-2">
+                    <br>
+                    <input type="submit" name="action" class="btn btn-primary px-4" value="Continuar" />
+                    <a type="submit" class="btn btn-danger px-4" href="ContratoController?action=show">Cancelar</a>
                 </div>
             </div>
         </form>

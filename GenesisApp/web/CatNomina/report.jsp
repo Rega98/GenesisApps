@@ -145,10 +145,18 @@
     <%
         }
     %>
-</div>
-<div class="row">
-    <div class="col-10">
-        Total: <%= total %>
+    <div class="row">
+        <div class="col-10">
+            Total: <%= total %>
+            <%
+            if(total<0){
+                %>
+                <hr>
+                <spam>Se contará como un nuevo préstamo para la siguiente quincena.</spam>
+                <%
+            }
+            %>
+        </div>
     </div>
 </div>
 <%@ include file = "../footer.jsp" %>
