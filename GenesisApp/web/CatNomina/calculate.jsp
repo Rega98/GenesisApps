@@ -70,9 +70,9 @@
                 <label for="txtComisionCobr" class="form-label">Comision a considerar</label>
                 <select class="form-select" aria-label="Default select example" name="txtComisionCobr" >
                     <option value="10" selected>10%</option>
-                    <option value="11" selected>11%</option>
-                    <option value="12" selected>12%</option>
-                    <option value="13" selected>13%</option>
+                    <option value="11">11%</option>
+                    <option value="12">12%</option>
+                    <option value="13">13%</option>
                 </select>
             </div>
             <%
@@ -84,7 +84,7 @@
                     <input type="submit" name="action" class="btn btn-primary px-5" value="Generar" />
                 </div>
                 <div class="col-2">
-                    <a type="button" class="btn btn-danger px-5" href="CatNominaController?action=show">Cancelar</a>
+                    <a type="button" class="btn btn-danger px-5" href="CalcNomEmplController?action=showEmpl">Cancelar</a>
                 </div>
             </div>
         </form>

@@ -50,11 +50,14 @@ public class CalcNomEmplController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String access = "";
+        String show = "CatNomina/showEmpl.jsp";
         String add = "CatNomina/calculate.jsp";
         String details = "CatNomina/report.jsp";
         try {
             String action = request.getParameter("action");
-            if(action.equalsIgnoreCase("calcular")){
+            if(action.equalsIgnoreCase("showEmpl")){
+                access = show;
+            }else if(action.equalsIgnoreCase("calcular")){
                 access = add;
                 request.setAttribute("rfcEmpl", request.getParameter("rfc"));
             }else if(action.equalsIgnoreCase("Generar")){
