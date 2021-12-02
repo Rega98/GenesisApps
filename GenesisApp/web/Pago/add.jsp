@@ -20,24 +20,14 @@
     <div class="row">
         <form action="PagoController">
             <div class="row my-3">
-                <div class="col-3">
+                <!--<div class="col-3">
                     <label for="txtFolio" class="form-label">Folio</label>
                     <input type="number" class="form-control" name="txtFolio" required>
-                </div>
-                <div class="col-6">
-                    <label for="txtFechaPag" class="form-label">Fecha pago</label>
-                    <input type="date" class="form-control" name="txtFechaPag" required>
-                </div>
-                <div class="col-3">
-                    <label for="txtMontoPag" class="form-label">Monto</label>
-                    <input type="number" class="form-control" name="txtMontoPag" required>
-                </div>
-            </div>
-            <div class="row my-3">
+                </div>-->
                 <div class="col-6">
                     <label for="txtCont" class="form-label">Folio Contrato</label>
                     <select class="form-select" aria-label="Default select example" name="txtContPag">
-                            <option selected disabled>Selecciona un Cobrador</option>
+                            <option selected disabled>Selecciona un contrato</option>
                             <%
                             ContratoDAO cdao = new ContratoDAO();
                             List<Contrato> list2 = cdao.show();
@@ -46,15 +36,25 @@
                             while(iter2.hasNext()){
                                 cont = iter2.next();
                             %>
-                            <option value="<%= cont.getFolio()%>"></option>
+                            <option value="<%= cont.getFolio()%>"><%= cont.getFolio()%> - <%= cont.getRfcCliente()%></option>
                             <%
                             }
                             %>--%>
                         </select>
                 </div>
                 <div class="col-6">
+                    <label for="txtFechaPag" class="form-label">Fecha pago</label>
+                    <input type="date" class="form-control" name="txtFechaPag" required>
+                </div>
+              </div>
+            <div class="row my-3">
+                <div class="col-6">
+                    <label for="txtMontoPag" class="form-label">Monto</label>
+                    <input type="number" class="form-control" name="txtMontoPag" required>
+                </div>
+                <div class="col-6">
                     <label for="txtEmp" class="form-label">RFC del Cobrador</label>
-                    <select class="form-select" aria-label="Default select example" name="txtRfcEmp">
+                    <select class="form-select" aria-label="Default select example" name="txtRfcPag">
                             <option selected disabled>Selecciona un Cobrador</option>
                             <%
                             EmpleadoDAO edao = new EmpleadoDAO();
@@ -63,9 +63,11 @@
                             Empleado emp = null;
                             while(iter.hasNext()){
                                 emp = iter.next();
+                                if(emp.getTipo().equalsIgnoreCase("Cobrador")) {
                             %>
-                            <option value="<%= emp.getRfc()%>"><%= emp.getNombre()%></option>
+                            <option value="<%= emp.getRfc()%>"><%= emp.getRfc()%> - <%= emp.getNombre()%></option>
                             <%
+                                }
                             }
                             %>
                         </select>

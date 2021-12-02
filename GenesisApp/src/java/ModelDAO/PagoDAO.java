@@ -106,8 +106,8 @@ public class PagoDAO implements CRUD_Pago {
     //Método que edita un Pago
     @Override
     public boolean edit(Pago pag) {
-    String squery = "UPDATE pago SET folio="+pag.getFolio()+", fecha='"+pag.getFecha()+"', "
-                + "monto="+pag.getMonto()+", contratofolio="+pag.getContratofolio()+", rfccobrador='"+pag.getRfcCobrador()+"'WHERE folio="+pag.getFolio()+";";
+    String squery = "UPDATE pago SET fecha='"+pag.getFecha()+"', "
+                + "monto="+pag.getMonto()+", contratofolio="+pag.getContratofolio()+", rfccobrador='"+pag.getRfcCobrador()+"' WHERE folio="+pag.getFolio()+";";
 	
         System.out.println(squery);
         
