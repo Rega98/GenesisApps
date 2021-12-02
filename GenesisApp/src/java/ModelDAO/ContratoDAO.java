@@ -155,7 +155,7 @@ public class ContratoDAO implements CRUD_Contrato {
     public List showByQuincena(String rfc, int month, int year, String sign) {
         ArrayList<Contrato> list = new ArrayList<>();
         String squery = "SELECT * FROM contrato WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechacontrato) = "+month+" AND " +
-                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15;"; 
+                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15 AND estado <> 'CANCELADO';"; 
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -186,7 +186,7 @@ public class ContratoDAO implements CRUD_Contrato {
     public Float getGananciaByQuincena(String rfc, int month, int year, String sign) {
         Float result = -1.0f;
         String squery = "SELECT SUM(total)*.10 AS montototal FROM contrato WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechacontrato) = "+month+" AND " +
-                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15;"; 
+                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15 AND estado <> 'CANCELADO';"; 
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);

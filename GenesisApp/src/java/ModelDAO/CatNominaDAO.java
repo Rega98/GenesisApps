@@ -137,4 +137,22 @@ public class CatNominaDAO implements CRUD_CatNomina{
         return false;
     }
     
+    //Confirma si existe un registro de nomina de un mes, año y empleado especifico
+    public boolean noExist(CatNomina cnomi) {
+        boolean noExist = false;
+        String squery = "SELECT * FROM catnomina WHERE mesanio='"+cnomi.getMesAnio()+"' AND periodo='"+cnomi.getPeriodo()
+                        +"' AND rfcempleado='"+cnomi.getRfcEmpleado()+"';";
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            if(rs.next()==false) {
+                noExist = true;
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: CatNominaDAO.noExist");
+        }
+        return noExist;
+    }
+    
 }

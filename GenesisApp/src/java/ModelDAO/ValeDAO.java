@@ -141,8 +141,10 @@ public class ValeDAO implements CRUD_Vale{
     
     public List showByQuincena(String rfc, int month, int year, String sign) {
         ArrayList<Vale> list = new ArrayList<>();
-        String squery = "SELECT * FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" AND " +
-                        "EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15;"; 
+        String squery = "SELECT * FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" " +
+                "AND EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15 EXCEPT " +
+                "SELECT v.* FROM vale v, contrato c WHERE CAST(c.folio AS VARCHAR) = v.concepto " +
+                "AND c.estado = 'CANCELADO';"; 
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -164,8 +166,11 @@ public class ValeDAO implements CRUD_Vale{
     
     public Float getMontoByQuincena(String rfc, int month, int year, String sign) {
         Float result = -1.0f;
-        String squery = "SELECT SUM(monto) AS montototal FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" AND " +
-                        "EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15;"; 
+        String squery = "SELECT SUM(a.monto) AS montototal FROM " +
+                "(SELECT * FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" " +
+                "AND EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15 EXCEPT " +
+                "SELECT v.* FROM vale v, contrato c WHERE CAST(c.folio AS VARCHAR) = v.concepto " +
+                "AND c.estado = 'CANCELADO') a;"; 
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
