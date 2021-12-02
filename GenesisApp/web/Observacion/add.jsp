@@ -60,25 +60,24 @@
 
                     <div class="col-md-4">
                         <label for="txtFechaObs" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="txtFechaObs" name="txtFechaObs">
+                        <input type="date" class="form-control" id="txtFechaObs" name="txtFechaobserv">
                     </div>
                     <div class="col-md-4">
                         <label for="txtObservacion" class="form-label">Observación</label>
-                        <input type="text" class="form-control" id="txtObservacion" name="txtObservacion">
+                        <input type="text" class="form-control" id="txtObservacion" name="txtobserobserv">
                     </div>
                     <div class="col-md-4">
                         <label for="txtFolioCont" class="form-label">Folio de contrato</label>
-                        <select class="form-select" aria-label="Default select example" id="txtFolioCont" name="txtFolioCont">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" aria-label="Default select example" id="txtFolioCont" name="txtContratFobserv">
+                            <option selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </select>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-primary">Agregar</button>
-
-                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                        <input type="submit" name="action" class="btn btn-primary px-3" value="Guardar" />
+                        <a type="button" class="btn btn-danger px-3" href="ObservacionController?action=show">Cancelar</a>
                     </div>
                 </form>
             </div>

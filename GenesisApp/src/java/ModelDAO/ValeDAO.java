@@ -46,8 +46,8 @@ public class ValeDAO implements CRUD_Vale{
                 val.setFolio(rs.getInt("folio"));
                 val.setMonto(rs.getFloat("monto"));
                 val.setFechaVale(rs.getDate("fechaVale"));
-                val.setConcepto(rs.getNString("concepto"));
-                val.setRfcVendedor(rs.getNString("rfcVendedor"));
+                val.setConcepto(rs.getString("concepto"));
+                val.setRfcVendedor(rs.getString("rfcVendedor"));
                
                 
                 list.add(val);
@@ -73,8 +73,8 @@ public class ValeDAO implements CRUD_Vale{
                 va.setFolio(rs.getInt("folio"));
                 va.setMonto(rs.getFloat("monto"));
                 va.setFechaVale(rs.getDate("fechaVale"));
-                va.setConcepto(rs.getNString("concepto"));
-                va.setRfcVendedor(rs.getNString("rfcVendedor"));
+                va.setConcepto(rs.getString("concepto"));
+                va.setRfcVendedor(rs.getString("rfcVendedor"));
             }
         }catch(SQLException e){
             System.out.println("Error:\n"+e+"\n-> Desde: ValeDAO.details");
@@ -152,8 +152,8 @@ public class ValeDAO implements CRUD_Vale{
                 val.setFolio(rs.getInt("folio"));
                 val.setMonto(rs.getFloat("monto"));
                 val.setFechaVale(rs.getDate("fechavale"));
-                val.setConcepto(rs.getNString("concepto"));
-                val.setRfcVendedor(rs.getNString("rfcvendedor"));
+                val.setConcepto(rs.getString("concepto"));
+                val.setRfcVendedor(rs.getString("rfcvendedor"));
                 list.add(val);
             }
         }catch(SQLException e){

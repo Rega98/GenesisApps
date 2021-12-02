@@ -79,7 +79,7 @@ public class ProductoController extends HttpServlet {
             String des = request.getParameter("txtDesProd");
             float pVe = Float.parseFloat(request.getParameter("txtPreVenProd"));
             float pCo = Float.parseFloat(request.getParameter("txtPreComProd"));
-            String iva = request.getParameter("radIvaProd");///--------------------------- Pendiente
+            String iva = request.getParameter("radIvaProd");
             int stk = Integer.parseInt(request.getParameter("txtStoProd"));
             String cat = request.getParameter("txtCatProd");
             
@@ -92,7 +92,7 @@ public class ProductoController extends HttpServlet {
                 ban = true;
             }
             //-------
-            prod.setIva(ban);////---------------------------------------------- Pendiente
+            prod.setIva(ban);
             prod.setStock(stk);
             prod.setCategoria(cat);
             // Se le pasa el objeto para realizar la operación

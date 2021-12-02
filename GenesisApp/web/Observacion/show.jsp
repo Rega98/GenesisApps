@@ -4,7 +4,12 @@
     Author     : uriel
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="Model.Observacion"%>
+<%@page import="java.util.List"%>
+<%@page import="ModelDAO.ObservacionDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file = "../header.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +24,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Geminis App | Observaciones</a>
+                <!--a class="navbar-brand" href="#">Geminis App | Observaciones</a-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -73,18 +78,28 @@
                       </tr>
                     </thead>
                     <tbody>
+                        <%
+                            ObservacionDAO obDAO = new ObservacionDAO();
+                            List<Observacion> list = obDAO.show();
+                            Iterator<Observacion> iter = list.iterator();
+                            Observacion obs = null;
+                                while (iter.hasNext()) {
+                                    obs = iter.next();
+                        %>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>26/11/2021</td>
-                        <td>Se debe cambiar la ruta</td>
-                        <td>65432</td>
+                          <th scope="row"><%=obs.getId()%></th>
+                        <td><%=obs.getFecha()%></td>
+                        <td><%=obs.getObservacion() %></td>
+                        <td><%=obs.getContratofolio() %></td>
                         <td>
                             
-                            <a href="ObservacionController?action=edit" class="btn btn-primary" id="btnEdit" role="button">Editar</a>
-                        
+                            <a href="ObservacionController?action=edit&Id=<%=obs.getId()%> " class="btn btn-primary" id="btnEdit" role="button">Editar</a>
+                            <a class="btn btn-danger" href="ObservacionController?action=delete&Id=<%=obs.getId()%> ">Borrar</a>
                         </td>
-                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                       </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
              

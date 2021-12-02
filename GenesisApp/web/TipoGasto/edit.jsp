@@ -9,6 +9,14 @@
 <%@page import="ModelDAO.TipoGastoDAO"%>
 <%@ include file = "../header.jsp" %>
 
+<%
+    TipoGastoDAO tgdao = new TipoGastoDAO();
+    int id = Integer.parseInt((String)request.getAttribute("Id"));
+
+    TipoGasto tgas = (TipoGasto) tgdao.details(id);
+%>
+
+
 <div class="container p-5 m-5 bg-white shadow rounded-3">
     <div class="row">
         <div>
@@ -18,19 +26,20 @@
     <div class="row">
         <form action="TipoGastoController">
             <div class="row my-3">
-                <div class="col-md-3">
-                    <label for="txtidtp" class="form-label">Id</label>
+                <div class="col-md-4">
+                    <label for="txtFolioCom" class="form-label">Id</label>
                     <br>
-                    <h4></h4>
-                    <input type="hidden" class="form-control" name="txtidtp" value="" required>
+                    <h4><%=tgas.getId()%></h4>
+                    <input type="hidden" class="form-control" name="txtId" value="<%=tgas.getId() %>" required>
                 </div>
+            <div class="row my-3">
                 <div class="col-6">
                     <label for="txtDes" class="form-label">Descripcion</label>
-                    <input type="text" class="form-control" name="txtDes" value="" required>
+                    <input type="text" class="form-control" name="txtDesTipoGast" value="<%=tgas.getDescripcion()%>" required>
                 </div>
                 <div class="col-3">
                     <label for="txtTGasto" class="form-label">Tipo</label>
-                    <input type="text" class="form-control" name="txtTGasto" value="" required>
+                    <input type="text" class="form-control" name="txtTipoTGast" value="<%=tgas.getTipo() %>" required>
                 </div>
             </div>
                     

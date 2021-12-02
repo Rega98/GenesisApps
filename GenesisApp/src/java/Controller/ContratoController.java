@@ -26,6 +26,7 @@ public class ContratoController extends HttpServlet {
     
     String show = "Contrato/show.jsp";
     String add = "Contrato/add.jsp";
+    String details = "Contrato/details.jsp";
     String edit = "Contrato/edit.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,6 +72,20 @@ public class ContratoController extends HttpServlet {
             access = show;
         }else if(action.equalsIgnoreCase("add")){
             access = add;
+        }else if(action.equalsIgnoreCase("details")){
+            String fech = (String)request.getParameter("txtFeCon");
+            String idCl = (String)request.getParameter("cbxIdCli");
+            String idVe = (String)request.getParameter("cbxIdVed");
+            String idPr = (String)request.getParameter("cbxIdPro");
+            
+            System.out.println("ctrl: "+fech+" - "+idCl+" - "+idVe+" - "+idPr);
+            
+            request.setAttribute("fech", fech);
+            request.setAttribute("idCl", idCl);
+            request.setAttribute("idVe", idVe);
+            request.setAttribute("idPr", idPr);
+
+            access = details;
         }else if(action.equalsIgnoreCase("Guardar")){
             // Aquí se pueden invocar metodos para realizar operaciones
             int fol = Integer.parseInt(request.getParameter("txtFolCont"));
