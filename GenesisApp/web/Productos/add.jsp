@@ -15,11 +15,11 @@
             <div class="row my-3">
                 <div class="col-4">
                     <label for="txtNomProd" class="form-label">Nombre Producto</label>
-                    <input type="text" class="form-control" name="txtNomProd" required>
+                    <input type="text" class="form-control" name="txtNomProd" minlength="3" maxlength="50" title="Descripción abierta" required>
                 </div>
                 <div class="col-6">
                     <label for="txtDesProd" class="form-label">Descripción Producto</label>
-                    <input type="text" class="form-control" name="txtDesProd" required>
+                    <input type="text" class="form-control" name="txtDesProd" minlength="3" maxlength="150" title="Descripción abierta" required>
                 </div>
                 <div class="col-2">
                     <label for="txtStoProd" class="form-label">Stock</label>

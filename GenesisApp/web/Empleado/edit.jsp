@@ -28,23 +28,23 @@
             </div>
             <div class="col-md-4">
                 <label for="txtNomEmpl" class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="txtNomEmpl" value="<%=empl.getNombre()%>" required>
+                <input type="text" class="form-control" name="txtNomEmpl" value="<%=empl.getNombre()%>" minlength="3" maxlength="20" pattern="[A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]{2,19}" title="Comienze con letra mayúscula, seguido de minusculas" required>
             </div>
             <div class="col-md-4">
                 <label for="txtAppPEmpl" class="form-label">Apellido Paterno</label>
-                <input type="text" class="form-control" name="txtAppPEmpl" value="<%=empl.getApPaterno()%>" required>
+                <input type="text" class="form-control" name="txtAppPEmpl" value="<%=empl.getApPaterno()%>" minlength="3" maxlength="20" pattern="[A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]{2,19}" title="Comienze con letra mayúscula, seguido de minusculas" required>
             </div>
             <div class="col-md-4">
                 <label for="txtAppMEmpl" class="form-label">Apellido Materno</label>
-                <input type="text" class="form-control" name="txtAppMEmpl" value="<%=empl.getApMaterno()%>" required>
+                <input type="text" class="form-control" name="txtAppMEmpl" value="<%=empl.getApMaterno()%>" minlength="3" maxlength="20" pattern="[A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]{2,19}" title="Comienze con letra mayúscula, seguido de minusculas" required>
             </div>
             <div class="col-6">
                 <label for="txtUsrEmpl" class="form-label">Usuario</label>
-                <input type="text" class="form-control" name="txtUsrEmpl" value="<%=empl.getUser()%>" required>
+                <input type="text" class="form-control" name="txtUsrEmpl" value="<%=empl.getUser()%>" minlength="8" maxlength="10" pattern="[A-Za-z0-9]{8,10}" title="Minimo 8 Caracteres, con letras y/o números" required>
             </div>
             <div class="col-6">
                 <label for="txtPassEmpl" class="form-label">Password</label>
-                <input type="password" class="form-control" name="txtPassEmpl" value="<%=empl.getPass()%>" required>
+                <input type="password" class="form-control" name="txtPassEmpl" value="<%=empl.getPass()%>" minlength="8" maxlength="10" pattern="[A-Za-z0-9]{8,10}" title="Minimo 8 Caracteres, con letras y/o números" required>
             </div>
             <div class="col-md-6">
                 <label for="txtTipoEmpl" class="form-label">Tipo de Empleado</label>

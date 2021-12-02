@@ -29,29 +29,29 @@
                 </div>
                 <div class="col-6">
                     <label for="txtNomCli" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" name="txtNomCli" value="<%=cli.getNombre()%>" required>
+                    <input type="text" class="form-control" name="txtNomCli" value="<%=cli.getNombre()%>" minlength="3" maxlength="20" pattern="[A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]{2,19}" title="Comienze con letra mayúscula, seguido de minusculas" required>
                 </div>
                 <div class="col-6">
                     <label for="txtAppPCli" class="form-label">Apellido Paterno</label>
-                    <input type="text" class="form-control" name="txtAppPCli" value="<%=cli.getApPaterno()%>" required>
+                    <input type="text" class="form-control" name="txtAppPCli" value="<%=cli.getApPaterno()%>" minlength="3" maxlength="20" pattern="[A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]{2,19}" title="Comienze con letra mayúscula, seguido de minusculas" required>
                 </div>
                 <div class="col-6">
                     <label for="txtAppMCli" class="form-label">Apellido Materno</label>
-                    <input type="text" class="form-control" name="txtAppMCli" value="<%=cli.getApMaterno()%>" required>
+                    <input type="text" class="form-control" name="txtAppMCli" value="<%=cli.getApMaterno()%>" minlength="3" maxlength="20" pattern="[A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]{2,19}" title="Comienze con letra mayúscula, seguido de minusculas" required>
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col-6">
                     <label for="txtDirCli" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" name="txtDirCli" value="<%=cli.getDireccion()%>" required>
+                    <input type="text" class="form-control" name="txtDirCli" value="<%=cli.getDireccion()%>" minlength="3" maxlength="150" title="Descripción abierta" required>
                 </div>
                 <div class="col-3">
                     <label for="txtTelCli" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" name="txtTelCli" value="<%=cli.getTelefono()%>" required>
+                    <input type="text" class="form-control" name="txtTelCli" value="<%=cli.getTelefono()%>" minlength="10" maxlength="10" pattern="[0-9]{10}" title="10 dígitos numéricos" required>
                 </div>
                 <div class="col-6">
                     <label for="txtCorreoCli" class="form-label">Correo</label>
-                    <input type="email" class="form-control" name="txtCorreoCli" value="<%=cli.getCorreo()%>" required>
+                    <input type="email" class="form-control" name="txtCorreoCli" value="<%=cli.getCorreo()%>" maxlength="20" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Formato válido: sample_01@exampl.com" required>
                 </div>
             </div>
             <div class="row mt-5">

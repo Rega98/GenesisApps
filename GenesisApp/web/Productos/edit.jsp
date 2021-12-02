@@ -25,11 +25,11 @@
                 <input type="hidden" name="txtIdProd" value="<%=prod.getId()%>">
                 <div class="col-4">
                     <label for="txtNomProd" class="form-label">Nombre Producto</label>
-                    <input type="text" class="form-control" name="txtNomProd" value="<%=prod.getNombre()%>" required>
+                    <input type="text" class="form-control" name="txtNomProd" value="<%=prod.getNombre()%>" minlength="3" maxlength="50" title="Descripción abierta" required>
                 </div>
                 <div class="col-6">
                     <label for="txtDesProd" class="form-label">Descripción Producto</label>
-                    <input type="text" class="form-control" name="txtDesProd" value="<%=prod.getDescripcion()%>" required>
+                    <input type="text" class="form-control" name="txtDesProd" value="<%=prod.getDescripcion()%>" minlength="3" maxlength="150" title="Descripción abierta" required>
                 </div>
                 <div class="col-2">
                     <label for="txtStoProd" class="form-label">Stock</label>
