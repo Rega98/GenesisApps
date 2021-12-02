@@ -1,7 +1,7 @@
 <%-- 
     Document   : edit
     Created on : 10 nov. 2021, 14:46:44
-    Author     : ucmex
+    Author     : IsmaelSL
 --%>
 
 <%@page import="Model.Proveedor"%>

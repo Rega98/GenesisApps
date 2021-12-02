@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <!--
+    Reconocer el servlet
+    -->
+    <servlet>
+        <servlet-name>ContratoController</servlet-name>
+        <servlet-class>Controller.ContratoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompraController</servlet-name>
+        <servlet-class>Controller.CompraController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProveedorController</servlet-name>
+        <servlet-class>Controller.ProveedorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PagoController</servlet-name>
+        <servlet-class>Controller.PagoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClienteController</servlet-name>
+        <servlet-class>Controller.ClienteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmpleadoController</servlet-name>
+        <servlet-class>Controller.EmpleadoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GastoController</servlet-name>
+        <servlet-class>Controller.GastoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TipoGastoController</servlet-name>
+        <servlet-class>Controller.TipoGastoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalcNomEmplController</servlet-name>
+        <servlet-class>Controller.CalcNomEmplController</servlet-class>
+    </servlet>
+    <!--
+    Mapeo de las rutas
+    -->
+    <servlet-mapping>
+        <servlet-name>ContratoController</servlet-name>
+        <url-pattern>/ContratoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompraController</servlet-name>
+        <url-pattern>/CompraController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProveedorController</servlet-name>
+        <url-pattern>/ProveedorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PagoController</servlet-name>
+        <url-pattern>/PagoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClienteController</servlet-name>
+        <url-pattern>/ClienteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmpleadoController</servlet-name>
+        <url-pattern>/EmpleadoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GastoController</servlet-name>
+        <url-pattern>/GastoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TipoGastoController</servlet-name>
+        <url-pattern>/TipoGastoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalcNomEmplController</servlet-name>
+        <url-pattern>/CalcNomEmplController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

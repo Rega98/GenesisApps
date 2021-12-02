@@ -29,7 +29,7 @@ import javax.servlet.RequestDispatcher;
 
 // Duda en línea 124
 
-@WebServlet(name = "GastoController", urlPatterns = {"/GastoController"})
+//@WebServlet(name = "GastoController", urlPatterns = {"/GastoController"})
 public class GastoController extends HttpServlet {
 
     Gasto gasto = new Gasto();
@@ -86,7 +86,7 @@ public class GastoController extends HttpServlet {
         } else if (action.equalsIgnoreCase("add")){
             access = add;
             
-        } else if (action.equalsIgnoreCase("guardar")){
+        } else if (action.equalsIgnoreCase("Guardar")){
             // Añadir nuevos Gastos:
             // Invocar métodos para realizar las operaciones:
             // int Folio = Integer.parseInt(request.getParameter("txtFolioGasto"));
@@ -125,13 +125,13 @@ public class GastoController extends HttpServlet {
             
         } else if (action.equalsIgnoreCase("edit")){
             // Obtener la información de request:
-            request.setAttribute("folGast", request.getParameter("folGast")); // <-- DUDA!!!
+            request.setAttribute("folio", request.getParameter("folio")); // <-- DUDA!!!
             // Redirigir a la vista:
             access = edit;
            
           // Editar  
         } else if (action.equalsIgnoreCase("Editar")){
-            
+            int folio = Integer.parseInt(request.getParameter("txtFolio"));
             String fechaStr = request.getParameter("txtDateGasto"); // Campo fecha
             
             // Se convierte a formato de fecha:
@@ -152,6 +152,7 @@ public class GastoController extends HttpServlet {
             int idTipoGasto = Integer.parseInt(request.getParameter("txtidTipo"));
             String rfGerente = request.getParameter("txtGerente");
             
+            gasto.setFolio(folio);
             gasto.setFecha(fecha);
             gasto.setDefinicion(definicion);
             gasto.setImporteCiva(importeCiva);
@@ -167,7 +168,7 @@ public class GastoController extends HttpServlet {
             // Eliminar productos:
         } else if (action.equalsIgnoreCase("delete")){
             // Invocar métodos para eliminación de productos:
-            int folioGast = Integer.parseInt(request.getParameter("folGast"));
+            int folioGast = Integer.parseInt(request.getParameter("folio"));
             // Se instancian los valores en el modelo:
             gasto.setFolio(folioGast);
             // Se ejecuta la consulta para elminar producto:
@@ -177,7 +178,7 @@ public class GastoController extends HttpServlet {
         }
         
         RequestDispatcher view = request.getRequestDispatcher(access);
-        processRequest(request, response);
+         view.forward(request, response);
         
     }
 

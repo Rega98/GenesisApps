@@ -34,7 +34,7 @@ public class RutaDAO implements CRUD_Ruta {
     @Override
     public List show() {
           ArrayList<Ruta> list = new ArrayList<>();
-        String squery = "SELECT * FROM ruta ORDER BY sno = id;";
+        String squery = "SELECT * FROM ruta ORDER BY id = id;";
         
         try{
             con = cox.getConnection();
@@ -60,7 +60,7 @@ public class RutaDAO implements CRUD_Ruta {
 
     @Override
     public Ruta details(int idRuta) {
-            String squery = "SELECT * FROM ruta WHERE sno="+idRuta+";";
+            String squery = "SELECT * FROM ruta WHERE idRuta="+idRuta+";";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -78,11 +78,12 @@ public class RutaDAO implements CRUD_Ruta {
         
         return rut;
     }
-
+ 
     @Override
     public boolean add(Ruta rut) {
-           String squery = "INSERT INTO ruta (sname) VALUES ('"+rut.getIdRuta()+"');";
-        
+           String squery = "INSERT INTO ruta ( descripcionRuta, rutas, contratofolio)" 
+                + "VALUES ('"+rut.getDescripcionRuta()+"',"+rut.getRutas()+", "+rut.getContratofolio()+");";
+              
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -96,7 +97,9 @@ public class RutaDAO implements CRUD_Ruta {
 
     @Override
     public boolean edit(Ruta rut) {
-             String squery = "UPDATE ruta SET sname='"+rut.getIdRuta()+"' WHERE sno = "+rut.getIdRuta()+";";
+             String squery = "UPDATE ruta SET idRuta="+rut.getIdRuta()+", descripcionRuta='"+rut.getDescripcionRuta()+"', "
+                + "rutas="+rut.getRutas()+", contratofolio="+rut.getContratofolio()+"'WHERE folio="+rut.getIdRuta()+";";
+	
         
         System.out.println(squery);
         
@@ -113,7 +116,7 @@ public class RutaDAO implements CRUD_Ruta {
 
     @Override
     public boolean delete(int idRuta) {
-        String squery = "DELETE FROM ruta WHERE sno = "+idRuta+";";
+        String squery = "DELETE FROM ruta WHERE idRuta = "+idRuta+";";
         
         System.out.println(squery);
         

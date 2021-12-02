@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +14,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Samuel
  */
-@WebServlet(name = "TipoGastoController", urlPatterns = {"/TipoGastoController"})
 public class TipoGastoController extends HttpServlet {
 
-     TipoGasto tipga = new TipoGasto();
+    TipoGasto tipga = new TipoGasto();
     TipoGastoDAO tipgdao = new TipoGastoDAO();
     
     String show = "TipoGasto/show.jsp";
@@ -64,23 +62,8 @@ public class TipoGastoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         //processRequest(request, response);
-    
-         String access = "";
+        String access = "";
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("show")){
             access = show;
@@ -132,10 +115,20 @@ public class TipoGastoController extends HttpServlet {
         
         RequestDispatcher view = request.getRequestDispatcher(access);
         view.forward(request, response);
-        
-           
-           
-           
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);       
     }
         
     /**

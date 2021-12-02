@@ -83,8 +83,8 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
     @Override
     public boolean add(TipoGasto tipogast) {
     
-        String squery = "INSERT INTO tipoGasto (id,descripcion,tipo)" 
-                + "VALUES ("+tipogast.getId()+", '"+tipogast.getDescripcion()+"', '"+tipogast.getTipo()+"');";
+        String squery = "INSERT INTO tipoGasto (descripcion,tipo)" 
+                + "VALUES ('"+tipogast.getDescripcion()+"', '"+tipogast.getTipo()+"');";
               
         try{
             con = cox.getConnection();
@@ -101,7 +101,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
     @Override
     public boolean edit(TipoGasto tipogast) {
     
-        String squery = "UPDATE tipoGasto SET descripcion='"+tipogast.getDescripcion()+"', "
+        String squery = "UPDATE tipoGasto SET id="+tipogast.getId()+", descripcion='"+tipogast.getDescripcion()+"', "
                 + "tipo='"+tipogast.getTipo()+"'WHERE id="+tipogast.getId()+";";
 	
         System.out.println(squery);
@@ -120,7 +120,7 @@ public class TipoGastoDAO implements CRUD_TipoGasto {
     // Método que elimina un TipoGasto
     @Override
     public boolean delete(int id) {
-    String squery = "DELETE * FROM tipoGasto WHERE id = "+id+";";
+    String squery = "DELETE FROM tipoGasto WHERE id = "+id+";";
         
         System.out.println(squery);
         

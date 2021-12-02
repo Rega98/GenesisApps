@@ -31,7 +31,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
     @Override
     public List show() {
         ArrayList<Proveedor> list = new ArrayList<>();
-        String squery = "SELECT * FROM proveedor ORDER BY rfc;";
+        String squery = "SELECT * FROM proveedor ORDER BY nombre;";
         
         try{
             con = cox.getConnection();
@@ -59,7 +59,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
     // Método que Muestra un Proveedor
     @Override
     public Proveedor details(String rfc) {
-        String squery = "SELECT * FROM proveedor WHERE rfc="+rfc+";";
+        String squery = "SELECT * FROM proveedor WHERE rfc='"+rfc+"';";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -83,7 +83,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
     @Override
     public boolean add(Proveedor prov) {
         String squery = "INSERT INTO proveedor (rfc,nombre,direccion,telefono,correo)" 
-                + "VALUES ('"+prov.getRfc()+"', '"+prov.getNombre()+"', '"+prov.getDireccion()+"',"+prov.getTelefono()+", '"+prov.getCorreo()+"');";
+                + "VALUES ('"+prov.getRfc()+"', '"+prov.getNombre()+"', '"+prov.getDireccion()+"','"+prov.getTelefono()+"', '"+prov.getCorreo()+"');";
               
         try{
             con = cox.getConnection();
@@ -99,8 +99,8 @@ public class ProveedorDAO implements CRUD_Proveedor {
     // Método que edita un Proveedor
     @Override
     public boolean edit(Proveedor prov) {
-        String squery = "UPDATE proveedor SET rfc='"+prov.getRfc()+"', nombre='"+prov.getNombre()+"', "
-                + "direccion='"+prov.getDireccion()+"', telefono="+prov.getTelefono()+", correo='"+prov.getCorreo()+"'WHERE rfc='"+prov.getRfc()+"';";
+        String squery = "UPDATE proveedor SET nombre='"+prov.getNombre()+"', "
+                + "direccion='"+prov.getDireccion()+"', telefono='"+prov.getTelefono()+"', correo='"+prov.getCorreo()+"' WHERE rfc='"+prov.getRfc()+"';";
 	
         System.out.println(squery);
         
@@ -118,7 +118,7 @@ public class ProveedorDAO implements CRUD_Proveedor {
     // Método que elimina un Proveedor
     @Override
     public boolean delete(String rfc) {
-      String squery = "DELETE * FROM proveedor WHERE rfc = "+rfc+";";
+      String squery = "DELETE FROM proveedor WHERE rfc = '"+rfc+"';";
         
         System.out.println(squery);
         

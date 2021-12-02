@@ -34,7 +34,8 @@ public class ContratoDAO implements CRUD_Contrato {
     @Override
     public List show() {
        ArrayList<Contrato> list = new ArrayList<>();
-        String squery = "SELECT * FROM supplier ORDER BY sno = folio;";
+        String squery = "SELECT * FROM Contrato ORDER BY folio;";
+     
         
         try{
             con = cox.getConnection();
@@ -70,7 +71,8 @@ public class ContratoDAO implements CRUD_Contrato {
     }
     @Override
     public Contrato details(int folio) {
-          String squery = "SELECT * FROM contrato WHERE sno="+folio+";";
+          String squery = "SELECT * FROM contrato WHERE folio="+folio+";";
+          
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
@@ -97,10 +99,12 @@ public class ContratoDAO implements CRUD_Contrato {
         
         return cont;
     }
-
+ 
     @Override
     public boolean add(Contrato cont) {
-        String squery = "INSERT INTO contrato (sname) VALUES ('"+cont.getFolio()+"');";
+     String squery = "INSERT INTO contrato (enganche, planPago, diaCobro, estado, fechaContrato,subtotal, iva, total, rfcVendedor,rfcCliente,idProducto,idRuta)" 
+                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+","+cont.getIdRuta()+");";
+        
         
         try{
             con = cox.getConnection();
@@ -115,7 +119,10 @@ public class ContratoDAO implements CRUD_Contrato {
 
     @Override
     public boolean edit(Contrato cont) {
-           String squery = "UPDATE contrato SET sname='"+cont.getFolio()+"' WHERE sno = "+cont.getFolio()+";";
+        String squery = "UPDATE contrato SET folio="+cont.getFolio()+", enganche='"+cont.getEnganche()+"', "
+              + "planPago="+cont.getPlanPago()+",  diaCobro='"+cont.getDiaCobro()+"', estado="+cont.getEstado()+", fechaContrato='"+cont.getFechaContrato()+"',subtotal = '"+cont.getSubtotal()+"',Iva="+cont.getIva()+",total="+cont.getTotal()+",RfcVendedor="+cont.getRfcVendedor()+",RfcCliente="+cont.getRfcCliente()+",IdProducto="+cont.getIdProducto()+" ,IdRuta="+cont.getIdRuta()+ " WHERE folio="+cont.getFolio()+";";
+        
+           
         
         System.out.println(squery);
         
@@ -132,7 +139,8 @@ public class ContratoDAO implements CRUD_Contrato {
 
     @Override
     public boolean delete(int folio) {
-        String squery = "DELETE FROM contrato WHERE sno = "+folio+";";
+        String squery = "DELETE FROM contrato WHERE folio = "+folio+";";
+        
         
         System.out.println(squery);
         
@@ -145,5 +153,53 @@ public class ContratoDAO implements CRUD_Contrato {
         }
         
         return false;
+    }
+    
+    public List showByQuincena(String rfc, int month, int year, String sign) {
+        ArrayList<Contrato> list = new ArrayList<>();
+        String squery = "SELECT * FROM contrato WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechacontrato) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Contrato cont = new Contrato();
+                cont.setFolio(rs.getInt("folio"));
+                cont.setEnganche(rs.getFloat("enganche"));
+                cont.setPlanPago(rs.getString("planPago"));
+                cont.setDiaCobro(rs.getString("diaCobro"));
+                cont.setEstado(rs.getString("estado"));
+                cont.setFechaContrato(rs.getDate("fechacontrato"));
+                cont.setSubtotal(rs.getFloat("subtotal"));
+                cont.setIva(rs.getFloat("iva"));
+                cont.setTotal(rs.getFloat("total"));
+                cont.setRfcVendedor(rs.getString("rfcVendedor"));
+                cont.setRfcCliente(rs.getString("rfcCliente"));
+                cont.setIdProducto(rs.getInt("idProducto"));
+                cont.setIdRuta(rs.getInt("idRuta"));
+                list.add(cont);
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.showByQuincena");
+        }
+        return list;
+    }
+    
+    public Float getGananciaByQuincena(String rfc, int month, int year, String sign) {
+        Float result = -1.0f;
+        String squery = "SELECT SUM(total)*.10 AS montototal FROM contrato WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechacontrato) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fechacontrato) = "+year+" AND EXTRACT(DAY FROM fechacontrato) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getFloat("montototal");
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.getGananciaByQuincena");
+        }
+        return result;
     }
 }

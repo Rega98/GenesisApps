@@ -86,25 +86,25 @@ public class ValeDAO implements CRUD_Vale{
     //Método que inserta un Vale
     @Override
     public boolean add(Vale val) {
-    String squery = "INSERT INTO vale (folio, monto, fechavale, concepto, rfcvendedor)" 
-                + "VALUES ("+va.getFolio()+", "+va.getMonto()+", '"+va.getFechaVale()+"',"+va.getConcepto()+", '"+va.getRfcVendedor()+"');";
-              
+        boolean result = false;
+        String squery = "INSERT INTO vale (monto, fechavale, concepto, rfcvendedor)" 
+                + "VALUES ("+val.getMonto()+", '"+val.getFechaVale()+"', '"+val.getConcepto()+"', '"+val.getRfcVendedor()+"');";
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
             ps.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             System.out.println("Error:\n"+e+"\n-> Desde: ValeDAO.add");
         }
-        
-        return false; 
+        return result; 
     }
 
     //Método que actualiza un Vale
     @Override
     public boolean edit(Vale val) {
     
-        String squery = "UPDATE vale SET monto="+va.getMonto()+", "
+        String squery = "UPDATE vale SET folio="+va.getFolio()+", monto="+va.getMonto()+", "
                 + "fechavale='"+va.getFechaVale()+"', concepto='"+va.getConcepto()+"', rfcvendedor='"+va.getRfcVendedor()+"'WHERE folio="+va.getFolio()+";";
 	
         System.out.println(squery);
@@ -124,7 +124,7 @@ public class ValeDAO implements CRUD_Vale{
     @Override
     public boolean delete(int folio) {
     
-        String squery = "DELETE * FROM vale WHERE folio = "+folio+";";
+        String squery = "DELETE FROM vale WHERE folio = "+folio+";";
         
         System.out.println(squery);
         
@@ -139,4 +139,43 @@ public class ValeDAO implements CRUD_Vale{
         return false;
     }
     
+    public List showByQuincena(String rfc, int month, int year, String sign) {
+        ArrayList<Vale> list = new ArrayList<>();
+        String squery = "SELECT * FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Vale val = new Vale();
+                val.setFolio(rs.getInt("folio"));
+                val.setMonto(rs.getFloat("monto"));
+                val.setFechaVale(rs.getDate("fechavale"));
+                val.setConcepto(rs.getNString("concepto"));
+                val.setRfcVendedor(rs.getNString("rfcvendedor"));
+                list.add(val);
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ValeDAO.showByQuincena");
+        }
+        return list;
+    }
+    
+    public Float getMontoByQuincena(String rfc, int month, int year, String sign) {
+        Float result = -1.0f;
+        String squery = "SELECT SUM(monto) AS montototal FROM vale WHERE rfcvendedor = '"+rfc+"' AND EXTRACT(MONTH FROM fechavale) = "+month+" AND " +
+                        "EXTRACT(YEAR FROM fechavale) = "+year+" AND EXTRACT(DAY FROM fechavale) "+sign+" 15;"; 
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getFloat("montototal");
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ValeDAO.getGananciaByQuincena");
+        }
+        return result;
+    }
 }
