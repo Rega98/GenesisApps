@@ -102,6 +102,7 @@ public class ContratoController extends HttpServlet {
             float subTot = Float.parseFloat(request.getParameter("numSubCon"));  
             float iva = Float.parseFloat(request.getParameter("numIvaCon")); 
             float total = Float.parseFloat(request.getParameter("numTotCon"));
+            int idRuta = Integer.parseInt(request.getParameter("cbxIdRuta"));
             
             cont.setEnganche(enganc);
             cont.setPlanPago(plaPag);
@@ -124,6 +125,7 @@ public class ContratoController extends HttpServlet {
             cont.setRfcVendedor(rfcVen);
             cont.setRfcCliente(rfcCli);
             cont.setIdProducto(idProd);
+            cont.setIdRuta(idRuta);
             cdao.add(cont);            
 
             if(enganc>(subTot*0.10)){

@@ -124,7 +124,7 @@ public class ContratoDAO implements CRUD_Contrato {
     @Override
     public boolean add(Contrato cont) {
         String squery = "INSERT INTO contrato (enganche, planPago, diaCobro, estado, fechaContrato,subtotal, iva, total, rfcVendedor,rfcCliente,idProducto,idRuta)" 
-                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+", null);";
+                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+","+cont.getIdRuta()+");";
         
         
         try{

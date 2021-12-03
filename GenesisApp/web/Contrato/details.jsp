@@ -3,6 +3,10 @@
     Created on : 30 nov. 2021, 20:26:11
     Author     : IsmaelSL
 --%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="Model.Ruta"%>
+<%@page import="ModelDAO.RutaDAO"%>
 <%@page import="Model.Producto"%>
 <%@page import="ModelDAO.ProductoDAO"%>
 <%@page import="Model.Empleado"%>
@@ -23,7 +27,7 @@
     
     ProductoDAO pdao = new ProductoDAO();
     Producto pro = (Producto) pdao.details(idPr);
-    
+
     float pre = pro.getPrecioVenta();
     double iva;
 %>
@@ -153,12 +157,30 @@
             </div>
             <hr>
             <div class="row mt-3">
-                <div class="col-8">
+                <div class="col-4">
                     <label for="txtRfcVen" class="form-label">Vendido Por:</label>
                     <br>
                     <h6><%=emp.getRfc()+" - "+emp.getNombre()+" "+emp.getApPaterno()+" "+emp.getApPaterno()%></h6>
                     <input type="hidden" class="form-control" name="txtRfcVen" value="<%=emp.getRfc()%>" required>
                 </div>
+                <div class="col-2 mt-3">
+                    <select class="form-select" name="cbxIdRuta" required>
+                        <option selected disabled>Ruta Cobro...</option>
+                        <%
+                            RutaDAO rdao = new RutaDAO();
+                            List<Ruta> list = rdao.show();
+                            Iterator<Ruta> iter = list.iterator();
+                            Ruta rut = null;
+                            while(iter.hasNext()){
+                                rut = iter.next();
+                        %>
+                        <option value="<%=rut.getIdRuta()%>"><%=rut.getIdRuta()%></option>
+                        <% 
+                            }
+                        %>
+                    </select>
+                </div>
+                <div class="col-2"></div>
                 <div class="col-4 mt-3">
                     <input type="submit" name="action" class="btn btn-primary px-5" value="Guardar" />
                     <a type="submit" class="btn btn-danger px-5" href="ContratoController?action=add">Regresar</a>
