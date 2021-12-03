@@ -100,6 +100,26 @@ public class ContratoDAO implements CRUD_Contrato {
         
         return cont;
     }
+    
+    public boolean cancel(int folio) {
+          String squery = "SELECT 1 FROM pago WHERE contratofolio="+folio+";";
+          boolean result = false;
+          
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            System.out.println(rs);
+            if(rs.next()){
+                
+                result=true;
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.details");
+        }
+        
+        return result;
+    }
  
     @Override
     public boolean add(Contrato cont) {

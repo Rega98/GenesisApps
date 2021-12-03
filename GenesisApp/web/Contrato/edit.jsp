@@ -48,7 +48,14 @@
                     <option value="EN_RUTA">EN RUTA</option>
                     <option value="ABONADO">ABONADO</option>
                     <option value="SALDADO">SALDADO</option>
+                    <%  
+                        boolean cancel = cdao.cancel(folio);
+                        if(cancel==false){
+                    %>
                     <option value="CANCELADO">CANCELADO</option>
+                    <%
+                        }
+                    %>
                 </select>
             </div>
         </div>
