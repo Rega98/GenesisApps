@@ -34,12 +34,12 @@
                 <div class="col-3">
                     <label for="txtImpiva" class="form-label">Importe con Iva</label>
                     <!--<input type="text" class="form-control" name="txtCivaGasto" required>-->
-                    <input type="number" class="form-control" name="txtCivaGasto" required>
+                    <input type="number" class="form-control" name="txtCivaGasto" min="0" required>
                 </div>
                 <div class="col-3">
                     <label for="txtImpsiniva" class="form-label">Importe sin Iva</label>
                     <!--<input type="text" class="form-control" name="txtSivaGasto" required>-->
-                    <input type="number" class="form-control" name="txtSivaGasto" required>
+                    <input type="number" class="form-control" name="txtSivaGasto" min="0" required>
                 </div>
                 <div class="col-3">
                     <label for="txtTipogas" class="form-label">Tipo gasto</label>

@@ -25,7 +25,7 @@
                 <input type="hidden" name="txtIdProd" value="<%=prod.getId()%>">
                 <div class="col-4">
                     <label for="txtNomProd" class="form-label">Nombre Producto</label>
-                    <input type="text" class="form-control" name="txtNomProd" value="<%=prod.getNombre()%>" minlength="3" maxlength="50" title="Descripción abierta" required>
+                    <input type="text" class="form-control" name="txtNomProd" value="<%=prod.getNombre()%>" minlength="3" maxlength="150" title="Descripción abierta" required>
                 </div>
                 <div class="col-6">
                     <label for="txtDesProd" class="form-label">Descripción Producto</label>
@@ -35,7 +35,7 @@
                     <label for="txtStoProd" class="form-label">Stock</label>
                     <div class="input-group">
                         <span class="input-group-text">#</span>
-                        <input type="number" class="form-control" name="txtStoProd" value="<%=prod.getStock()%>" required>
+                        <input type="number" class="form-control" name="txtStoProd" value="<%=prod.getStock()%>" min="0" required>
                         <span class="input-group-text">pzs.</span>
                     </div>
                 </div>
@@ -45,14 +45,14 @@
                     <label for="txtPreComProd" class="form-label">Precio Compra</label>
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" name="txtPreComProd" value="<%=prod.getPrecioCompra()%>" required>
+                        <input type="number" class="form-control" name="txtPreComProd" value="<%=prod.getPrecioCompra()%>" min="0" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <label for="txtPreVenProd" class="form-label">Precio Venta</label>
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" name="txtPreVenProd" value="<%=prod.getPrecioVenta()%>" required>
+                        <input type="number" class="form-control" name="txtPreVenProd" value="<%=prod.getPrecioVenta()%>" min="0" required>
                     </div>
                 </div>
                 <div class="col-4">

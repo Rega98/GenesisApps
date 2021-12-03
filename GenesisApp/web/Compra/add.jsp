@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="numCantidadCom" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="NumCantidadCom" name="txtCantCom" required>
+                    <input type="number" class="form-control" id="NumCantidadCom" name="txtCantCom" min="1" required>
                 </div>
                 <div class="col-md-4">
                     <label for="numberIvaCom" class="form-label">IVA</label>
@@ -42,7 +42,7 @@
               <div class="row my-3">
                 <div class="col-md-4">
                     <label for="numberMontooCom" class="form-label">Monto Total</label>
-                    <input type="number" class="form-control" id="numberMonto" name="txtMontotCom" required>
+                    <input type="number" class="form-control" id="numberMonto" name="txtMontotCom" min="0" required>
                 </div>
                 <div class="col-md-4">
                     <label for="txtEstCom" class="form-label">Estado</label>

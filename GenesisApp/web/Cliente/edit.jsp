@@ -25,7 +25,7 @@
                     <label for="txtRfcCli" class="form-label">RFC Cliente</label>
                     <br>
                     <h4><%=cli.getRfc()%></h4>
-                    <input type="hidden" class="form-control" name="txtRfcCli" value="<%=cli.getRfc()%>" required>
+                    <input type="hidden" class="form-control" name="txtRfcCli" value="<%=cli.getRfc()%>" minlength="3" maxlength="20" pattern="[A-ZÁÉÍÓÚÑ]{1}[a-záéíóúñ]{2,19}" title="Comienze con letra mayúscula, seguido de minusculas" required>
                 </div>
                 <div class="col-6">
                     <label for="txtNomCli" class="form-label">Nombre</label>

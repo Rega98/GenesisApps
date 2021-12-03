@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="numCantidadCom" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="NumCantidadCom" name="txtCantCom" value="<%=com.getCantidad() %>" required="required">
+                    <input type="number" class="form-control" id="NumCantidadCom" name="txtCantCom" value="<%=com.getCantidad() %>" min="1" required="required">
                 </div>
                 
               </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="numberMontooCom" class="form-label">Monto Total</label>
-                    <input type="number" class="form-control" id="numberMonto" name="txtMontotCom" value="<%=com.getMontoTotal() %>" required="required">
+                    <input type="number" class="form-control" id="numberMonto" name="txtMontotCom" value="<%=com.getMontoTotal() %>" min="0" required="required">
                 </div>
                 <div class="col-md-4">
                     <label for="txtEstCom" class="form-label">Estado</label>

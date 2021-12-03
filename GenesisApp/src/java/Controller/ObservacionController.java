@@ -34,6 +34,7 @@ public class ObservacionController extends HttpServlet {
     String show = "Observacion/show.jsp";
     String add = "Observacion/add.jsp";
     String edit = "Observacion/edit.jsp";
+    String showC = "Contrato/show.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,8 +79,10 @@ public class ObservacionController extends HttpServlet {
             String access = "";
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase("show")){
+            request.setAttribute("folio", request.getParameter("folio"));
             access = show;
         } else if(action.equalsIgnoreCase("add")){
+            request.setAttribute("folio", request.getParameter("folio"));
             access = add;
         } else if(action.equalsIgnoreCase("Guardar")){
             
@@ -93,17 +96,20 @@ public class ObservacionController extends HttpServlet {
                 Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             }
             String obser = request.getParameter("txtobserobserv");
-            //int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
+            int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
             
             // Se instancia los valores (despues de x proceso realizado)
+            System.out.println(fecha);
+            System.out.println(obser);
+            System.out.println(contraF);
             observ.setFecha(fecha);
             observ.setObservacion(obser);
-            //observ.setContratofolio(contraF);
+            observ.setContratofolio(contraF);
             
             // Se le pasa el objeto para realizar la operación
             obsdao.add(observ);
             // Se redirige a la vista
-            access = show;
+            access = showC;
         } else if(action.equalsIgnoreCase("edit")){ //checar vista 
             // Se obtiene la info del request
             request.setAttribute("Id", request.getParameter("Id"));
@@ -121,12 +127,12 @@ public class ObservacionController extends HttpServlet {
                 Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             }
             String obser = request.getParameter("txtobserobserv");
-            //int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
+            int contraF = Integer.parseInt(request.getParameter("txtContratFobserv"));
             // Se instancia los valores (despues de x proceso realizado)
             observ.setId(id);
             observ.setFecha(fecha);
             observ.setObservacion(obser);
-            //observ.setContratofolio(contraF);
+            observ.setContratofolio(contraF);
             // Se le pasa el objeto para realizar la operación
             obsdao.edit(observ);
 
@@ -140,7 +146,7 @@ public class ObservacionController extends HttpServlet {
             // Se le pasa el objeto para realizar la operación
             obsdao.delete(id);
             // Se redirige a la vista
-            access = show;
+            access = showC;
         }
         
         RequestDispatcher view = request.getRequestDispatcher(access);

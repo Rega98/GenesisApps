@@ -25,7 +25,7 @@
                     <label for="txtStoProd" class="form-label">Stock</label>
                     <div class="input-group">
                         <span class="input-group-text">#</span>
-                        <input type="number" class="form-control" name="txtStoProd" required>
+                        <input type="number" class="form-control" name="txtStoProd" min="0" required>
                     </div>
                 </div>
             </div>
@@ -34,14 +34,14 @@
                     <label for="txtPreComProd" class="form-label">Precio Compra</label>
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" name="txtPreComProd" required>
+                        <input type="number" class="form-control" name="txtPreComProd" min="0" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <label for="txtPreVenProd" class="form-label">Precio Venta</label>
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" name="txtPreVenProd" required>
+                        <input type="number" class="form-control" name="txtPreVenProd" min="0" required>
                     </div>
                 </div>
                 <div class="col-4">

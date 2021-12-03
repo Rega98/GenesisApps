@@ -53,6 +53,7 @@
                     <td><%=cont.getIdRuta() %></td>
                     <td>
                         <a class="btn btn-primary" href="ContratoController?action=edit&folio=<%=cont.getFolio()%>">Detalles</a>
+                        <a class="btn btn-primary" href="ObservacionController?action=show&folio=<%=cont.getFolio()%>">Observación</a>
                     </td>
                 </tr>
                 <%
