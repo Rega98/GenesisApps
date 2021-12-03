@@ -48,7 +48,14 @@
                     <option value="EN_RUTA">EN RUTA</option>
                     <option value="ABONADO">ABONADO</option>
                     <option value="SALDADO">SALDADO</option>
+                    <%  
+                        boolean cancel = cdao.cancel(folio);
+                        if(cancel==false){
+                    %>
                     <option value="CANCELADO">CANCELADO</option>
+                    <%
+                        }
+                    %>
                 </select>
             </div>
         </div>
@@ -108,24 +115,24 @@
                     <h4><%=con.getDiaCobro() %></h4>
                 </div>
                 <div class="col-2">
-                    <label for="numEngaCon" class="form-label">Engache</label>
+                    <label for="numIvaCon" class="form-label">IVA</label>
                     <br>
-                    <h4>$ <%=con.getEnganche() %></h4>
+                    <h4 class="text-warning">$ <%=con.getIva() %></h4>
                 </div>
                 <div class="col-2">
                     <label for="numSubCon" class="form-label">Sub Total</label>
                     <br>
-                    <h4>$ <%=con.getSubtotal() %></h4>
+                    <h4 class="text-primary">$ <%=con.getSubtotal() %></h4>
                 </div>
                 <div class="col-2">
-                    <label for="numIvaCon" class="form-label">IVA (16%)</label>
+                    <label for="numEngaCon" class="form-label">Engache</label>
                     <br>
-                    <h4>$ <%=con.getIva() %></h4>
+                    <h4 class="text-success">$ <%=con.getEnganche() %></h4>
                 </div>
                 <div class="col-2">
-                    <label for="numTotalCon" class="form-label">Total</label>
+                    <label for="numTotalCon" class="form-label">Por Pagar</label>
                     <br>
-                    <h4>$ <%=con.getTotal() %></h4>
+                    <h4 class="text-danger">$ <%=con.getTotal() %></h4>
                 </div>
             </div>
             </div>

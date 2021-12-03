@@ -102,6 +102,7 @@ public class ContratoController extends HttpServlet {
             float subTot = Float.parseFloat(request.getParameter("numSubCon"));  
             float iva = Float.parseFloat(request.getParameter("numIvaCon")); 
             float total = Float.parseFloat(request.getParameter("numTotCon"));
+            int idRuta = Integer.parseInt(request.getParameter("cbxIdRuta"));
             
             cont.setEnganche(enganc);
             cont.setPlanPago(plaPag);
@@ -124,14 +125,15 @@ public class ContratoController extends HttpServlet {
             cont.setRfcVendedor(rfcVen);
             cont.setRfcCliente(rfcCli);
             cont.setIdProducto(idProd);
+            cont.setIdRuta(idRuta);
             cdao.add(cont);            
 
-            if(enganc>(total*0.10)){
+            if(enganc>(subTot*0.10)){
                 Vale val = new Vale();
                 ValeDAO vdao = new ValeDAO();
                 
                 val.setFechaVale(fecha);
-                val.setMonto((float) (enganc - (total*0.10)));
+                val.setMonto((float) (enganc - (subTot*0.10)));
                 System.out.println("Ultimo folio guardado: "+cdao.BuscarXCampos());
                 val.setConcepto(""+cdao.BuscarXCampos()+"");
                 val.setRfcVendedor(rfcVen);

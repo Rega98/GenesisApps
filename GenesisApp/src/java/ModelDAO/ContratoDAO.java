@@ -100,11 +100,31 @@ public class ContratoDAO implements CRUD_Contrato {
         
         return cont;
     }
+    
+    public boolean cancel(int folio) {
+          String squery = "SELECT 1 FROM pago WHERE contratofolio="+folio+";";
+          boolean result = false;
+          
+        try{
+            con = cox.getConnection();
+            ps = con.prepareStatement(squery);
+            rs = ps.executeQuery();
+            System.out.println(rs);
+            if(rs.next()){
+                
+                result=true;
+            }
+        }catch(SQLException e){
+            System.out.println("Error:\n"+e+"\n-> Desde: ContratoDAO.details");
+        }
+        
+        return result;
+    }
  
     @Override
     public boolean add(Contrato cont) {
         String squery = "INSERT INTO contrato (enganche, planPago, diaCobro, estado, fechaContrato,subtotal, iva, total, rfcVendedor,rfcCliente,idProducto,idRuta)" 
-                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+", null);";
+                + "VALUES ("+cont.getEnganche()+", '"+cont.getPlanPago()+"','"+cont.getDiaCobro()+"', '"+cont.getEstado()+"','"+cont.getFechaContrato()+"',"+cont.getSubtotal()+","+cont.getIva()+","+cont.getTotal()+",'"+cont.getRfcVendedor()+"','"+cont.getRfcCliente()+"',"+cont.getIdProducto()+","+cont.getIdRuta()+");";
         
         
         try{
