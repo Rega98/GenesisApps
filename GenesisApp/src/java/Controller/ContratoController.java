@@ -126,12 +126,12 @@ public class ContratoController extends HttpServlet {
             cont.setIdProducto(idProd);
             cdao.add(cont);            
 
-            if(enganc>(total*0.10)){
+            if(enganc>(subTot*0.10)){
                 Vale val = new Vale();
                 ValeDAO vdao = new ValeDAO();
                 
                 val.setFechaVale(fecha);
-                val.setMonto((float) (enganc - (total*0.10)));
+                val.setMonto((float) (enganc - (subTot*0.10)));
                 System.out.println("Ultimo folio guardado: "+cdao.BuscarXCampos());
                 val.setConcepto(""+cdao.BuscarXCampos()+"");
                 val.setRfcVendedor(rfcVen);
