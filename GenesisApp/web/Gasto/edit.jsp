@@ -42,18 +42,20 @@
                 </div>
                 <div class="col-6">
                     <label for="txtDef" class="form-label">Definicion</label>
-                    <input type="text" class="form-control" name="txtDefGasto" value="<%=gas.getDefinicion()  %>" required>
+                    <input type="text" class="form-control" name="txtDefGasto" value="<%=gas.getDefinicion()  %>" minlength="3" maxlength="50" title="Descripción abierta" required>
                 </div>
             </div>
                     
             <div class="row my-3">
                 <div class="col-3">
                     <label for="txtImpiva" class="form-label">Importe con Iva</label>
-                    <input type="text" class="form-control" name="txtCivaGasto" value="<%=gas.getImporteCiva()  %>" required>
+                    <!--<input type="text" class="form-control" name="txtCivaGasto" value="" required>-->
+                    <input type="number" class="form-control" name="txtCivaGasto" value="<%=gas.getImporteCiva()%>" min="0" required>
                 </div>
                 <div class="col-3">
                     <label for="txtImpsiniva" class="form-label">Importe sin Iva</label>
-                    <input type="text" class="form-control" name="txtSivaGasto" value="<%=gas.getImporteCiva()   %>" required>
+                    <!--<input type="text" class="form-control" name="txtSivaGasto" value="" required>-->
+                    <input type="number" class="form-control" name="txtSivaGasto" value="<%=gas.getImporteCiva()%>" min="0" required>
                 </div>
                  <div class="col-3">
                     <label for="txtTipogas" class="form-label">Tipo gasto</label>

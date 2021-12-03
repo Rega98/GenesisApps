@@ -15,17 +15,17 @@
             <div class="row my-3">
                 <div class="col-4">
                     <label for="txtNomProd" class="form-label">Nombre Producto</label>
-                    <input type="text" class="form-control" name="txtNomProd" required>
+                    <input type="text" class="form-control" name="txtNomProd" minlength="3" maxlength="50" title="Descripción abierta" required>
                 </div>
                 <div class="col-6">
                     <label for="txtDesProd" class="form-label">Descripción Producto</label>
-                    <input type="text" class="form-control" name="txtDesProd" required>
+                    <input type="text" class="form-control" name="txtDesProd" minlength="3" maxlength="150" title="Descripción abierta" required>
                 </div>
                 <div class="col-2">
                     <label for="txtStoProd" class="form-label">Stock</label>
                     <div class="input-group">
                         <span class="input-group-text">#</span>
-                        <input type="number" class="form-control" name="txtStoProd" required>
+                        <input type="number" class="form-control" name="txtStoProd" min="0" required>
                     </div>
                 </div>
             </div>
@@ -34,14 +34,14 @@
                     <label for="txtPreComProd" class="form-label">Precio Compra</label>
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" name="txtPreComProd" required>
+                        <input type="number" class="form-control" name="txtPreComProd" min="0" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <label for="txtPreVenProd" class="form-label">Precio Venta</label>
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" name="txtPreVenProd" required>
+                        <input type="number" class="form-control" name="txtPreVenProd" min="0" required>
                     </div>
                 </div>
                 <div class="col-4">
