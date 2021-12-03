@@ -10,6 +10,9 @@
 <%@page import="ModelDAO.ObservacionDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file = "../header.jsp" %>
+<%
+  int folio = Integer.parseInt((String)request.getAttribute("folio"));  
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,7 +60,7 @@
                 <div>
                     <h3>Listado de observaciones</h3>
                     <br>
-                    <a href="ObservacionController?action=add" class="btn btn-success" id="btnAdd" role="button">Agregar Observacion</a>
+                    <a href="ObservacionController?action=add&folio=<%=folio%>" class="btn btn-success" id="btnAdd" role="button">Agregar Observacion</a>
                 </div>
             </div>
         </div>
@@ -80,7 +83,7 @@
                     <tbody>
                         <%
                             ObservacionDAO obDAO = new ObservacionDAO();
-                            List<Observacion> list = obDAO.show();
+                            List<Observacion> list = obDAO.show(folio);
                             Iterator<Observacion> iter = list.iterator();
                             Observacion obs = null;
                                 while (iter.hasNext()) {
@@ -93,8 +96,8 @@
                         <td><%=obs.getContratofolio() %></td>
                         <td>
                             
-                            <a href="ObservacionController?action=edit&Id=<%=obs.getId()%> " class="btn btn-primary" id="btnEdit" role="button">Editar</a>
-                            <a class="btn btn-danger" href="ObservacionController?action=delete&Id=<%=obs.getId()%> ">Borrar</a>
+                            <!--<a href="ObservacionController?action=edit&Id=<%=obs.getId()%> " class="btn btn-primary" id="btnEdit" role="button">Editar</a>-->
+                            <a class="btn btn-danger" href="ObservacionController?action=delete&Id=<%=obs.getId()%>">Borrar</a>
                         </td>
                       </tr>
                         <%

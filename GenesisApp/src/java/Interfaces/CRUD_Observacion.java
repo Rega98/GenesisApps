@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface CRUD_Observacion {
         //MOSTRAR TODOS
-    public List show();
+    public List show(int folio);
     //BUSCAR UNO
     public Observacion details(int id);
     //AGREGAR

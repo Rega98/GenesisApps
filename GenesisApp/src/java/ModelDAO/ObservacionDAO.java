@@ -31,9 +31,9 @@ public class ObservacionDAO implements CRUD_Observacion {
     // Método que Muestra Todos los Proveedores
 
     @Override
-    public List show() {
+    public List show(int folio) {
           ArrayList<Observacion> list = new ArrayList<>();
-        String squery = "SELECT * FROM observacion ORDER BY id =id;";
+        String squery = "SELECT * FROM observacion WHERE contratofolio=" +folio+ " ORDER BY id =id;";
         
         
         try{
@@ -82,12 +82,12 @@ public class ObservacionDAO implements CRUD_Observacion {
 
     @Override
     public boolean add(Observacion obs) {
-          /*String squery = "INSERT INTO observacion (fecha, observacion, contratofolio)" 
-                + "VALUES ('"+obs.getFecha()+"',¿"+obs.getObservacion()+"', "+obs.getContratofolio()+");";*/
+          String squery = "INSERT INTO observacion (fecha, observacion, contratofolio)" 
+                + "VALUES ('"+obs.getFecha()+"', '"+obs.getObservacion()+"', "+obs.getContratofolio()+");";
 
         
-          String squery = "INSERT INTO observacion (fecha, observacion)" 
-                + "VALUES ('"+obs.getFecha()+"','"+obs.getObservacion()+"');";
+          /*String squery = "INSERT INTO observacion (fecha, observacion)" 
+                + "VALUES ('"+obs.getFecha()+"','"+obs.getObservacion()+"');";*/
         try{
             con = cox.getConnection();
             ps = con.prepareStatement(squery);
