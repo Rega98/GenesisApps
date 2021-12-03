@@ -60,15 +60,15 @@
 
                     <div class="col-md-4">
                         <label for="txtFechaObs" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="txtFechaObs" name="txtFechaobserv">
+                        <input type="date" class="form-control" id="txtFechaObs" name="txtFechaobserv" required>
                     </div>
                     <div class="col-md-4">
                         <label for="txtObservacion" class="form-label">Observación</label>
-                        <input type="text" class="form-control" id="txtObservacion" name="txtobserobserv">
+                        <input type="text" class="form-control" id="txtObservacion" name="txtobserobserv" minlength="3" maxlength="150" title="Obserción abierta" required>
                     </div>
                     <div class="col-md-4">
                         <label for="txtFolioCont" class="form-label">Folio de contrato</label>
-                        <select class="form-select" aria-label="Default select example" id="txtFolioCont" name="txtContratFobserv">
+                        <select class="form-select" aria-label="Default select example" id="txtFolioCont" name="txtContratFobserv" required>
                             <option selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>

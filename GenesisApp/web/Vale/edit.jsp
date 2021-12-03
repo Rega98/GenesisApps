@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-4">
                     <label for="txtMontoval" class="form-label">Monto</label>
-                    <input type="text" class="form-control" name="txtMonto" value="<%=val.getMonto()%>" required>
+                    <input type="text" class="form-control" name="txtMonto" value="<%=val.getMonto()%>" minlength="3" maxlength="20" title="El monto debe estar conformado números" required>
                 </div>
                 <div class="col-4">
                     <label for="txtFechaval" class="form-label">Fecha Vale</label>
@@ -46,7 +46,7 @@
             <div class="row my-3">
                 <div class="col-6">
                     <label for="txtConc" class="form-label">Concepto</label>
-                    <input type="text" class="form-control" name="txtConcepto" value="<%=val.getConcepto()%>" required>
+                    <input type="text" class="form-control" name="txtConcepto" value="<%=val.getConcepto()%>" minlength="3" maxlength="20" title="El concepto es abierto" required>
                 </div>
                 <div class="col-6">
                    <label for="txtrfcVendedor" class="form-label">Rfc Vendedor</label>
