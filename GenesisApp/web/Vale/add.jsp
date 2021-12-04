@@ -20,7 +20,7 @@
             <div class="row my-3">
                 <div class="col-4">
                     <label for="txtMontoval" class="form-label">Monto</label>
-                    <input type="text" class="form-control" name="txtMonto" required>
+                    <input type="text" class="form-control" name="txtMonto" minlength="3" maxlength="20" title="El monto debe estar conformado números" required>
                 </div>
                 <div class="col-4">
                     <label for="txtFechaval" class="form-label">Fecha Vale</label>
@@ -30,11 +30,11 @@
             <div class="row my-3">
                 <div class="col-6">
                     <label for="txtConc" class="form-label">Concepto</label>
-                    <input type="text" class="form-control" name="txtConcepto" required>
+                    <input type="text" class="form-control" name="txtConcepto" minlength="3" maxlength="20" title="El concepto es abierto" required>
                 </div>
                 <div class="col-6">
                     <label for="txtRfcEmp" class="form-label">RFC Vendedor</label>
-                    <select class="form-select" aria-label="Default select example" name="txtrfcVendedor">
+                    <select class="form-select" aria-label="Default select example" name="txtrfcVendedor" required>
                             <option selected disabled>Selecciona un Vendedor</option>
                             <%
                             EmpleadoDAO edao = new EmpleadoDAO();

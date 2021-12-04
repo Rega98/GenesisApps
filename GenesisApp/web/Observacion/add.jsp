@@ -24,15 +24,15 @@
 
                     <div class="col-md-4">
                         <label for="txtFechaObs" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="txtFechaObs" name="txtFechaobserv">
+                        <input type="date" class="form-control" id="txtFechaObs" name="txtFechaobserv" required >
                     </div>
                     <div class="col-md-4">
                         <label for="txtObservacion" class="form-label">Observación</label>
-                        <input type="text" class="form-control" id="txtObservacion" name="txtobserobserv">
+                        <input type="text" class="form-control" id="txtObservacion" name="txtobserobserv" required  minlength="3" maxlength="150" title="Obserción abierta">
                     </div>
                     <div class="col-md-4">
                         <label for="txtFolioCont" class="form-label">Folio de contrato</label>
-                        <input type="text" readonly class="form-control" id="txtObservacion" name="txtContratFobserv" value="<%=folio%>">
+                        <input type="text" readonly class="form-control" id="txtObservacion" name="txtContratFobserv" value="<%=folio%>" required>
                     </div>
                     <div class="col-6">
                         <input type="submit" name="action" class="btn btn-primary px-3" value="Guardar" />

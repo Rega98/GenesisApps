@@ -71,15 +71,15 @@
                     </div>
                     <div class="col-md-2">
                         <label for="txtEditFechaObs" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="txtEditFechaObs" name="txtFechaobserv" value="<%=obs.getFecha() %>">
+                        <input type="date" class="form-control" id="txtEditFechaObs" name="txtFechaobserv" value="<%=obs.getFecha() %>" required>
                     </div>
                     <div class="col-md-4">
                         <label for="txtEditObservacion" class="form-label">Observación</label>
-                        <input type="text" class="form-control" id="txtEditObservacion" name="txtobserobserv" value="<%=obs.getObservacion() %>">
+                        <input type="text" class="form-control" id="txtEditObservacion" name="txtobserobserv" value="<%=obs.getObservacion() %>" minlength="3" maxlength="150" title="Obserción abierta" required>
                     </div>
                     <div class="col-md-4">
                         <label for="txtEditFolioCont" class="form-label">Folio de contrato</label>
-                        <select class="form-select" aria-label="Default select example" id="txtEditFolioCont" name="txtContratFobserv">
+                        <select class="form-select" aria-label="Default select example" id="txtEditFolioCont" name="txtContratFobserv" required>
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>

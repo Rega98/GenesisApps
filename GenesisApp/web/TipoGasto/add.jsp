@@ -20,7 +20,7 @@
             <div class="row my-3">
                 <div class="col-6">
                     <label for="txtDes" class="form-label">Descripcion</label>
-                    <input type="text" class="form-control" name="txtDesTipoGast" required>
+                    <input type="text" class="form-control" name="txtDesTipoGast"  minlength="3" maxlength="150" title="Descripción abierta" required>
                 </div>
                 <div class="col-3">
                     <label for="txtTGasto" class="form-label">Tipo</label>
