@@ -118,7 +118,7 @@
                   <div class="d-flex flex-column h-100">
                     <p class="mb-1 pt-2 text-bold">Instituto Tecnológico de Orizaba</p>
                     <h5 class="font-weight-bolder">Curso propedéutico </h5>
-                    <p class="mb-5">Materia: Programación orientadas a objetos con java.</p>
+                    <p class="mb-5">Materia: Programación orientada a objetos con java.</p>
                     <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
                       Read More
                       <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
