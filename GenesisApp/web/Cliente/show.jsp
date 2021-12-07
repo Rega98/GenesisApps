@@ -46,7 +46,7 @@
                     <td><%= cli.getNombre()%></td>
                     <td><%= cli.getApPaterno()%></td>
                     <td><%= cli.getApMaterno()%></td>
-                    <td><%= cli.getDireccion()%></td>
+                    <td><%= cli.getDireccion().substring(0,10)+"..."%></td>
                     <td><%= cli.getTelefono()%></td>
                     <td><%= cli.getCorreo()%></td>
                     <td class="px-0">

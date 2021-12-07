@@ -44,7 +44,7 @@
                 <tr>
                     <th><%= prod.getId()%></th>
                     <td><%= prod.getNombre()%></td>
-                    <td><%= prod.getDescripcion()%></td>
+                    <td><%= prod.getDescripcion().substring(0,10)+"..."%></td>
                     <td><%= prod.getPrecioCompra()%></td>
                     <td><%= prod.getPrecioVenta()%></td>
                     <td><%  if(prod.getIva()){

@@ -42,7 +42,7 @@
                 <tr>
                     <th><%= prov.getRfc()%></th>
                     <td><%= prov.getNombre()%></td>
-                    <td><%= prov.getDireccion()%></td>
+                    <td><%= prov.getDireccion().substring(0,10)+"..."%></td>
                     <td><%= prov.getCorreo()%></td>
                     <td><%= prov.getTelefono()%></td>
                     <td class="px-0">
