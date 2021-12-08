@@ -34,7 +34,7 @@ and open the template in the editor.
             </div>
             <div class="card-body bg-white">
                     <div class="container">
-                        <form name="archivo" method="post" action="" class="mt-2">
+                        <div class="mt-2">
                             <div class="form-group mb-4">
                                 <label class="form-label">Usuario</label>
                                 <input type="text" id="usr" class="form-control" required/>
@@ -43,8 +43,8 @@ and open the template in the editor.
                                 <label class="form-label">Contraseña</label>
                                 <input type="password" id="pas" class="form-control" required/>
                             </div>
-                            <button class="btn btn-primary btn-block px-5">Entrar</button>
-                        </form>
+                            <button class="btn btn-primary btn-block px-5" onclick="login();" >Entrar</button>
+                        </div>
                     </div>
                 </div>
             <div class="card-footer text-muted">@2021</div>
@@ -56,7 +56,7 @@ and open the template in the editor.
             var pas = document.getElementById("pas").value;
             
             if(usr === "Oscar" && pas === "12345678"){
-                
+                window.location.href = "welcome.jsp";
             } else {
                 alert ("Las credenciales no coinciden.");
             }

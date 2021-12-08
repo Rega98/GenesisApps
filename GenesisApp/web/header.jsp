@@ -77,6 +77,11 @@
                             <a class="nav-link active" aria-current="page" href="EmpleadoController?action=show">Empleados</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Salir <i class="fas fa-sign-out-alt ml-2"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
