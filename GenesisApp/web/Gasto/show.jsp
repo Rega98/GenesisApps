@@ -45,7 +45,7 @@
                 <tr>
                     <td><%= gas.getFolio()%></td>
                     <td><%= gas.getFecha()%></td>
-                    <td><%= gas.getDefinicion().substring(0,10)+"..."%></td>
+                    <td><%= gas.getDefinicion()+"..."%></td>
                     <td><%= gas.getImporteCiva()%></td>
                     <td><%= gas.getImporteSinva()%></td>
                     <td><%= gas.getIdTipoGasto()%></td>
